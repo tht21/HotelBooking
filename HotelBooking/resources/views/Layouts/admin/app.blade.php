@@ -29,13 +29,13 @@
 
 <body>
 	<div class="wrapper">
-		@include('Layouts.includes.admin.header')
-		@include('Layouts.includes.admin.sidebar')
+		@include('Layouts.admin.includes.header')
+		@include('Layouts.admin.includes.sidebar')
 		<div class="main-panel">
 			<div class="content">
 				@yield('content')
 			</div>
-			@include('Layouts.includes.admin.footer')
+			@include('Layouts.admin.includes.footer')
 		</div>
 	</div>
 	<!--   Core JS Files   -->
