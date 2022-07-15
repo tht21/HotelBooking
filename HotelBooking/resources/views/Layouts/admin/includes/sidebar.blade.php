@@ -37,27 +37,6 @@
             </div>
          </div>
          <ul class="nav nav-primary">
-            {{-- <li class="nav-item active">
-               <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
-                  <i class="fas fa-home"></i>
-                  <p>Thống Kê</p>
-                  <span class="caret"></span>
-               </a>
-               <div class="collapse" id="dashboard">
-                  <ul class="nav nav-collapse">
-                     <li>
-                        <a href="../demo1/index.html">
-                           <span class="sub-item">Dashboard 1</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="../demo2/index.html">
-                           <span class="sub-item">Dashboard 2</span>
-                        </a>
-                     </li>
-                  </ul>
-               </div>
-            </li> --}}
             <li class="nav-item active">
                <a href="index.php">
                   <i class="fas fa-home"></i>
@@ -110,16 +89,6 @@
                            <span class="sub-item">Bài Viết</span>
                         </a>
                      </li>
-                     {{-- <li>
-                        <a href="compact-sidebar.html">
-                           <span class="sub-item">Tin Tức Tổng Hợp</span>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="static-sidebar.html">
-                           <span class="sub-item">Tags</span>
-                        </a>
-                     </li> --}}
                   </ul>
                </div>
             </li>
@@ -227,9 +196,6 @@
                   </ul>
                </div>
             </li>
-            {{-- <li class="mx-4 mt-2">
-               <a href="http://themekita.com/atlantis-bootstrap-dashboard.html" class="btn btn-primary btn-block"><span class="btn-label mr-2"> <i class="fa fa-heart"></i> </span>Buy Pro</a> 
-            </li> --}}
          </ul>
       </div>
    </div>
