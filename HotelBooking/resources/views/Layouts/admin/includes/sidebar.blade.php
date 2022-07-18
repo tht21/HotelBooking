@@ -8,8 +8,8 @@
             <div class="info">
                <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                   <span>
-                     Hizrian
-                     <span class="user-level">Administrator</span>
+                     ADMIN
+                     <span class="user-level">Admin</span>
                      <span class="caret"></span>
                   </span>
                </a>
@@ -19,17 +19,17 @@
                   <ul class="nav">
                      <li>
                         <a href="#profile">
-                           <span class="link-collapse">My Profile</span>
+                           <span class="link-collapse">Hồ Sơ</span>
                         </a>
                      </li>
                      <li>
                         <a href="#edit">
-                           <span class="link-collapse">Edit Profile</span>
+                           <span class="link-collapse">Chỉnh Sửa Hồ Sơ</span>
                         </a>
                      </li>
                      <li>
                         <a href="#settings">
-                           <span class="link-collapse">Settings</span>
+                           <span class="link-collapse">Cài Đặt</span>
                         </a>
                      </li>
                   </ul>
@@ -101,7 +101,7 @@
                <div class="collapse" id="tables">
                   <ul class="nav nav-collapse">
                      <li>
-                        <a href="tables/tables.html">
+                        <a href="{{route('roomtype.index')}}">
                            <span class="sub-item">Loại Phòng</span>
                         </a>
                      </li>
