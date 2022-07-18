@@ -33,7 +33,7 @@
 		@include('layouts.admin.includes.sidebar')
 		<div class="main-panel">
 			<div class="content">
-				@yield('content')
+						@yield('content')
 			</div>
 			@include('layouts.admin.includes.footer')
 		</div>
