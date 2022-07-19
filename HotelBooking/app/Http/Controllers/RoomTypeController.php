@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Services\Interfaces\RoomTypeServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -106,7 +107,7 @@ class RoomTypeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {  
+    {
         try {
             $roomtype = $this->roomTypeService->destroy($id);
             return redirect()->route('roomtype.index')->with('success', ' Xóa loại phòng thành công ');
