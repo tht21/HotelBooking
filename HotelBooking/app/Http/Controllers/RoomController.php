@@ -2,20 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Room;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
+use App\Models\Room;
+use App\Services\Interfaces\FloorServiceInterface;
+use App\Services\Interfaces\RoomServiceInterface;
+use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
+    protected $roomService;
+    protected $floorService;
+
+    public function __construct(RoomServiceInterface $roomService, FloorServiceInterface $floorService)
+    {
+        $this->roomService = $roomService;
+        $this->floorService = $floorService;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view("admin.room.index");
+        $rooms = $this->roomService->getAll($request);
+        return view("admin.room.index", compact('rooms'));
     }
 
     /**
@@ -23,9 +36,10 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $floors = $this->floorService->getAll($request);
+        return view('admin.room.create', compact('floors'));
     }
 
     /**
@@ -34,9 +48,9 @@ class RoomController extends Controller
      * @param \App\Http\Requests\StoreRoomRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRoomRequest $request)
+    public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
