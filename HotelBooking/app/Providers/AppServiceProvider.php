@@ -14,7 +14,6 @@ use App\Services\Interfaces\FloorServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
 use App\Services\RoomService;
 
-
 use App\Repositories\Eloquent\RoomTyperepository;
 use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
 use App\Services\Interfaces\RoomTypeServiceInterface;

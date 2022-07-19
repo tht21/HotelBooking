@@ -6,6 +6,7 @@ interface RepositoryInterface
 {
     public function getAll($request);
 
+
     public function findById($id);
 
     public function create($request);
@@ -14,3 +15,6 @@ interface RepositoryInterface
 
     public function destroy($id);
 }
+
+}
+

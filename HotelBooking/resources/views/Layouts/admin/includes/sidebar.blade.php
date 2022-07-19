@@ -1,3 +1,4 @@
+
 <div class="sidebar sidebar-style-2">
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
@@ -7,6 +8,17 @@
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+
+<div class="sidebar sidebar-style-2">			
+   <div class="sidebar-wrapper scrollbar scrollbar-inner">
+      <div class="sidebar-content">
+         <div class="user">
+            <div class="avatar-sm float-left mr-2">
+               <img src="{{asset('admin/assets/img/profile.jpg')}}" alt="..." class="avatar-img rounded-circle">
+            </div>
+            <div class="info">
+               <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+
                   <span>
                      ADMIN
                      <span class="user-level">Admin</span>
@@ -36,6 +48,7 @@
                     </div>
                 </div>
             </div>
+
             <ul class="nav nav-primary">
                 <li class="nav-item active">
                     <a href="index.php">
@@ -45,6 +58,18 @@
                     </a>
                 </li>
                 <li class="nav-section">
+
+         </div>
+         <ul class="nav nav-primary">
+            <li class="nav-item active">
+               <a href="{{route('home')}}">
+                  <i class="fas fa-home"></i>
+                  <p>Thống Kê</p>
+                  {{-- <span class="caret"></span> --}}
+               </a>
+            </li>
+            <li class="nav-section">
+
                <span class="sidebar-mini-icon">
                   <i class="fa fa-ellipsis-h"></i>
                </span>
