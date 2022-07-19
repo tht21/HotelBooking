@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Impl;
+namespace App\Repositories\Interfaces;
 
-interface Service
+interface RepositoryInterface
 {
     public function getAll($request);
 
@@ -14,4 +14,3 @@ interface Service
 
     public function destroy($id);
 }
-
