@@ -6,10 +6,12 @@ namespace App\Providers;
 use App\Repositories\Eloquent\EloquentRepository;
 use App\Repositories\Eloquent\FloorRepository;
 use App\Repositories\Eloquent\RoomRepository;
+
 use App\Repositories\Interfaces\FloorInterface;
 use App\Repositories\Interfaces\RepositoryInterface;
 use App\Repositories\Interfaces\RoomInterface;
 use App\Services\FloorService;
+
 use App\Services\Interfaces\FloorServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
 use App\Services\RoomService;
@@ -18,6 +20,7 @@ use App\Repositories\Eloquent\RoomTyperepository;
 use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
 use App\Services\Interfaces\RoomTypeServiceInterface;
 use App\Services\RoomTypeService;
+
 use Illuminate\Pagination\Paginator;
 
 use Illuminate\Support\ServiceProvider;
