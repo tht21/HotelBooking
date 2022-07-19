@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,7 @@ Route::group([
     'prefix' => 'admin',
     // 'middleware' => ['auth:admin_login']
 ], function () {
-    
+
     Route::get('/home', function () {
         return view('layouts.admin.app');
     })->name('home');
@@ -37,3 +38,4 @@ Route::group([
     Route::resource('roomtype', RoomTypeController::class);
     
 });
+
