@@ -22,6 +22,7 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Ảnh phòng</th>
                                     <th>Tên phòng</th>
                                     <th>Giá phòng</th>
                                     <th>Loại phòng</th>
@@ -34,6 +35,7 @@
 
                                     <tr>
                                         <td>{{$key++}}</td>
+                                        <td><img src="{{$room->image_path}}" height="70" width="80"></td>
                                         <td>{{$room->name}}</td>
                                         <td>{{$room->price}}</td>
                                         <td>{{$room->room_type->name}}</td>

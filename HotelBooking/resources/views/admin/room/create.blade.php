@@ -4,13 +4,12 @@
         @include('Layouts.admin.includes.content',['key'=> 'Thêm Phòng ','name'=> ' Quản Lý Phòng','key' => 'Thêm Phòng'])
         <div class="row">
             <div class="col-md-12">
-                <form method="post" action="{{route('rooms.store')}}">
+                <form method="post" action="{{route('rooms.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">Thêm Phòng</div>
                         </div>
-
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
@@ -28,11 +27,9 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Loại phòng</label>
                                         <select class="form-control" name="room_types" id="exampleFormControlSelect1">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                            @foreach($roomTypes as $roomType)
+                                                <option value="{{$roomType->id}}">{{$roomType->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -51,12 +48,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="comment">Ảnh</label>
-                                        <input type="file" name="image" class="form-control-file"
+                                        <input type="file" name="image_path" class="form-control-file"
                                                id="exampleFormControlFile1">
                                     </div>
                                     <div class="form-group">
                                         <label for="comment">Ảnh Chi tiết</label>
-                                        <input type="file" name="room_image=[]" class="form-control-file"
+                                        <input type="file" name="room_image_path[]" class="form-control-file"
                                                id="exampleFormControlFile1" multiple>
                                     </div>
                                     <div class="form-group">
@@ -65,7 +62,13 @@
                                                   type="text"
                                                   class="form-control"></textarea>
                                     </div>
-
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Tình trạng phòng</label>
+                                        <select class="form-control" name="status" id="exampleFormControlSelect1">
+                                            <option value="còn phòng">Còn phòng</option>
+                                            <option value="hết phòng">Hết phòng</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                             </div>

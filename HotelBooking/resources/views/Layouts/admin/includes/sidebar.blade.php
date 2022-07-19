@@ -109,17 +109,17 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="tables/tables.html">
+                                <a href="{{route('rooms.index')}}">
                                     <span class="sub-item">Phòng</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a href="#forms">
-                        <i class="fas fa-user"></i>
-                        <p>Nhân Viên</p>
+             <li class="nav-item">
+                 <a href="#forms">
+                     <i class="fas fa-user"></i>
+                     <p>Nhân Viên</p>
                     </a>
                 </li>
                 <li class="nav-item">

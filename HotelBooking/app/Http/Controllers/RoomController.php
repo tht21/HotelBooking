@@ -2,22 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
 use App\Models\Room;
+use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
 use App\Services\Interfaces\FloorServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class RoomController extends Controller
 {
     protected $roomService;
     protected $floorService;
+    protected $roomTypeService;
 
-    public function __construct(RoomServiceInterface $roomService, FloorServiceInterface $floorService)
+
+    public function __construct(RoomServiceInterface $roomService, FloorServiceInterface $floorService, RoomTypeRepositoryInterface $roomTypeService)
     {
         $this->roomService = $roomService;
         $this->floorService = $floorService;
+        $this->roomTypeService = $roomTypeService;
     }
 
     /**
@@ -39,7 +43,12 @@ class RoomController extends Controller
     public function create(Request $request)
     {
         $floors = $this->floorService->getAll($request);
-        return view('admin.room.create', compact('floors'));
+        $roomType = $this->roomTypeService->getAll($request);
+        $param = [
+            'floors' => $floors,
+            'roomTypes' => $roomType,
+        ];
+        return view('admin.room.create', $param);
     }
 
     /**
@@ -50,7 +59,13 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        try {
+            $this->roomService->create($request);
+            return redirect()->route('rooms.index')->with('success', ' Thêm tin tức ' . $request->name . ' thành công ');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('rooms.index')->with('error', ' Thêm tin tức ' . $request->name . 'không thành công ');
+        }
     }
 
     /**
