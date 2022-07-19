@@ -21,13 +21,14 @@ class RoomService implements RoomServiceInterface
 
     public function create($request)
     {
-        $this->roomRepository->create($request);
+        return $this->roomRepository->create($request);
+
     }
 
     public function update($request, $id)
     {
         $course = $this->roomRepository->findById($id);
-        $this->roomRepository->update($request, $course);
+        return $this->roomRepository->update($request, $course);
     }
 
     public function findById($id)
@@ -38,7 +39,7 @@ class RoomService implements RoomServiceInterface
     public function destroy($id)
     {
         $course = $this->roomRepository->findById($id);
-        $this->roomRepository->destroy($course);
+        return $this->roomRepository->destroy($course);
     }
 
 
