@@ -29,7 +29,7 @@ Route::group([
     })->name('home');
 
 
-    Route::prefix('roomtypes')->group(function () {
+    Route::prefix('roomtype')->group(function () {
         Route::get('/trash', [RoomTypeController::class, 'trashedItems'])->name('roomtype.trash');
         Route::delete('/force_destroy/{id}', [RoomTypeController::class, 'force_destroy'])->name('roomtype.force_destroy');
         Route::get('/restore/{id}', [RoomTypeController::class, 'restore'])->name('roomtype.restore');
@@ -38,7 +38,7 @@ Route::group([
 
     Route::resource('roomtype', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);
-    
+
 
 });
 

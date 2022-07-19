@@ -1,4 +1,4 @@
-<div class="sidebar sidebar-style-2">			
+<div class="sidebar sidebar-style-2">
    <div class="sidebar-wrapper scrollbar scrollbar-inner">
       <div class="sidebar-content">
          <div class="user">
@@ -37,7 +37,6 @@
                     </div>
                 </div>
             </div>
-         </div>
          <ul class="nav nav-primary">
             <li class="nav-item active">
                <a href="{{route('home')}}">

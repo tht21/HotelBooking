@@ -30,7 +30,7 @@ abstract class EloquentRepository implements RepositoryInterface
     public function getAll($request)
     {
 
-        $result = $this->model->paginate(4);
+
 
         $result = $this->model->all();
 
