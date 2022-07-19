@@ -43,11 +43,12 @@ class RoomController extends Controller
     public function create(Request $request)
     {
         $floors = $this->floorService->getAll($request);
-        $roomType = $this->roomTypeService->getAll($request);
+        $roomTypes = $this->roomTypeService->getAll($request);
         $param = [
             'floors' => $floors,
-            'roomTypes' => $roomType,
+            'roomTypes' => $roomTypes,
         ];
+
         return view('admin.room.create', $param);
     }
 
@@ -85,9 +86,17 @@ class RoomController extends Controller
      * @param \App\Models\Room $room
      * @return \Illuminate\Http\Response
      */
-    public function edit(Room $room)
+    public function edit($id)
     {
-        //
+        $room = $this->roomService->findById($id);
+        $floors = $this->floorService->getAll($id);
+        $roomTypes = $this->roomTypeService->getAll($id);
+        $param = [
+            'floors' => $floors,
+            'roomTypes' => $roomTypes,
+            'room' => $room,
+        ];
+        return view('admin.room.edit', $param);
     }
 
     /**
@@ -97,9 +106,16 @@ class RoomController extends Controller
      * @param \App\Models\Room $room
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRoomRequest $request, Room $room)
+    public function update(Request $request, $id)
     {
-        //
+
+        try {
+            $this->roomService->update($request, $id);
+            return redirect()->route('rooms.index')->with('success', ' Sửa  phòng ' . $request->name . ' ' . ' thành công ');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('rooms.index')->with('success', ' Sửa  phòng ' . $request->name . ' ' . 'không thành công ');
+        }
     }
 
     /**
@@ -108,8 +124,48 @@ class RoomController extends Controller
      * @param \App\Models\Room $room
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Room $room)
+    public function destroy($id)
     {
-        //
+        try {
+            $this->roomService->destroy($id);
+            return redirect()->route('rooms.index')->with('success', ' Xóa  phòng thành công ');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('rooms.index')->with('error', 'Xóa  phòng không thành công');
+        }
+    }
+
+    public function trashedItems()
+    {
+        // dd($request);
+        $rooms = $this->roomService->trashedItems();
+        // dd($items);
+        $params = [
+            'rooms' => $rooms,
+        ];
+        return view('admin.room.trash', $params);
+    }
+
+    public function restore($id)
+    {
+        try {
+            $this->roomService->restore($id);
+            return redirect()->route('rooms.trash')->with('success', 'Khôi phục thành công');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('rooms.trash')->with('success', 'Khôi phục thành công');
+        }
+    }
+
+    public function force_destroy($id)
+    {
+        try {
+            $room = $this->roomService->force_destroy($id);
+
+            return redirect()->route('rooms.trash')->with('success', 'Xóa' . ' ' . $room->name . ' ' . 'thành công');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('rooms.trash')->with('error', 'Xóa' . ' ' . $room->name . ' ' . 'không thành công');
+        }
     }
 }

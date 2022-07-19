@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Room extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'rooms';
     protected $fillable = [
@@ -23,4 +24,5 @@ class Room extends Model
     {
         return $this->belongsTo(RoomType::class, 'room_types_id');
     }
+
 }

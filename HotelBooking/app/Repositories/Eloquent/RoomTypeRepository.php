@@ -102,6 +102,6 @@ class RoomTyperepository extends EloquentRepository implements RoomTypeRepositor
             Log::error($e->getMessage());
             return false;
         }
-       
+
     }
 }
