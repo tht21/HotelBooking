@@ -12,11 +12,11 @@
                   <div class="card-header">
                      <ul class="nav nav-tabs card-header-tabs">
                          <li class="nav-item">
-                             <a class="nav-link active" href="{{route('roomtype.index')}}">Tất Cả</a>
+                             <a class="nav-link " href="{{route('roomtype.index')}}">Tất Cả</a>
                          </li>
      
                          <li class="nav-item">
-                             <a class="nav-link " href="{{route('roomtype.trash')}}">Thùng Rác</a>
+                             <a class="nav-link active " href="{{route('roomtype.trash')}}">Thùng Rác</a>
                          </li>
                      </ul>
                  </div>
@@ -54,14 +54,14 @@
                            <td>{{$roomtype->limit_people}}</td>
                            <td>
                               <div class="form-button-action">
-                                 <a href="{{route('roomtype.edit',$roomtype->id)}}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Chỉnh Sửa Loại Phòng">
-                                    <i class="fa fa-edit"></i>
+                                 <a href="{{route('roomtype.restore',$roomtype->id)}}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Khôi Phục Loại Phòng">
+                                    <i class="fas fa-trash-restore"></i>
                                  </a>
                                  {{-- <a href="{{route('roomtype.destroy',$roomtype->id)}}" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
                                     <i class="fa fa-trash"></i>
                                  </a> --}}
-                                 <form action="{{ route('roomtype.destroy',$roomtype->id)}}" style="display:inline" method="post">
-                                    <button onclick="return confirm('Xóa {{$roomtype->name}} ?')" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa" ><i class="far fa-trash-alt"></i></button>
+                                 <form action="{{ route('roomtype.force_destroy',$roomtype->id)}}" style="display:inline" method="post">
+                                    <button onclick="return confirm('Xóa {{$roomtype->name}} ?')" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa Vĩnh Viễn" ><i class="far fa-trash-alt"></i></button>
                                     @csrf
                                     @method('delete')
                                 </form>

@@ -3,7 +3,7 @@
       <div class="sidebar-content">
          <div class="user">
             <div class="avatar-sm float-left mr-2">
-               <img src="../admin/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+               <img src="{{asset('admin/assets/img/profile.jpg')}}" alt="..." class="avatar-img rounded-circle">
             </div>
             <div class="info">
                <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -38,7 +38,7 @@
          </div>
          <ul class="nav nav-primary">
             <li class="nav-item active">
-               <a href="index.php">
+               <a href="{{route('home')}}">
                   <i class="fas fa-home"></i>
                   <p>Thống Kê</p>
                   {{-- <span class="caret"></span> --}}
