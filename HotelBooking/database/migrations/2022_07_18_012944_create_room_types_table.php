@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('room_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('status');
+            $table->string('limit_people');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

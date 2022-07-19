@@ -27,6 +27,13 @@ Route::group([
         return view('layouts.admin.app');
     })->name('home');
 
+
+    Route::prefix('rooms')->group(function () {
+        Route::get('/trash', [RoomTypeController::class, 'trashedItems'])->name('roomtype.trash');
+        Route::delete('/force_destroy/{id}', [RoomTypeController::class, 'force_destroy'])->name('roomtype.force_destroy');
+        Route::get('/restore/{id}', [RoomTypeController::class, 'restore'])->name('roomtype.restore');
+    });
     
     Route::resource('roomtype', RoomTypeController::class);
+    
 });

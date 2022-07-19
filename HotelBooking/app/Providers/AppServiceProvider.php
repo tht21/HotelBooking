@@ -2,6 +2,13 @@
 
 namespace App\Providers;
 
+use App\Interface\Repositories\RepositoryInterface;
+use App\Repositories\Eloquent\EloquentRepository;
+use App\Repositories\Eloquent\RoomTyperepository;
+use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
+use App\Services\Interfaces\RoomTypeServiceInterface;
+use App\Services\RoomTypeService;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +20,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //room_type
+        $this->app->singleton(RepositoryInterface::class, EloquentRepository::class);
+        $this->app->singleton(RoomTypeRepositoryInterface::class, RoomTyperepository::class);
+        $this->app->singleton(RoomTypeServiceInterface::class, RoomTypeService::class);
+
     }
 
     /**
@@ -23,6 +34,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Paginator::useBootstrap();
     }
 }
