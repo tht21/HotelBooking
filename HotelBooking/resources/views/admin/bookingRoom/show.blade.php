@@ -7,10 +7,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Thông tin phòng {{$bookingrooms->room->name}}</h4>
+                            <h4 class="card-title">Thông tin phòng </h4>
                             <button class="btn btn-primary btn-round ml-auto"
                             >
-                                <a href="{{route('rooms.create')}}"> <i class="fa fa-plus"></i>
+                                <a href="{{route('bookingrooms.create')}}"> <i class="fa fa-plus"></i>
                                     Thêm khách đặt phòng</a>
                             </button>
                         </div>
@@ -23,14 +23,17 @@
                                     <th>#</th>
                                     <th>Tên khách hàng</th>
                                     <th>Giá phòng</th>
+                                    <th>Tình trạng phòng</th>
                                     <th style="width: 10%">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <th>{{$bookingrooms->id}}</th>
-                                    <td>{{$bookingrooms->customer->name}}</td>
-                                    <td>{{$bookingrooms->room->price}}</td>
+                                    <th></th>
+                                    <td></td>
+                                    <th></th>
+
+                                    <td></td>
                                     <td>Hủy đặt</td>
                                 </tr>
                                 </tbody>

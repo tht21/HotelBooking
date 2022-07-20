@@ -7,6 +7,7 @@ use App\Models\Customers;
 use App\Models\Floor;
 use App\Models\Room;
 use App\Models\Room_image;
+use App\Models\RoomBooking;
 use App\Models\RoomType;
 use App\Models\User;
 use App\Models\User_groups;
@@ -33,21 +34,32 @@ class DatabaseSeeder extends Seeder
         $this->importFloor();
         $this->importRoom();
         $this->importRoomImage();
+        $this->importBooking();
+        $this->importRoomBooking();
     }
 
     public function importBooking()
     {
         $booking = new Booking();
         $booking->id = 1;
-        $booking->from_date = ' 2022-07-07';
-        $booking->to_date = ' 2022-07-08';
+        $booking->from_date = '2022-07-07';
+        $booking->to_date = '2022-07-08';
         $booking->limit_people = 3;
+        $booking->note = '123';
         $booking->total_room = 1;
-
         $booking->customer_id = 1;
-        $booking->room_id = 1;
         $booking->user_id = 1;
         $booking->save();
+
+    }
+
+    public function importRoomBooking()
+    {
+        $roomBooking = new RoomBooking();
+        $roomBooking->id = 1;
+        $roomBooking->room_id = 1;
+        $roomBooking->booking_id = 1;
+        $roomBooking->save();
 
     }
 
@@ -171,7 +183,7 @@ class DatabaseSeeder extends Seeder
         $room->convenient = 'wifi dieu hoa';
         $room->image_path = 'upload/avatar_admin.jpg';
         $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
-        $room->status = 'còn phong';
+        $room->status = 'còn phòng';
         $room->room_types_id = 1;
         $room->floor_id = 1;
         $room->save();
