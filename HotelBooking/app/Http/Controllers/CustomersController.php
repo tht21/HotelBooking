@@ -6,7 +6,8 @@ use App\Models\Customers;
 use App\Http\Requests\StoreCustomersRequest;
 use App\Http\Requests\UpdateCustomersRequest;
 use App\Services\Interfaces\CustomerServiceInterface;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
+
 
 class CustomersController extends Controller
 {
