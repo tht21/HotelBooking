@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
@@ -43,14 +44,20 @@ Route::group([
         Route::get('/restore/{id}', [RoomController::class, 'restore'])->name('rooms.restore');
     });
 
+    Route::prefix('bookingrooms')->group(function () {
+        Route::get('/trash', [BookingController::class, 'trashedItems'])->name('bookingrooms.trash');
+        Route::delete('/force_destroy/{id}', [BookingController::class, 'force_destroy'])->name('bookingrooms.force_destroy');
+        Route::get('/restore/{id}', [BookingController::class, 'restore'])->name('bookingrooms.restore');
 
     Route::prefix('customers')->group(function () {
         Route::get('/trash', [CustomersController::class, 'trashedItems'])->name('customers.trash');
         Route::delete('/force_destroy/{id}', [CustomersController::class, 'force_destroy'])->name('customers.force_destroy');
         Route::get('/restore/{id}', [CustomersController::class, 'restore'])->name('customers.restore');
+
     });
 
     Route::resource('roomtype', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);
     Route::resource('customers', CustomersController::class);
+    Route::resource('bookingrooms', BookingController::class);
 });

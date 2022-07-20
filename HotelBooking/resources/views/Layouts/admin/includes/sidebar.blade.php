@@ -64,17 +64,17 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="components/buttons.html">
+                                <a href="{{route('bookingrooms.index')}}">
                                     <span class="sub-item">Xem Dạng Danh Sách</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a href="{{route('customers.index')}}">
-                        <i class="fas fa-th-list"></i>
-                        <p>Khách Hàng</p>
+             <li class="nav-item">
+                 <a href="{{route('customers.index')}}">
+                     <i class="fas fa-th-list"></i>
+                     <p>Khách Hàng</p>
                     </a>
                 </li>
                 <li class="nav-item">
