@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-
+use App\Models\Customers;
 use App\Models\Floor;
 use App\Models\Room;
 use App\Models\Room_image;
@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->importUser();
 
         $this->importRoomType();
+        $this->importCustomer();
         $this->importFloor();
         $this->importRoom();
         $this->importRoomImage();
@@ -111,7 +112,7 @@ class DatabaseSeeder extends Seeder
         $user->birth_day = '2003/11/11';
         $user->phone = '0123456788';
         $user->address = 'Quảng Trị';
-        $user->user_group_id = '4';
+        $user->user_group_id = '1';
         $user->gender = 'Nam';
         $user->avatar = 'upload/avatar_admin.jpg';
         $user->save();
@@ -187,5 +188,15 @@ class DatabaseSeeder extends Seeder
         $room_image->room_id = 1;
         $room_image->save();
     }
+    public function importCustomer()
+    {
+        $customers = new Customers();
+        $customers->name = 'Linh';
+        $customers->email = 'Linh@gmail.com';
+        $customers->phone = 12345;
+        $customers->address = 'Gio Linh';
+        $customers->save();
+    }
+
 
 }
