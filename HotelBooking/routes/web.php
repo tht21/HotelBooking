@@ -62,5 +62,4 @@ Route::group([
     Route::resource('bookingrooms', BookingController::class);
 });
 
-});
 
