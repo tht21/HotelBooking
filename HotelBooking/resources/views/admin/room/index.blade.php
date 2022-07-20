@@ -14,18 +14,20 @@
                                     Add Room</a>
                             </button>
                         </div>
-                    </div>
-                    <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="{{route('rooms.index')}}">Tất Cả</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link " href="{{route('rooms.trash')}}">Thùng Rác</a>
-                            </li>
+                            <div class="all">
+                                <li class="nav-item1">
+                                    <a class="nav-link active" href="{{route('rooms.index')}}">Tất Cả</a>
+                                </li>
+                            </div>
+                            <div class="trash">
+                                <li class="nav-item2">
+                                    <a class="nav-link active " href="{{route('rooms.trash')}}">Thùng Rác</a>
+                                </li>
+                            </div>
                         </ul>
                     </div>
+
 
                     <div class="card-body">
                         @if (Session::has('success'))
@@ -59,13 +61,14 @@
                                         <td>{{$room->status}}</td>
                                         <td>
                                             <div class="form-button-action">
-                                                <a href="{{route('rooms.edit',$room->id)}}">
-                                                    <button type="button" data-toggle="tooltip" title=""
-                                                            class="btn btn-link btn-primary btn-lg"
-                                                            data-original-title="Edit Task">
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
+                                                <a href="{{route('rooms.edit',$room->id)}}" data-toggle="tooltip"
+                                                   title="" class="btn btn-link btn-primary btn-lg"
+                                                   data-original-title="Chỉnh Sửa Loại Phòng">
+                                                    <i class="fa fa-edit"></i>
                                                 </a>
+                                                {{-- <a href="{{route('roomtype.destroy',$roomtype->id)}}" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                                   <i class="fa fa-trash"></i>
+                                                </a> --}}
                                                 <form action="{{ route('rooms.destroy',$room->id)}}"
                                                       style="display:inline" method="post">
                                                     <button onclick="return confirm('Xóa {{$room->name}} ?')"
@@ -76,6 +79,7 @@
                                                     @method('delete')
                                                 </form>
                                             </div>
+
                                         </td>
                                     </tr>
                                 @endforeach

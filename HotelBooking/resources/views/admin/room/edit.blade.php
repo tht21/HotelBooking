@@ -52,7 +52,7 @@
                                     <div class="form-group">
                                         <label for="comment">Ảnh</label>
                                         <input type="file" name="image_path" class="form-control-file"
-                                               id="exampleFormControlFile1" value="{{$room->image_path}}">
+                                               id="exampleFormControlFile1" value="{{$room ->image_path}}">
                                         <br>
                                         <img src="{{$room->image_path}}" height="70" width="80">
                                     </div>
@@ -61,16 +61,14 @@
                                         <input type="file" name="room_image_path[]" class="form-control-file"
                                                id="exampleFormControlFile1" multiple>
                                         <br>
-                                        <div class="row ">
+                                        <div class="row">
                                             @foreach($room->room_image as $producImageItem)
-                                                <div class="col-md-3">
+                                                <div class="col-md-1">
                                                     <img class="image_detail_product"
-                                                         src="{{ $producImageItem->name }}" alt="">
+                                                         src="{{ $room->image_path}}" height="70" width="80" alt="">
                                                 </div>
                                             @endforeach
-
                                         </div>
-
                                     </div>
                                     <div class="form-group">
                                         <label for="comment">Mô tả phòng</label>

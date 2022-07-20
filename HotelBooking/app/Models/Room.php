@@ -25,4 +25,12 @@ class Room extends Model
         return $this->belongsTo(RoomType::class, 'room_types_id');
     }
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($room) { // before delete() method call this
+            $room->room_image()->delete();
+        });
+    }
 }

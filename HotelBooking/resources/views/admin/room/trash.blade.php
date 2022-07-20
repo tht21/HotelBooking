@@ -18,11 +18,11 @@
                         </div>
                         <div class="card-header">
                             <ul class="nav nav-tabs card-header-tabs">
-                                <li class="nav-item">
+                                <li class="nav-item3">
                                     <a class="nav-link " href="{{route('rooms.index')}}">Tất Cả</a>
                                 </li>
 
-                                <li class="nav-item">
+                                <li class="nav-item4">
                                     <a class="nav-link active " href="{{route('rooms.trash')}}">Thùng Rác</a>
                                 </li>
                             </ul>
@@ -64,18 +64,16 @@
                                                    data-original-title="Khôi Phục Loại Phòng">
                                                     <i class="fas fa-trash-restore"></i>
                                                 </a>
-                                                {{-- <a href="{{route('roomtype.destroy',$roomtype->id)}}" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
-                                                   <i class="fa fa-trash"></i>
-                                                </a> --}}
                                                 <form action="{{ route('rooms.force_destroy',$room->id)}}"
                                                       style="display:inline" method="post">
+                                                    @csrf
+                                                    @method('delete')
                                                     <button onclick="return confirm('Xóa {{$room->name}} ?')"
                                                             data-toggle="tooltip" title=""
                                                             class="btn btn-link btn-danger"
                                                             data-original-title="Xóa Vĩnh Viễn"><i
                                                             class="far fa-trash-alt"></i></button>
-                                                    @csrf
-                                                    @method('delete')
+
                                                 </form>
                                             </div>
                                         </td>
