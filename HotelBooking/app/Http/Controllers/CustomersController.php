@@ -96,10 +96,10 @@ class CustomersController extends Controller
     {
         try {
             $this->customerService->update($request, $id);
-            return redirect()->route('customers.index')->with('success', 'Sửa loại phòng' . ' ' . $request->name . ' ' .  'thành công');
+            return redirect()->route('customers.index')->with('success', 'Sửa thông tin khách hàng' . ' ' . $request->name . ' ' .  'thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('customers.index')->with('error', 'Sửa loại phòng' . ' ' . $request->name . ' ' .  'không thành công');
+            return redirect()->route('customers.index')->with('error', 'Sửa thông tin khách hàng' . ' ' . $request->name . ' ' .  'không thành công');
         }
     }
 
@@ -113,10 +113,10 @@ class CustomersController extends Controller
     {
         try {
             $customer = $this->customerService->destroy($id);
-            return redirect()->route('customers.index')->with('success', ' Xóa loại phòng thành công ');
+            return redirect()->route('customers.index')->with('success', ' Xóa thông tin khách hàng thành công ');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('customers.index')->with('error', 'Xóa loại phòng không thành công');
+            return redirect()->route('customers.index')->with('error', 'Xóa thông tin khách hàng không thành công');
         }
     }
 
@@ -135,10 +135,10 @@ class CustomersController extends Controller
     {
         try {
             $this->customerService->restore($id);
-            return redirect()->route('customer.trash')->with('success', 'Khôi phục thành công');
+            return redirect()->route('customers.trash')->with('success', 'Khôi phục thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('customer.trash')->with('success', 'Khôi phục thành công');
+            return redirect()->route('customers.trash')->with('success', 'Khôi phục thành công');
         }
     }
 
