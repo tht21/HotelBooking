@@ -9,23 +9,26 @@
             <div class="card-header">
                <div class="d-flex align-items-center">
                   <h4 class="card-title">Danh Sách Loại Phòng</h4>
-                  <div class="card-header">
-                     <ul class="nav nav-tabs card-header-tabs">
-                         <li class="nav-item">
-                             <a class="nav-link " href="{{route('roomtype.index')}}">Tất Cả</a>
-                         </li>
-     
-                         <li class="nav-item">
-                             <a class="nav-link active " href="{{route('roomtype.trash')}}">Thùng Rác</a>
-                         </li>
-                     </ul>
-                 </div>
+                
                   <a href="{{route('roomtype.create')}}" class="btn btn-primary btn-round ml-auto"  >
                      <i class="fa fa-plus"></i>
                      Thêm Loại Phòng
                   </a>
-                 
-               </div>
+
+               </div> 
+                  <ul class="nav nav-tabs card-header-tabs">
+                     <div class="all">
+                      <li class="nav-item3">
+                          <a class="nav-link active" href="{{route('roomtype.index')}}">Tất Cả</a>
+                      </li>
+                     </div>
+                     <div class="trash">
+                      <li class="nav-item4">
+                          <a class="nav-link active " href="{{route('roomtype.trash')}}">Thùng Rác</a>
+                      </li>
+                     </div>
+                  </ul>
+             
             </div>
             <div class="card-body">
                @if (Session::has('success'))

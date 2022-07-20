@@ -2,7 +2,6 @@
 @section('content')
 <div class="page-inner">
    @include('layouts.admin.includes.content',['key'=> 'Loại Phòng ','name'=> ' Quản Lý Phòng','key' => 'Loại Phòng'])
-
    <div class="col-md-12">
       <div class="card">
          <div class="card-header">

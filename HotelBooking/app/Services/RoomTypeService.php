@@ -36,9 +36,6 @@ class RoomTypeService implements RoomTypeServiceInterface
 
     public function destroy($id)
     {
-        // $roomtype = $this->roomtypeRepository->findById($id);
-        // $this->roomtypeRepository->destroy($roomtype);
-        // return $roomtype;
         return $this->roomtypeRepository->destroy($id);
     }
 
