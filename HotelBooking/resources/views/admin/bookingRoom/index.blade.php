@@ -29,7 +29,7 @@
                                     <i class="fa fa-chevron-up"></i>
                                 </div>
                                 <div class="h1 m-0">
-                                    {{$room->name}}
+                                    <a href="{{route('bookingrooms.show',$room->id)}}">{{$room->name}}</a>
                                 </div>
                                 <div class="text-muted mb-3">{{$room->status}}</div>
                             </div>

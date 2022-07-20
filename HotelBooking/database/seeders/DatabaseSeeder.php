@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Booking;
 use App\Models\Customers;
 use App\Models\Floor;
 use App\Models\Room;
@@ -32,6 +33,22 @@ class DatabaseSeeder extends Seeder
         $this->importFloor();
         $this->importRoom();
         $this->importRoomImage();
+    }
+
+    public function importBooking()
+    {
+        $booking = new Booking();
+        $booking->id = 1;
+        $booking->from_date = ' 2022-07-07';
+        $booking->to_date = ' 2022-07-08';
+        $booking->limit_people = 3;
+        $booking->total_room = 1;
+
+        $booking->customer_id = 1;
+        $booking->room_id = 1;
+        $booking->user_id = 1;
+        $booking->save();
+
     }
 
     public function importUserGroups()
@@ -188,6 +205,7 @@ class DatabaseSeeder extends Seeder
         $room_image->room_id = 1;
         $room_image->save();
     }
+
     public function importCustomer()
     {
         $customers = new Customers();

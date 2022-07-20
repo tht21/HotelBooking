@@ -7,11 +7,11 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Thông tin phòng</h4>
+                            <h4 class="card-title">Thông tin phòng {{$bookingrooms->room->name}}</h4>
                             <button class="btn btn-primary btn-round ml-auto"
                             >
                                 <a href="{{route('rooms.create')}}"> <i class="fa fa-plus"></i>
-                                    Thêm Phòng</a>
+                                    Thêm khách đặt phòng</a>
                             </button>
                         </div>
                     </div>
@@ -28,11 +28,10 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-
-                                    <td>{{$bookingrooms->note}}</td>
-                                    <td>{{$bookingrooms->note}}</td>
-
-                                    note
+                                    <th>{{$bookingrooms->id}}</th>
+                                    <td>{{$bookingrooms->customer->name}}</td>
+                                    <td>{{$bookingrooms->room->price}}</td>
+                                    <td>Hủy đặt</td>
                                 </tr>
                                 </tbody>
                             </table>

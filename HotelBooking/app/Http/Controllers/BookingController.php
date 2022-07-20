@@ -28,6 +28,7 @@ class BookingController extends Controller
     public function index(Request $request)
     {
         $bookingrooms = $this->bookingRoomService->getAll($request);
+
         $rooms = $this->roomService->getAll($request);
         $param = [
             'bookingrooms' => $bookingrooms,
@@ -66,6 +67,7 @@ class BookingController extends Controller
     public function show($id)
     {
         $bookingrooms = $this->bookingRoomService->findById($id);
+        //dd($bookingrooms);
         $rooms = $this->roomService->findById($id);
         $param = [
             'bookingrooms' => $bookingrooms,

@@ -48,8 +48,6 @@ class RoomController extends Controller
             'floors' => $floors,
             'roomTypes' => $roomTypes,
         ];
-
-
         return view('admin.room.create', $param);
     }
 
