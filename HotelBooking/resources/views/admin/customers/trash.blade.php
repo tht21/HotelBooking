@@ -11,12 +11,12 @@
             <h4 class="card-title">Quản Lý Khách Hàng</h4>
             <ul class="nav nav-tabs card-header-tabs">
                <div class="all">
-                <li class="nav-item1">
+                <li class="nav-item3">
                     <a class="nav-link active" href="{{route('customers.index')}}">Tất Cả</a>
                 </li>
                </div>
                <div class="trash">
-                <li class="nav-item2">
+                <li class="nav-item4">
                     <a class="nav-link active " href="{{route('customers.trash')}}">Thùng Rác</a>
                 </li>
                </div>
@@ -59,11 +59,11 @@
                         <td>{{$customer->address}}</td>
                         <td>
                            <div class="form-button-action">
-                              <a href="{{route('customers.edit',$customer->id)}}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Chỉnh Sửa Thông Tin Khách Hàng">
-                                 <i class="fa fa-edit"></i>
+                              <a href="{{route('customers.restore',$customer->id)}}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Khôi Phục Khách Hàng">
+                                 <i class="fas fa-trash-restore"></i>
                               </a>
-                              <form action="{{ route('customers.destroy',$customer->id)}}" style="display:inline" method="post">
-                                 <button onclick="return confirm('Xóa {{$customer->name}} ?')" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa" ><i class="far fa-trash-alt"></i></button>
+                              <form action="{{ route('customers.force_destroy',$customer->id)}}" style="display:inline" method="post">
+                                 <button onclick="return confirm('Xóa {{$customer->name}} ?')" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa Vĩnh Viễn" ><i class="far fa-trash-alt"></i></button>
                                  @csrf
                                  @method('delete')
                              </form>

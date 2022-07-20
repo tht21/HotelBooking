@@ -97,6 +97,7 @@ class RoomTyperepository extends EloquentRepository implements RoomTypeRepositor
         $roomtype = $this->model->withTrashed()->find($id);
         try {
             $roomtype->forceDelete();
+          //  dd(  $roomtype);
             return $roomtype;
         } catch (\Exception $e) {
             Log::error($e->getMessage());

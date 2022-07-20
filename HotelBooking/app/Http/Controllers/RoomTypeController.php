@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Requests\StoreRoomtypeRequest;
+use App\Http\Requests\UpdateRoomtypeRequest;
 use App\Services\Interfaces\RoomTypeServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -44,7 +45,7 @@ class RoomTypeController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRoomtypeRequest $request)
     {
         try {
             $roomtype = $this->roomTypeService->create($request);
@@ -89,7 +90,7 @@ class RoomTypeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRoomtypeRequest $request, $id) 
     {
         try {
             $this->roomTypeService->update($request, $id);

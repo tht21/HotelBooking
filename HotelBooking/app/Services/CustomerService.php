@@ -18,6 +18,7 @@ class CustomerService implements CustomerServiceInterface
     {
         return $this->customerRepository->getAll($request);
     }
+    
     public function findById($id)
     {
         return $this->customerRepository->findById($id);

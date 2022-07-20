@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRoomRequest extends FormRequest
+class StoreRoomtypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreRoomRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,19 +25,14 @@ class StoreRoomRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'address' => 'required'
+            'limit_people' => 'required'
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'Vui lòng nhập tên khách hàng',
-            'email.required' => 'Vui lòng nhập email',
-            'phone.required' => 'Vui lòng nhập số điện thoại',
-            'address.required' => 'Vui lòng nhập địa chỉ',
-            'email.email' => 'Vui lòng nhập đúng định dạng email',
+            'name.required' => 'Vui lòng nhập tên loại phòng',
+            'limit_people.required' => 'Vui lòng nhập số lượng người'
         ];
         
     }
