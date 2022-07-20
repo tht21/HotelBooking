@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use Illuminate\Support\Facades\Route;
@@ -15,13 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('layouts.admin.app');
-// });
+// Route::get('login', function () {return view('admin.auth.login');})->name('login');
+Route::get('/', [AuthController::class, 'login'])->name('login');
+Route::post('/', [AuthController::class, 'postlogin'])->name('postlogin');
 
 Route::group([
     'prefix' => 'admin',
-    // 'middleware' => ['auth:admin_login']
+    'middleware' => ['auth']
 ], function () {
 
     Route::get('/home', function () {
@@ -35,10 +37,7 @@ Route::group([
         Route::get('/restore/{id}', [RoomTypeController::class, 'restore'])->name('roomtype.restore');
     });
 
-
+    Route::resource('customers', CustomersController::class);
     Route::resource('roomtype', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);
-
-
 });
-

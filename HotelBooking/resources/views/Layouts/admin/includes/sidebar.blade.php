@@ -3,14 +3,14 @@
       <div class="sidebar-content">
          <div class="user">
             <div class="avatar-sm float-left mr-2">
-               <img src="{{asset('admin/assets/img/profile.jpg')}}" alt="..." class="avatar-img rounded-circle">
+               <img src="{{asset($profile_user->avatar)}}" width="100px" height="100px" alt="..." class="avatar-img rounded-circle">
             </div>
             <div class="info">
                <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 
                   <span>
-                     ADMIN
-                     <span class="user-level">Admin</span>
+                      {{$profile_user->name }}
+                     <span class="user-level">{{ $profile_user->userGroup->name }}</span>
                      <span class="caret"></span>
                   </span>
                     </a>
@@ -42,7 +42,6 @@
                <a href="{{route('home')}}">
                   <i class="fas fa-home"></i>
                   <p>Thống Kê</p>
-                  {{-- <span class="caret"></span> --}}
                </a>
             </li>
             <li class="nav-section">
@@ -50,7 +49,6 @@
                <span class="sidebar-mini-icon">
                   <i class="fa fa-ellipsis-h"></i>
                </span>
-                    {{-- <h4 class="text-section">Components</h4> --}}
                 </li>
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#base">
@@ -74,25 +72,10 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a data-toggle="collapse" href="#sidebarLayouts">
+                    <a href="{{route('customers.index')}}">
                         <i class="fas fa-th-list"></i>
-                        <p>Bài Viết</p>
-                        <span class="caret"></span>
+                        <p>Khách Hàng</p>
                     </a>
-                    <div class="collapse" id="sidebarLayouts">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="sidebar-style-1.html">
-                                    <span class="sub-item">Danh Mục</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="overlay-sidebar.html">
-                                    <span class="sub-item">Bài Viết</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#tables">
