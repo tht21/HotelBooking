@@ -1,7 +1,7 @@
 @extends('layouts.admin.app')
 @section('content')
     <div class="page-inner">
-        @include('layouts.admin.includes.content',['key'=> ' Danh sách phòng ','name'=> ' Quản Lý Phòng','key' => ' Xóa, khôi phục phòng'])
+        @include('layouts.admin.includes.content',['key'=>'Danh sách phòng','name'=>'Quản lý phòng','key'=>'Danh sách phòng'])
 
         <div class="row">
             <div class="col-md-12">
@@ -12,24 +12,26 @@
 
                             <a href="{{route('rooms.create')}}" class="btn btn-primary btn-round ml-auto">
                                 <i class="fa fa-plus"></i>
-                                Thêm Loại Phòng
+                                Thêm Phòng
                             </a>
 
                         </div>
-                        <div class="card-header">
-                            <ul class="nav nav-tabs card-header-tabs">
-                                <li class="nav-item3">
-                                    <a class="nav-link " href="{{route('rooms.index')}}">Tất Cả</a>
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <div class="all">
+                                <li class="nav-item1">
+                                    <a class="nav-link active" href="{{route('rooms.index')}}">Tất Cả</a>
                                 </li>
-
-                                <li class="nav-item4">
+                            </div>
+                            <div class="trash">
+                                <li class="nav-item2">
                                     <a class="nav-link active " href="{{route('rooms.trash')}}">Thùng Rác</a>
                                 </li>
-                            </ul>
-                        </div>
+                            </div>
+                        </ul>
                     </div>
-                    <div class="card-body">
-                        @if (Session::has('success'))
+                </div>
+                <div class="card-body">
+                    @if (Session::has('success'))
                             <div class="text text-success"><b>{{session::get('success')}}</b></div>
                         @endif
                         @if (Session::has('error'))

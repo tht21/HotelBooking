@@ -2,7 +2,7 @@
     <h4 class="page-title">{{$key}}</h4>
     <ul class="breadcrumbs">
         <li class="nav-home">
-            <a href="#">
+            <a href="{{route('home')}}">
                 <i class="flaticon-home"></i>
             </a>
         </li>
