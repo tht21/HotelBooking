@@ -17,11 +17,17 @@
                                         <label for="text">Tên phòng</label>
                                         <input type="text" name="name" class="form-control" id="email2"
                                                placeholder="Nhập tên phòng" value="{{old('name')}}">
+                                        @if ($errors->any())
+                                            <p style="color:red">{{ $errors->first('name') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label for="text">Giá phòng</label>
                                         <input type="text" name="price" class="form-control" id="password"
                                                placeholder="Nhập giá phòng" value="{{old('price')}}">
+                                        @if ($errors->any())
+                                            <p style="color:red">{{ $errors->first('price') }}</p>
+                                        @endif
                                     </div>
 
                                     <div class="form-group">
@@ -47,12 +53,17 @@
                                         <label for="exampleFormControlFile1">Tiện nghi</label>
                                         <textarea id="summer" data-toggle="summernote" name="convenient" type="text"
                                                   class="form-control">{{old('convenient')}}</textarea>
+                                        @if ($errors->any())
+                                            <p style="color:red">{{ $errors->first('convenient') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label for="comment">Ảnh</label>
                                         <input type="file" name="image_path" class="form-control-file"
                                                id="exampleFormControlFile1">
-
+                                        @if ($errors->any())
+                                            <p style="color:red">{{ $errors->first('image_path') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label for="comment">Ảnh Chi tiết</label>
@@ -64,6 +75,9 @@
                                         <textarea id="summernote" data-toggle="summernote" name="description"
                                                   type="text"
                                                   class="form-control">{{old('convenient')}}</textarea>
+                                        @if ($errors->any())
+                                            <p style="color:red">{{ $errors->first('description') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Tình trạng phòng</label>
@@ -71,6 +85,9 @@
                                             <option value="còn phòng">Còn phòng</option>
                                             <option value="hết phòng">Hết phòng</option>
                                         </select>
+                                        @if ($errors->any())
+                                            <p style="color:red">{{ $errors->first('status') }}</p>
+                                        @endif
                                     </div>
                                 </div>
 
