@@ -11,7 +11,7 @@
                             <button class="btn btn-primary btn-round ml-auto"
                             >
                                 <a href="{{route('rooms.create')}}"> <i class="fa fa-plus"></i>
-                                    Add Room</a>
+                                    Thêm Phòng</a>
                             </button>
                         </div>
                         <ul class="nav nav-tabs card-header-tabs">

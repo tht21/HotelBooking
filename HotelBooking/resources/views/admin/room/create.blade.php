@@ -1,7 +1,7 @@
 @extends('layouts.admin.app')
 @section('content')
     <div class="page-inner">
-        @include('Layouts.admin.includes.content',['key'=> 'Thêm Phòng ','name'=> ' Quản Lý Phòng','key' => 'Thêm Phòng'])
+        @include('Layouts.admin.includes.content',['key'=> 'Danh sách phòng ','name'=> ' Quản Lý Phòng','key' => 'Danh sách phòng'])
         <div class="row">
             <div class="col-md-12">
                 <form method="post" action="{{route('rooms.store')}}" enctype="multipart/form-data">

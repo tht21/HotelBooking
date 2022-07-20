@@ -133,7 +133,6 @@ class DatabaseSeeder extends Seeder
         }
     }
 
-
     public function importUserGroupRoles()
     {
         for ($i = 1; $i <= 21; $i++) {
