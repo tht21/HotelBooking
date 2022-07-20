@@ -37,7 +37,13 @@ Route::group([
         Route::get('/restore/{id}', [RoomTypeController::class, 'restore'])->name('roomtype.restore');
     });
 
-    Route::resource('customers', CustomersController::class);
+    Route::prefix('rooms')->group(function () {
+        Route::get('/trash', [RoomController::class, 'trashedItems'])->name('rooms.trash');
+        Route::delete('/force_destroy/{id}', [RoomController::class, 'force_destroy'])->name('rooms.force_destroy');
+        Route::get('/restore/{id}', [RoomController::class, 'restore'])->name('rooms.restore');
+    });
+
     Route::resource('roomtype', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);
+    Route::resource('customers', CustomersController::class);
 });

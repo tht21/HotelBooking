@@ -15,6 +15,17 @@
                             </button>
                         </div>
                     </div>
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{route('rooms.index')}}">Tất Cả</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link " href="{{route('rooms.trash')}}">Thùng Rác</a>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="card-body">
                         <!-- Modal -->
                         <div class="table-responsive">
@@ -22,6 +33,7 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Ảnh phòng</th>
                                     <th>Tên phòng</th>
                                     <th>Giá phòng</th>
                                     <th>Loại phòng</th>
@@ -34,21 +46,29 @@
 
                                     <tr>
                                         <td>{{$key++}}</td>
+                                        <td><img src="{{$room->image_path}}" height="70" width="80"></td>
                                         <td>{{$room->name}}</td>
                                         <td>{{$room->price}}</td>
-                                        <td>{{$room->room_type->name}}</td>
+                                        <td>{{$room->room_type ? $room->room_type->name : ''}}</td>
                                         <td>{{$room->status}}</td>
                                         <td>
                                             <div class="form-button-action">
-                                                <button type="button" data-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-primary btn-lg"
-                                                        data-original-title="Edit Task">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button type="button" data-toggle="tooltip" title=""
-                                                        class="btn btn-link btn-danger" data-original-title="Remove">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
+                                                <a href="{{route('rooms.edit',$room->id)}}">
+                                                    <button type="button" data-toggle="tooltip" title=""
+                                                            class="btn btn-link btn-primary btn-lg"
+                                                            data-original-title="Edit Task">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                </a>
+                                                <form action="{{ route('rooms.destroy',$room->id)}}"
+                                                      style="display:inline" method="post">
+                                                    <button onclick="return confirm('Xóa {{$room->name}} ?')"
+                                                            data-toggle="tooltip" title=""
+                                                            class="btn btn-link btn-danger" data-original-title="Xóa"><i
+                                                            class="far fa-trash-alt"></i></button>
+                                                    @csrf
+                                                    @method('delete')
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>

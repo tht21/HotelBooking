@@ -5,9 +5,12 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Room;
 use App\Repositories\Interfaces\RoomInterface;
+use App\Traits\StorageImageTrait;
+use Illuminate\Support\Facades\Log;
 
 class RoomRepository extends EloquentRepository implements RoomInterface
 {
+    use StorageImageTrait;
 
     public function getModel()
     {
@@ -18,5 +21,127 @@ class RoomRepository extends EloquentRepository implements RoomInterface
     {
         $result = $this->model->paginate(10);
         return $result;
+    }
+
+    public function create($request)
+    {
+
+        $object = $this->model;
+        $object->name = $request->name;
+        $object->price = $request->price;
+        $object->room_types_id = $request->room_types;
+        $object->floor_id = $request->floor;
+        $object->convenient = $request->convenient;
+        $object->description = $request->description;
+        $object->status = $request->status;
+//       $object->image_path = $request->image;
+
+        $dataUploadImage = $this->storageUpload($request, 'image_path', 'room');
+        $object->image_path = $dataUploadImage['file_path'];
+
+
+        try {
+            $object->save();
+            if ($request->hasFile('room_image_path')) {
+                foreach ($request->room_image_path as $fileItem) {
+                    $dataProductImageDetail = $this->storageUploadDetail($fileItem, 'room');
+                    $dataProductImageDetailCreate = [
+                        'name' => $dataProductImageDetail['file_path'],
+                    ];
+                    $object->room_image()->create($dataProductImageDetailCreate);
+                }
+            }
+            return true;
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
+
+        return $object;
+    }
+
+    public function update($request, $id)
+    {
+
+        $object = $this->model->find($id);
+        $object->name = $request->name;
+        $object->price = $request->price;
+
+        $object->room_types_id = $request->room_types;
+        $object->floor_id = $request->floor;
+        $object->convenient = $request->convenient;
+        $object->description = $request->description;
+        $object->status = $request->status;
+//       $object->image_path = $request->image;
+
+        $dataUploadImage = $this->storageUpload($request, 'image_path', 'room');
+        $object->image_path = $dataUploadImage['file_path'];
+
+
+        try {
+            $object->save();
+            if ($request->hasFile('room_image_path')) {
+                foreach ($request->room_image_path as $fileItem) {
+                    $dataProductImageDetail = $this->storageUploadDetail($fileItem, 'room');
+                    $dataProductImageDetailCreate = [
+                        'name' => $dataProductImageDetail['file_path'],
+                    ];
+                    $object->room_image()->create($dataProductImageDetailCreate);
+                }
+            }
+            return true;
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
+
+        return $object;
+    }
+
+    public function destroy($id)
+    {
+        $object = $this->model->find($id);
+        try {
+            $object->delete();
+            return true;
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
+        return $object;
+    }
+
+    public function trashedItems()
+    {
+        $query = $this->model->onlyTrashed();
+        $query->orderBy('id', 'desc');
+        $object = $query->paginate(5);
+        return $object;
+    }
+
+    public function restore($id)
+    {
+        $object = $this->model->withTrashed()->find($id);
+        try {
+            $object->restore();
+            return true;
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
+        return $object;
+
+    }
+
+    public function force_destroy($id)
+    {
+        $object = $this->model->withTrashed()->find($id);
+        try {
+            $object->forceDelete();
+            return $object;
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 }
