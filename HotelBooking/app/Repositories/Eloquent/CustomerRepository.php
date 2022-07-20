@@ -15,89 +15,94 @@ class CustomerRepository extends EloquentRepository implements CustomerInterface
     }
     public function getAll($request)
     {
-        $roomtypes = $this->model->select('*');
+        $customers = $this->model->select('*');
         if (isset($request->name) && $request->name) {
             $name = $request->name;
-            $roomtypes->where('name', 'LIKE', '%' . $name . '%');
+            $customers->where('name', 'LIKE', '%' . $name . '%');
         }
-        return $roomtypes->orderBy('id', 'desc')->paginate(5);
+        return $customers->orderBy('id', 'desc')->paginate(10);
     }
 
     public function destroy($id)
     {
-        $roomtypes = $this->model->find($id);
+        $customers = $this->model->find($id);
         try {
-            $roomtypes->delete();
+            $customers->delete();
             return true;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return false;
         }
-        return $roomtypes;
+        return $customers;
     }
 
     public function create($request)
     {
-        $roomtypes = $this->model;
-        $roomtypes->name = $request->name;
-        $roomtypes->limit_people = $request->limit_people;
+        $customers = $this->model;
+        $customers->name = $request->name;
+        $customers->email = $request->email;
+        $customers->phone = $request->phone;
+        $customers->address = $request->address;
         try {
-            $roomtypes->save();
+            $customers->save();
 
             return true;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return false;
         }
-        return $roomtypes;
+        return $customers;
     }
 
 
     public function update($request, $id)
     {
-        $roomtypes = $this->model->find($id);
-        // dd($roomtypes);
-        $roomtypes->name = $request->name;
-        $roomtypes->limit_people = $request->limit_people;
+        $customers = $this->model->find($id);
+        $customers->name = $request->name;
+        $customers->email = $request->email;
+        $customers->phone = $request->phone;
+        $customers->address = $request->address;
         try {
-            $roomtypes->save();
-
+            $customers->save();
             return true;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return false;
         }
-        return $roomtypes;
+        return $customers;
     }
 
     public function trashedItems()
     {
         $query = $this->model->onlyTrashed();
         $query->orderBy('id', 'desc');
-        $roomtypes = $query->paginate(5);
-        return $roomtypes;
+        $customers = $query->paginate(10);
+        return $customers;
     }
 
     public function restore($id)
     {
-        $roomtype = $this->model->withTrashed()->find($id);
+        $customer = $this->model->withTrashed()->find($id);
         try {
-            $roomtype->restore();
+            $customer->restore();
             return true;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return false;
         }
-        return $roomtype;
+        return $customer;
 
     }
 
     public function force_destroy($id)
     {
-        $roomtype = $this->model->withTrashed()->find($id);
+        
         try {
-            $roomtype->forceDelete();
-            return $roomtype;
+            $customer = $this->model->withTrashed()->find($id);
+     
+            $customer->forceDelete();
+           
+            return $customer;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return false;
