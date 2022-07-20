@@ -52,7 +52,7 @@
                                     <div class="form-group">
                                         <label for="comment">Ảnh</label>
                                         <input type="file" name="image_path" class="form-control-file"
-                                               id="exampleFormControlFile1">
+                                               id="exampleFormControlFile1" value="{{$room->image_path}}">
                                         <br>
                                         <img src="{{$room->image_path}}" height="70" width="80">
                                     </div>

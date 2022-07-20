@@ -26,8 +26,14 @@
                             </li>
                         </ul>
                     </div>
+
                     <div class="card-body">
-                        <!-- Modal -->
+                        @if (Session::has('success'))
+                            <div class="text text-success"><b>{{session::get('success')}}</b></div>
+                        @endif
+                        @if (Session::has('error'))
+                            <div class="text text-danger"><b>{{session::get('error')}}</b></div>
+                        @endif
                         <div class="table-responsive">
                             <table id="add-row" class="display table table-striped table-hover">
                                 <thead>
