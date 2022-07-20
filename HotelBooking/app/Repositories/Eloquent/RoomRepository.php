@@ -93,7 +93,7 @@ class RoomRepository extends EloquentRepository implements RoomInterface
                 }
             }
             DB::commit();
-            Session::flash('success', 'Thêm' . ' ' . $request->name . ' ' . 'thành công');
+            Session::flash('success', 'Sua' . ' ' . $request->name . ' ' . 'thành công');
             return true;
         } catch (\Exception $e) {
             DB::rollBack();
