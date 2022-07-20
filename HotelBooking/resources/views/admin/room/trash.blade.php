@@ -29,7 +29,7 @@
                             </div>
                         </ul>
                     </div>
-                </div>
+
                 <div class="card-body">
                     @if (Session::has('success'))
                             <div class="text text-success"><b>{{session::get('success')}}</b></div>
@@ -86,9 +86,10 @@
                             </table>
                             {{$rooms->appends(request()->query())}}
                         </div>
-                    </div>
+                </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
