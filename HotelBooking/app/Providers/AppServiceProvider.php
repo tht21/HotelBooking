@@ -2,17 +2,21 @@
 
 namespace App\Providers;
 
-use App\Models\User;
+
+use App\Repositories\Eloquent\BookingRoomRepository;
 use App\Repositories\Eloquent\CustomerRepository;
 use App\Repositories\Eloquent\EloquentRepository;
 use App\Repositories\Eloquent\FloorRepository;
 use App\Repositories\Eloquent\RoomRepository;
 
+use App\Repositories\Interfaces\BookingRoomInterface;
 use App\Repositories\Interfaces\FloorInterface;
 use App\Repositories\Interfaces\RepositoryInterface;
 use App\Repositories\Interfaces\RoomInterface;
+use App\Services\BookingRoomService;
 use App\Services\FloorService;
 
+use App\Services\Interfaces\BookingRoomServiceInterface;
 use App\Services\Interfaces\FloorServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
 use App\Services\RoomService;
@@ -24,6 +28,7 @@ use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
 
 use App\Services\CustomerService;
 use App\Services\Interfaces\CustomerServiceInterface;
+
 use App\Services\Interfaces\RoomTypeServiceInterface;
 use App\Services\RoomTypeService;
 
@@ -33,7 +38,7 @@ use Illuminate\Pagination\Paginator;
 
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class  AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -59,6 +64,10 @@ class AppServiceProvider extends ServiceProvider
         //customers
         $this->app->singleton(CustomerServiceInterface::class, CustomerService::class);
         $this->app->singleton(CustomerInterface::class, CustomerRepository::class);
+
+        //booking room
+        $this->app->singleton(BookingRoomServiceInterface::class, BookingRoomService::class);
+        $this->app->singleton(BookingRoomInterface::class, BookingRoomRepository::class);
 
 
     }
