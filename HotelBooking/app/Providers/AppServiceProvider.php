@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-
+use App\Models\User;
+use App\Repositories\Eloquent\CustomerRepository;
 use App\Repositories\Eloquent\EloquentRepository;
 use App\Repositories\Eloquent\FloorRepository;
 use App\Repositories\Eloquent\RoomRepository;
@@ -17,10 +18,17 @@ use App\Services\Interfaces\RoomServiceInterface;
 use App\Services\RoomService;
 
 use App\Repositories\Eloquent\RoomTyperepository;
+use App\Repositories\Interfaces\CustomerInterface;
 use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
+
+
+use App\Services\CustomerService;
+use App\Services\Interfaces\CustomerServiceInterface;
 use App\Services\Interfaces\RoomTypeServiceInterface;
 use App\Services\RoomTypeService;
 
+
+use App\View\Composer\Users;
 use Illuminate\Pagination\Paginator;
 
 use Illuminate\Support\ServiceProvider;
@@ -37,16 +45,21 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(RepositoryInterface::class, EloquentRepository::class);
         //CourseInterface - RoomRepository
         $this->app->singleton(RoomInterface::class, RoomRepository::class);
-        /* Binding  Service*/
         $this->app->singleton(RoomServiceInterface::class, RoomService::class);
+
+        //rooms
         $this->app->singleton(FloorInterface::class, FloorRepository::class);
-        /* Binding  Service*/
         $this->app->singleton(FloorServiceInterface::class, FloorService::class);
 
         //room_type
         $this->app->singleton(RepositoryInterface::class, EloquentRepository::class);
         $this->app->singleton(RoomTypeRepositoryInterface::class, RoomTyperepository::class);
         $this->app->singleton(RoomTypeServiceInterface::class, RoomTypeService::class);
+
+        //customers
+        $this->app->singleton(CustomerServiceInterface::class, CustomerService::class);
+        $this->app->singleton(CustomerInterface::class, CustomerRepository::class);
+
 
     }
 
@@ -58,5 +71,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+        view()->composer(
+            ['*'],
+            Users::class
+        );
     }
 }
