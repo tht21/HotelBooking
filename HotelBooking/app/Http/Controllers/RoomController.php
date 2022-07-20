@@ -90,6 +90,7 @@ class RoomController extends Controller
     public function edit($id)
     {
         $room = $this->roomService->findById($id);
+        $room_image = count($room->room_image);
         $floors = $this->floorService->getAll($id);
         $roomTypes = $this->roomTypeService->getAll($id);
         $param = [
@@ -160,13 +161,13 @@ class RoomController extends Controller
 
     public function force_destroy($id)
     {
+        //dd($this->roomService->force_destroy($id));
         try {
             $room = $this->roomService->force_destroy($id);
-
-            return redirect()->route('rooms.trash')->with('success', 'Xóa' . ' ' . $room->name . ' ' . 'thành công');
+            return redirect()->route('rooms.trash')->with('success' . 'Xóa thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('rooms.trash')->with('error', 'Xóa' . ' ' . $room->name . ' ' . 'không thành công');
+            return redirect()->route('rooms.trash')->with('error', 'Xóa không thành công');
         }
     }
 }
