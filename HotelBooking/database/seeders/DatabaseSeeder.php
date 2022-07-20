@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->importUserGroupRoles();
         $this->importUser();
 
-        $this->importCustomer();
         $this->importRoomType();
+        $this->importCustomer();
         $this->importFloor();
         $this->importRoom();
         $this->importRoomImage();
@@ -188,7 +188,6 @@ class DatabaseSeeder extends Seeder
         $room_image->room_id = 1;
         $room_image->save();
     }
-
     public function importCustomer()
     {
         $customers = new Customers();
@@ -198,5 +197,6 @@ class DatabaseSeeder extends Seeder
         $customers->address = 'Gio Linh';
         $customers->save();
     }
+
 
 }
