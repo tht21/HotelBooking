@@ -48,8 +48,6 @@ class RoomController extends Controller
             'floors' => $floors,
             'roomTypes' => $roomTypes,
         ];
-
-
         return view('admin.room.create', $param);
     }
 
@@ -63,10 +61,9 @@ class RoomController extends Controller
     {
         try {
             $this->roomService->create($request);
-            return redirect()->route('rooms.index')->with('success', ' Thêm tin tức ' . $request->name . ' thành công ');
+            return redirect()->route('rooms.index');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('rooms.index')->with('error', ' Thêm tin tức ' . $request->name . 'không thành công ');
         }
     }
 
@@ -110,13 +107,12 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         try {
             $this->roomService->update($request, $id);
-            return redirect()->route('rooms.index')->with('success', ' Sửa  phòng ' . $request->name . ' ' . ' thành công ');
+            return redirect()->route('rooms.index');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('rooms.index')->with('success', ' Sửa  phòng ' . $request->name . ' ' . 'không thành công ');
+            return redirect()->route('rooms.index');
         }
     }
 

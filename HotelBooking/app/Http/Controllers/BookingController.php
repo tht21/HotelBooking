@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Booking;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
+use App\Models\Booking;
 use App\Services\Interfaces\BookingRoomServiceInterface;
+use App\Services\Interfaces\RoomServiceInterface;
 use Illuminate\Support\Facades\Request;
 
 class BookingController extends Controller
 {
-    protected $boookingRoomService;
+    protected $bookingRoomService;
+    protected $roomService;
 
-    public function __construct(BookingRoomServiceInterface $bookingRoomService)
+    public function __construct(BookingRoomServiceInterface $bookingRoomService, RoomServiceInterface $roomService)
     {
         $this->bookingRoomService = $bookingRoomService;
+        $this->roomService = $roomService;
     }
 
     /**
@@ -25,8 +28,13 @@ class BookingController extends Controller
     public function index(Request $request)
     {
         $bookingrooms = $this->bookingRoomService->getAll($request);
-        //  dd($rooms);
-        return view("admin.bookingRoom.index", compact('bookingrooms'));
+
+        $rooms = $this->roomService->getAll($request);
+        $param = [
+            'bookingrooms' => $bookingrooms,
+            'rooms' => $rooms,
+        ];
+        return view("admin.bookingRoom.index", $param);
     }
 
     /**
@@ -56,9 +64,16 @@ class BookingController extends Controller
      * @param \App\Models\Booking $booking
      * @return \Illuminate\Http\Response
      */
-    public function show(Booking $booking)
+    public function show($id)
     {
-        //
+        $bookingrooms = $this->bookingRoomService->findById($id);
+        //dd($bookingrooms);
+        $rooms = $this->roomService->findById($id);
+        $param = [
+            'bookingrooms' => $bookingrooms,
+            'rooms' => $rooms,
+        ];
+        return view("admin.bookingRoom.show", $param);
     }
 
     /**
