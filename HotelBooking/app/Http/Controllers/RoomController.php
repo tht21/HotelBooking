@@ -49,6 +49,7 @@ class RoomController extends Controller
             'roomTypes' => $roomTypes,
         ];
 
+
         return view('admin.room.create', $param);
     }
 
