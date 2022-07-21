@@ -50,6 +50,8 @@
                            <td>{{ ++$key}}</td>
                            <td>{{ $item->name }}</td>
                            <td>
+                             
+                              @if($item->name != 'Supper Admin')
                               @if(Auth::user()->hasPermission('UserGroup_update'))
                                  <a href="{{route('usergroups.edit',$item->id)}}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Chỉnh Sửa Nhóm Nhân Viên">
                                     <i class="fa fa-edit"></i>
@@ -61,6 +63,7 @@
                                  @csrf
                                  @method('delete')
                              </form>
+                              @endif
                               @endif
                            </td>
                         </tr>

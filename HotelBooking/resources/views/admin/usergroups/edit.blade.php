@@ -35,16 +35,17 @@
                         <div class="row">
                            @foreach ($group_names as $group_name => $roles)
                            <div class="list-group list-group-flush list-group-bordered col-lg-4">
-                              <div class="list-group-header" style="color:rgb(50, 219, 101) ;">
+                              <div class="list-group-header" style="color:rgb(2, 6, 249) ;">
                                  <h5> {{ __($group_name) }}</h5>
                               </div>
+                              
                               @foreach ($roles as $role)
                               <div class="list-group-item d-flex justify-content-between align-items-center">
                                  <span style="color: rgb(4, 5, 5) ;">{{ __($role['name']) }}</span>
                                  <!-- .switcher-control -->
                                  <label class="form-check form-switch ">
                                     <input type="checkbox" @checked( in_array($role['id'],$userRoles) ) name="roles[]"
-                                       class="checkItem form-check-input checkItem" value="{{ $role['id'] }}">
+                                       class="checkItem form-check-input checkItem"   value="{{ $role['id'] }}">
                                     <span class="switcher-indicator"></span>
                                  </label>
                                  <!-- /.switcher-control -->

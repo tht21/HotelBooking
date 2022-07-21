@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
         $user->avatar = 'upload/avatar_admin.jpg';
         $user->phone = '0935779035';
         $user->gender = 'Nam';
-        $user->user_group_id = '1';
+        $user->user_group_id = '2';
         $user->save();
 
         $user = new User();
