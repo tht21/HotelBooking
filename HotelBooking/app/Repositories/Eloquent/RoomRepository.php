@@ -72,7 +72,6 @@ class RoomRepository extends EloquentRepository implements RoomInterface
             $object = $this->model->find($id);
             $object->name = $request->name;
             $object->price = $request->price;
-
             $object->room_types_id = $request->room_types;
             $object->floor_id = $request->floor;
             $object->convenient = $request->convenient;

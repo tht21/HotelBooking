@@ -13,8 +13,9 @@
                         <div class="col-12">
                             <form method="post" action="{{route('users.update',$user->id)}}"
                                   enctype="multipart/form-data">
-                                @csrf
+
                                 @method('put')
+                                @csrf
                                 <div class="row form-group">
                                     <div class="col-9">
                                         <label>Tên nhân viên </label>

@@ -32,16 +32,13 @@ class UserService implements UserServiceInterface
 
     public function update($request, $id)
     {
-        $userGroup = $this->userRepository->findById($id);
-        $this->userRepository->update($request, $userGroup);
-        return $userGroup;
+        return $this->userRepository->update($request, $id);
+
     }
 
     public function destroy($id)
     {
-        $userGroup = $this->userRepository->findById($id);
-        $this->userRepository->destroy($userGroup);
-        return $userGroup;
+        return $this->userRepository->destroy($id);
 
     }
 

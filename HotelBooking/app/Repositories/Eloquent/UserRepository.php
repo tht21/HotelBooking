@@ -70,10 +70,11 @@ class UserRepository extends EloquentRepository implements UserInterface
 
     public function update($request, $id)
     {
-//        dd($request->all());
+
         try {
-            //   DB::beginTransaction();
+            DB::beginTransaction();
             $object = $this->model->find($id);
+            // dd(  $object);
             $object->name = $request->name;
             $object->phone = $request->phone;
             if ($request->password) {
@@ -84,15 +85,15 @@ class UserRepository extends EloquentRepository implements UserInterface
             $object->gender = $request->gender;
             $object->address = $request->address;
             $object->user_group_id = $request->user_group_id;
-            //     $object->avatar=$request->avatar;
             $dataUploadImage = $this->storageUpload($request, 'avatar', 'room');
             $object->avatar = $dataUploadImage['file_path'];
+            // dd($object);
             $object->save();
-            // DB::commit();
-            Session::flash('success', 'Chỉnh sửa nhân viên' . ' ' . $request->name . ' ' . 'thành công');
+            DB::commit();
+            Session::flash('success', 'Thêm nhân viên' . ' ' . $request->name . ' ' . 'thành công');
             return true;
         } catch (\Exception $e) {
-            //DB::rollBack();
+            DB::rollBack();
             Log::error('Message: ' . $e->getMessage() . ' --- Line : ' . $e->getLine());
 
         }
