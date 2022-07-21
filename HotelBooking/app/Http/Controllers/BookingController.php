@@ -44,7 +44,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.bookingRoom.add");
     }
 
     /**
@@ -64,16 +64,15 @@ class BookingController extends Controller
      * @param \App\Models\Booking $booking
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function list(Request $request)
     {
-        $bookingrooms = $this->bookingRoomService->findById($id);
-        //dd($bookingrooms);
-        $rooms = $this->roomService->findById($id);
+        $bookingrooms = $this->bookingRoomService->getAll($request);
+        $rooms = $this->roomService->getAll($request);
         $param = [
             'bookingrooms' => $bookingrooms,
             'rooms' => $rooms,
         ];
-        return view("admin.bookingRoom.show", $param);
+        return view("admin.bookingRoom.list", $param);
     }
 
     /**
@@ -84,7 +83,7 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
-        //
+
     }
 
     /**

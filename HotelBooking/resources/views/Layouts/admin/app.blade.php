@@ -181,7 +181,7 @@
         fillColor: 'rgba(255, 165, 52, .14)'
     });
 
-    
+
 </script>
 <script>
     $(document).ready(function() {
@@ -228,6 +228,7 @@
         height: 100
     });
 </script>
+@yield('js')
 </body>
 </html>
 
