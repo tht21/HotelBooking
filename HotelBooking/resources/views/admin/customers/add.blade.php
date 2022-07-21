@@ -41,6 +41,13 @@
                         <p style="color:red">{{ $errors->first('address') }}</p>
                         @endif
                      </div>
+                     <div class="form-group">
+                        <label>Số CMND</label>
+                        <input type="text" class="form-control" id="cmnd" name="cmnd" placeholder="Nhập số cmnd">
+                        @if ($errors->any())
+                        <p style="color:red">{{ $errors->first('cmnd') }}</p>
+                        @endif
+                     </div>
                      {{-- <button type="submit" class="btn btn-primary btn-round ml-auto">Submit</button>
 
                      <a class="btn btn-warning btn-round ml-auto" href="{{route('roomtype.index')}}"">Quay Lại</a> --}}

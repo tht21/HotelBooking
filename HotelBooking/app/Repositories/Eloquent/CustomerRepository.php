@@ -43,6 +43,7 @@ class CustomerRepository extends EloquentRepository implements CustomerInterface
         $customers->email = $request->email;
         $customers->phone = $request->phone;
         $customers->address = $request->address;
+        $customers->cmnd = $request->cmnd;
         try {
             $customers->save();
 
@@ -62,6 +63,7 @@ class CustomerRepository extends EloquentRepository implements CustomerInterface
         $customers->email = $request->email;
         $customers->phone = $request->phone;
         $customers->address = $request->address;
+        $customers->cmnd = $request->cmnd;
         try {
             $customers->save();
             return true;

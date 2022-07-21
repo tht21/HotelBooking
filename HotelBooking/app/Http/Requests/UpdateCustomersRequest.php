@@ -27,7 +27,8 @@ class UpdateCustomersRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'address' => 'required'
+            'address' => 'required',
+            'cmnd' => 'required'
         ];
     }
     public function messages()
@@ -37,6 +38,7 @@ class UpdateCustomersRequest extends FormRequest
             'email.required' => 'Vui lòng nhập email',
             'phone.required' => 'Vui lòng nhập số điện thoại',
             'address.required' => 'Vui lòng nhập địa chỉ',
+            'cmnd.required' => 'Vui lòng nhập số cmnd',
             'email.email' => 'Vui lòng nhập đúng định dạng email',
         ];
         

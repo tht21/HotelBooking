@@ -195,6 +195,7 @@ class DatabaseSeeder extends Seeder
         $customers->email = 'Linh@gmail.com';
         $customers->phone = 12345;
         $customers->address = 'Gio Linh';
+        $customers->cmnd = 34567465342;
         $customers->save();
     }
 

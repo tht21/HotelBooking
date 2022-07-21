@@ -45,6 +45,7 @@
                         <th>Email</th>
                         <th>Số ĐT</th>
                         <th>Địa Chỉ</th>
+                        <th>Số CMND</th>
                         <th>Action</th>
                      </tr>
                   </thead>
@@ -57,6 +58,7 @@
                         <td>{{$customer->email}}</td>
                         <td>{{$customer->phone}}</td>
                         <td>{{$customer->address}}</td>
+                        <td>{{$customer->cmnd}}</td>
                         <td>
                            <div class="form-button-action">
                               <a href="{{route('customers.restore',$customer->id)}}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Khôi Phục Khách Hàng">
