@@ -21,7 +21,7 @@ class UserGroupRepository extends EloquentRepository implements UserGroupInterfa
 
         }
         $userGroup->orderBy('id', 'desc');
-        $userGroups = $userGroup->paginate(4);
+        $userGroups = $userGroup->paginate(10);
 
         return $userGroups;
     }
@@ -42,7 +42,7 @@ class UserGroupRepository extends EloquentRepository implements UserGroupInterfa
         $query = $this->model->onlyTrashed();
 
         $query->orderBy('id', 'desc');
-        $userGroups = $query->paginate(5);
+        $userGroups = $query->paginate(10);
         return $userGroups;
     }
 
