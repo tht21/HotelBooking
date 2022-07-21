@@ -49,14 +49,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="exampleFormControlFile1">Tiện nghi</label>
-                                        <textarea id="summer" data-toggle="summernote" name="convenient" type="text"
-                                                  class="form-control">{{old('convenient')}}</textarea>
-                                        @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('convenient') }}</p>
-                                        @endif
-                                    </div>
+
                                     <div class="form-group">
                                         <label for="comment">Ảnh</label>
                                         <input type="file" name="image_path" class="form-control-file"

@@ -28,7 +28,6 @@ class BookingController extends Controller
     public function index(Request $request)
     {
         $bookingrooms = $this->bookingRoomService->getAll($request);
-
         $rooms = $this->roomService->getAll($request);
         $param = [
             'bookingrooms' => $bookingrooms,
@@ -42,9 +41,15 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view("admin.bookingRoom.add");
+        $bookingrooms = $this->bookingRoomService->getAll($request);
+        $rooms = $this->roomService->getAll($request);
+        $param = [
+            'bookingrooms' => $bookingrooms,
+            'rooms' => $rooms,
+        ];
+        return view("admin.bookingRoom.add", $param);
     }
 
     /**
