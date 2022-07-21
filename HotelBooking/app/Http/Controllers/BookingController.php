@@ -44,7 +44,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.bookingRoom.add");
     }
 
     /**
@@ -83,7 +83,7 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
-        //
+
     }
 
     /**
