@@ -58,6 +58,7 @@
                     </a>
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
+                            @if(Auth::user()->hasPermission('Bookings_viewAny'))
                             <li>
                                 <a href="components/avatars.html">
                                     <span class="sub-item">Xem Dạng Lịch</span>
@@ -73,15 +74,18 @@
                                     <span class="sub-item">Danh Sách đặt phòng</span>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
+            @if(Auth::user()->hasPermission('Customers_viewAny'))
              <li class="nav-item">
                  <a href="{{route('customers.index')}}">
                      <i class="fas fa-th-list"></i>
                      <p>Khách Hàng</p>
                  </a>
              </li>
+             @endif
              <li class="nav-item">
                     <a data-toggle="collapse" href="#tables">
                         <i class="fas fa-table"></i>
@@ -90,39 +94,46 @@
                     </a>
                     <div class="collapse" id="tables">
                         <ul class="nav nav-collapse">
+                            @if(Auth::user()->hasPermission('RoomType_viewAny'))
                             <li>
                                 <a href="{{route('roomtype.index')}}">
                                     <span class="sub-item">Loại Phòng</span>
                                 </a>
                             </li>
+                            @endif
+                            @if(Auth::user()->hasPermission('Rooms_viewAny'))
                             <li>
                                 <a href="{{route('rooms.index')}}">
                                     <span class="sub-item">Phòng</span>
                                 </a>
                             </li>
+                            @endif
                         </ul>
                     </div>
-             </li>
-             <li class="nav-item">
-                 <a href="{{route('users.index')}}">
+                </li>
+                @if(Auth::user()->hasPermission('User_viewAny'))
+                <li class="nav-item">
+                 <a href="#forms">
                      <i class="fas fa-user"></i>
                      <p>Nhân Viên</p>
-                 </a>
-             </li>
-             <li class="nav-item">
-                 <a href="{{route('usergroups.index')}}">
-                     <i class="fas fa-users"></i>
-                     <p>Nhóm Nhân Viên</p>
-                 </a>
-             </li>
-
+                    </a>
+                </li>
+                @endif
+                @if(Auth::user()->hasPermission('UserGroup_viewAny'))
+                <li class="nav-item">
+                    <a href="{{route('usergroups.index')}}">
+                        <i class="fas fa-users"></i>
+                        <p>Nhóm Nhân Viên</p>
+                    </a>
+                </li>
+                @endif  
+          
                 <li class="nav-item">
                     <a href="#forms">
                         <i class="fas fa-list"></i>
                         <p>Menu</p>
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a href="#maps">
                         <i class="fas fa-phone"></i>
