@@ -102,19 +102,19 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+             </li>
              <li class="nav-item">
-                 <a href="#forms">
+                 <a href="{{route('users.index')}}">
                      <i class="fas fa-user"></i>
                      <p>Nhân Viên</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('usergroups.index')}}">
-                        <i class="fas fa-users"></i>
-                        <p>Nhóm Nhân Viên</p>
-                    </a>
-                </li>
+                 </a>
+             </li>
+             <li class="nav-item">
+                 <a href="{{route('usergroups.index')}}">
+                     <i class="fas fa-users"></i>
+                     <p>Nhóm Nhân Viên</p>
+                 </a>
+             </li>
 
                 <li class="nav-item">
                     <a href="#forms">

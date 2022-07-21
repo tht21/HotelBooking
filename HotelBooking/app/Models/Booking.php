@@ -19,5 +19,10 @@ class Booking extends Model
         return $this->belongsToMany(Room::class, 'room_bookings', 'room_id', 'booking_id')->withTimestamps();
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+
+    }
 
 }
