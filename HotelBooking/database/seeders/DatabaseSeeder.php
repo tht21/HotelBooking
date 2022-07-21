@@ -10,7 +10,7 @@ use App\Models\Room_image;
 use App\Models\RoomBooking;
 use App\Models\RoomType;
 use App\Models\User;
-use App\Models\User_groups;
+use App\Models\UserGroup;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -65,20 +65,20 @@ class DatabaseSeeder extends Seeder
 
     public function importUserGroups()
     {
-        $userGroup = new User_groups();
+        $userGroup = new UserGroup();
         $userGroup->name = 'Supper Admin';
         $userGroup->save();
 
-        $userGroup = new User_groups();
+        $userGroup = new UserGroup();
         $userGroup->name = 'Quản Lý';
         $userGroup->save();
 
-        $userGroup = new User_groups();
+        $userGroup = new UserGroup();
         $userGroup->name = 'Giám Đốc';
         $userGroup->save();
 
 
-        $userGroup = new User_groups();
+        $userGroup = new UserGroup();
         $userGroup->name = 'Nhân Viên';
         $userGroup->save();
     }

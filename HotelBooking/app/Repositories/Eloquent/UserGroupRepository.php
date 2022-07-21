@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\Eloquent;
 
-use App\Models\User_groups;
+use App\Models\UserGroup;
 use App\Repositories\Eloquent\EloquentRepository;
 use App\Repositories\Interfaces\UserGroupInterface;
 
@@ -10,7 +10,7 @@ class UserGroupRepository extends EloquentRepository implements UserGroupInterfa
 
     public function getModel()
     {
-        return User_groups::class;
+        return UserGroup::class;
     }
     public function getAll($request)
     {

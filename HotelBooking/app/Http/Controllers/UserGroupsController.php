@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\user_groups;
+use App\Models\UserGroup;
 use App\Http\Requests\Storeuser_groupsRequest;
+use App\Http\Requests\StoreUserGroupRequest;
 use App\Http\Requests\Updateuser_groupsRequest;
+use App\Http\Requests\UpdateUserGroupRequest;
 use App\Models\Role;
 use App\Services\Interfaces\UserGroupServiceInterface;
 use Illuminate\Http\Request;
@@ -27,7 +29,7 @@ class UserGroupsController extends Controller
     }
     public function index(Request $request)
     {
-        // $this->authorize('viewAny',user_groups::class);
+       $this->authorize('viewAny',UserGroup::class);
         $items = $this->UserGroupService->getAll($request);
         // dd($userGroups);
         // return response()->json($items, 200);
@@ -45,7 +47,7 @@ class UserGroupsController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', user_groups::class);
+        $this->authorize('create', UserGroup::class);
         return view('admin.usergroups.create');
     }
 
@@ -55,7 +57,7 @@ class UserGroupsController extends Controller
      * @param  \App\Http\Requests\Storeuser_groupsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storeuser_groupsRequest $request)
+    public function store(StoreUserGroupRequest $request)
     {
         try {
             $item = $this->UserGroupService->create($request->all());
@@ -87,7 +89,7 @@ class UserGroupsController extends Controller
      */
     public function edit($id)
     {
-        $item = user_groups::find($id);
+        $item = UserGroup::find($id);
         // $this->authorize('update',  $userGroup);
         $current_user = Auth::user();
         $userRoles = $item->roles->pluck('id', 'name')->toArray();
@@ -113,7 +115,7 @@ class UserGroupsController extends Controller
      * @param  \App\Models\user_groups  $user_groups
      * @return \Illuminate\Http\Response
      */
-    public function update(Updateuser_groupsRequest $request, $id)
+    public function update(UpdateUserGroupRequest $request, $id)
     {
         try {
             $item = $this->UserGroupService->update($request->all(), $id);
