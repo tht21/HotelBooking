@@ -1,21 +1,14 @@
 @extends('layouts.admin.app')
 @section('content')
 <div class="page-inner">
-@include('layouts.admin.includes.content',['key'=> 'Nhóm Nhân Viên ','name'=> 'Quản Lý Nhóm Nhân Viên','key' => 'Nhóm Nhân Viên'])
+   @include('layouts.admin.includes.content',['key'=> 'Chỉnh Sửa Nhóm Nhân Viên ','name'=> 'Quản Lý Nhóm Nhân
+   Viên','key' => 'Chỉnh Sửa Nhóm Nhân Viên'])
 
    <div class="content-wrapper">
       <div class="container-fluid">
          <header class="page-title-bar">
-            <nav aria-label="breadcrumb">
-               <ol class="breadcrumb">
-                  <li class="breadcrumb-item active">
-                     <a href="{{route('usergroups.index')}}"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Quản
-                        Lý
-                        Nhóm Nhân Viên</a>
-                  </li>
-               </ol>
-            </nav>
-            <h1 class="page-title"> Chỉnh Sửa Nhóm Nhân Viên </h1>
+           
+            
          </header>
 
          <div class="page-section">
@@ -34,7 +27,8 @@
                         @endif
                      </div>
                      <div class="form-group">
-                        <label class="form-check form-switch">Quyền hạn
+                        <h4>Quyền hạn</h4>
+                        <label class="form-check form-switch ">{{__('CheckAll')}}
                            <input style="margin-left: 0.5em;" type="checkbox" id="checkAll" class="form-check-input"
                               value="Quyền hạn">
                         </label>
@@ -46,11 +40,11 @@
                               </div>
                               @foreach ($roles as $role)
                               <div class="list-group-item d-flex justify-content-between align-items-center">
-                                 <span style="color: aliceblue ;">{{ __($role['name']) }}</span>
+                                 <span style="color: rgb(4, 5, 5) ;">{{ __($role['name']) }}</span>
                                  <!-- .switcher-control -->
-                                 <label class="form-check form-switch">
+                                 <label class="form-check form-switch ">
                                     <input type="checkbox" @checked( in_array($role['id'],$userRoles) ) name="roles[]"
-                                       class="checkItem form-check-input" value="{{ $role['id'] }}">
+                                       class="checkItem form-check-input checkItem" value="{{ $role['id'] }}">
                                     <span class="switcher-indicator"></span>
                                  </label>
                                  <!-- /.switcher-control -->
@@ -71,6 +65,8 @@
          </div>
       </div>
    </div>
+   <script
+  src="https://code.jquery.com/jquery-3.6.0.js"></script>
    <script>
       $('#checkAll').click(function () {
         $(':checkbox.checkItem').prop('checked', this.checked);

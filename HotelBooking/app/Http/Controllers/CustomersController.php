@@ -26,6 +26,7 @@ class CustomersController extends Controller
 
     public function index(Request $request)
     {
+        // dd(trans('translation.hello'));
         $customers = $this->customerService->getAll($request);
         $params = [
             "customers" => $customers,
