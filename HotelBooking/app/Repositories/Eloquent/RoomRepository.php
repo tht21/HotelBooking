@@ -40,6 +40,7 @@ class RoomRepository extends EloquentRepository implements RoomInterface
 //       $object->image_path = $request->image;
 
             $dataUploadImage = $this->storageUpload($request, 'image_path', 'room');
+
             $object->image_path = $dataUploadImage['file_path'];
 
             $object->save();

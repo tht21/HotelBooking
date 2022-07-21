@@ -26,9 +26,8 @@ class UserService implements UserServiceInterface
 
     public function create($request)
     {
-        $userGroup = $this->userRepository->create($request);
-        return $userGroup;
-
+        $user = $this->userRepository->create($request);
+        return $user;
     }
 
     public function update($request, $id)
@@ -49,21 +48,21 @@ class UserService implements UserServiceInterface
     public function trashedItems()
     {
 
-        return $this->userGroupRepository->trashedItems();
+        return $this->userRepository->trashedItems();
 
     }
 
     public function restore($id)
     {
 
-        return $this->userGroupRepository->restore($id);
+        return $this->userRepository->restore($id);
 
     }
 
     public function force_destroy($id)
     {
 
-        return $this->userGroupRepository->force_destroy($id);
+        return $this->userRepository->force_destroy($id);
 
     }
 
