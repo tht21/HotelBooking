@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use App\Models\RoomType;
-use App\Models\User_groups;
+use App\Models\UserGroup;
 use App\Policies\RoomTypePolicy;
-use App\Policies\UserGroupsPolicy;
+use App\Policies\UserGroupPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -18,7 +18,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         RoomType::class => RoomTypePolicy::class,
-        User_groups::class => UserGroupsPolicy::class,
+        UserGroup::class => UserGroupPolicy::class,
     ];
 
     /**
