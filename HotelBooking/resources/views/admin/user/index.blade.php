@@ -8,16 +8,16 @@
                 <div class="card">
 
                     <div class="card-header">
-                        <h4 class="card-title">Quản Lý Khách Hàng</h4>
+                        <h4 class="card-title">Quản Lý Nhân Viên</h4>
                         <ul class="nav nav-tabs card-header-tabs">
                             <div class="all">
                                 <li class="nav-item1">
-                                    <a class="nav-link active" href="{{route('customers.index')}}">Tất Cả</a>
+                                    <a class="nav-link active" href="{{route('users.index')}}">Tất Cả</a>
                                 </li>
                             </div>
                             <div class="trash">
                                 <li class="nav-item2">
-                                    <a class="nav-link active " href="{{route('customers.trash')}}">Thùng Rác</a>
+                                    <a class="nav-link active " href="{{route('users.trash')}}">Thùng Rác</a>
                                 </li>
                             </div>
                         </ul>
@@ -31,9 +31,9 @@
                             <div class="text text-danger"><b>{{session::get('error')}}</b></div>
                         @endif
                         <div class="d-flex align-items-center">
-                            <a href="{{route('customers.create')}}" class="btn btn-primary btn-round ml-auto">
+                            <a href="{{route('users.create')}}" class="btn btn-primary btn-round ml-auto">
                                 <i class="fa fa-plus"></i>
-                                Thêm Khách Hàng
+                                Thêm nhân viên
                             </a>
                         </div>
                         <div class="table-responsive">
@@ -41,35 +41,33 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Tên Khách Hàng</th>
+                                    <th>Tên nhân viên</th>
                                     <th>Email</th>
                                     <th>Số ĐT</th>
                                     <th>Địa Chỉ</th>
-                                    <th>Số CMND</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($users as $key => $customer)
+                                @foreach ($users as $key => $user)
 
                                     <tr>
                                         <td>{{ $key = $key + 1}}</td>
-                                        <td>{{$customer->name}}</td>
-                                        <td>{{$customer->email}}</td>
-                                        <td>{{$customer->phone}}</td>
-                                        <td>{{$customer->address}}</td>
-                                        <td>{{$customer->cmnd}}</td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->phone}}</td>
+                                        <td>{{$user->address}}</td>
                                         <td>
                                             <div class="form-button-action">
-                                                <a href="{{route('customers.edit',$customer->id)}}"
+                                                <a href="{{route('users.edit',$user->id)}}"
                                                    data-toggle="tooltip" title=""
                                                    class="btn btn-link btn-primary btn-lg"
-                                                   data-original-title="Chỉnh Sửa Thông Tin Khách Hàng">
+                                                   data-original-title="Chỉnh Sửa Thông Tin Nhân viên">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <form action="{{ route('customers.destroy',$customer->id)}}"
+                                                <form action="{{ route('users.destroy',$user->id)}}"
                                                       style="display:inline" method="post">
-                                                    <button onclick="return confirm('Xóa {{$customer->name}} ?')"
+                                                    <button onclick="return confirm('Xóa {{$user->name}} ?')"
                                                             data-toggle="tooltip" title=""
                                                             class="btn btn-link btn-danger" data-original-title="Xóa"><i
                                                             class="far fa-trash-alt"></i></button>
