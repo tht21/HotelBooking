@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->unsignedBigInteger('booking_id');
             $table->foreign('booking_id')->references('id')->on('bookings');
-
             $table->timestamps();
         });
     }

@@ -109,40 +109,45 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $this->userService->destroy($id);
+            return redirect()->route('users.index')->with('success', ' Xóa  phòng thành công ');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('users.index')->with('error', 'Xóa  phòng không thành công');
+        }
     }
 
     public function trashedItems()
     {
         // dd($request);
-        $rooms = $this->roomService->trashedItems();
+        $users = $this->userService->trashedItems();
         // dd($items);
         $params = [
-            'rooms' => $rooms,
+            'users' => $users,
         ];
-        return view('admin.room.trash', $params);
+        return view('admin.user.trash', $params);
     }
 
     public function restore($id)
     {
         try {
-            $this->roomService->restore($id);
-            return redirect()->route('rooms.trash')->with('success', 'Khôi phục thành công');
+            $this->userService->restore($id);
+            return redirect()->route('users.trash')->with('success', 'Khôi phục thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('rooms.trash')->with('success', 'Khôi phục thành công');
+            return redirect()->route('users.trash')->with('success', 'Khôi phục thành công');
         }
     }
 
     public function force_destroy($id)
     {
-        //dd($this->roomService->force_destroy($id));
         try {
-            $room = $this->roomService->force_destroy($id);
-            return redirect()->route('rooms.trash')->with('success' . 'Xóa thành công');
+            $user = $this->userService->force_destroy($id);
+            return redirect()->route('users.trash')->with('success' . 'Xóa thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('rooms.trash')->with('error', 'Xóa không thành công');
+            return redirect()->route('users.trash')->with('error', 'Xóa không thành công');
         }
     }
 }
