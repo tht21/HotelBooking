@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\RoomType;
 use App\Models\User;
-use App\Models\user_groups;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserGroupsPolicy
+class RoomTypePolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class UserGroupsPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasPermission('UserGroup_viewAny');
+        return $user->hasPermission('RoomType_viewAny');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\user_groups  $userGroups
+     * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, user_groups $userGroups)
+    public function view(User $user, RoomType $roomType)
     {
-        return $user->hasPermission('UserGroup_view');
+        return $user->hasPermission('RoomType_view');
     }
 
     /**
@@ -41,54 +41,54 @@ class UserGroupsPolicy
      */
     public function create(User $user)
     {
-        return $user->hasPermission('UserGroup_create');
+        return $user->hasPermission('RoomType_create');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\user_groups  $userGroups
+     * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, user_groups $userGroup)
+    public function update(User $user, RoomType $roomType)
     {
-        return $user->hasPermission('UserGroup_update');
+        return $user->hasPermission('RoomType_update');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\UserGroup  $userGroup
+     * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, user_groups $userGroup)
+    public function delete(User $user, RoomType $roomType)
     {
-        return $user->hasPermission('UserGroup_delete');
+        return $user->hasPermission('RoomType_delete');
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\UserGroup  $userGroup
+     * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, user_groups $userGroup)
+    public function restore(User $user, RoomType $roomType)
     {
-        return $user->hasPermission('UserGroup_restore');
+        return $user->hasPermission('RoomType_restore');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\UserGroup  $userGroup
+     * @param  \App\Models\RoomType  $roomType
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, user_groups $userGroup)
+    public function forceDelete(User $user, RoomType $roomType)
     {
-        return $user->hasPermission('UserGroup_forceDelete');
+        return $user->hasPermission('RoomType_forceDelete');
     }
 }

@@ -105,7 +105,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#forms">
+                    <a href="{{route('usergroups.index')}}">
                         <i class="fas fa-users"></i>
                         <p>Nhóm Nhân Viên</p>
                     </a>
