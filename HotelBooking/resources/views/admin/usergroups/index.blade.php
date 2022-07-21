@@ -41,7 +41,7 @@
                         <tr>
                            <th>#</th>
                            <th>Tên nhóm</th>
-                           <th>Chức năng</th>
+                           <th>Action</th>
                         </tr>
                      </thead>
                      @foreach($items as $key => $item)
