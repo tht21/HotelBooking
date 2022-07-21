@@ -126,7 +126,7 @@
                         <p>Nhóm Nhân Viên</p>
                     </a>
                 </li>
-                @endif
+                @endif  
                 <li class="nav-item">
                     <a href="#forms">
                         <i class="fas fa-list"></i>
