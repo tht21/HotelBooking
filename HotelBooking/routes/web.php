@@ -45,6 +45,7 @@ Route::group([
     });
 
     Route::prefix('bookingrooms')->group(function () {
+        Route::get('/list', [BookingController::class, 'list'])->name('bookingrooms.list');
         Route::get('/trash', [BookingController::class, 'trashedItems'])->name('bookingrooms.trash');
         Route::delete('/force_destroy/{id}', [BookingController::class, 'force_destroy'])->name('bookingrooms.force_destroy');
         Route::get('/restore/{id}', [BookingController::class, 'restore'])->name('bookingrooms.restore');

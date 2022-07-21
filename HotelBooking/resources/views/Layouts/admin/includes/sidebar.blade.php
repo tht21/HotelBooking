@@ -68,6 +68,11 @@
                                     <span class="sub-item">Xem Dạng Danh Sách</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{route('bookingrooms.list')}}">
+                                    <span class="sub-item">Danh Sách đặt phòng</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -75,9 +80,9 @@
                  <a href="{{route('customers.index')}}">
                      <i class="fas fa-th-list"></i>
                      <p>Khách Hàng</p>
-                    </a>
-                </li>
-                <li class="nav-item">
+                 </a>
+             </li>
+             <li class="nav-item">
                     <a data-toggle="collapse" href="#tables">
                         <i class="fas fa-table"></i>
                         <p>Quản Lý Phòng</p>
