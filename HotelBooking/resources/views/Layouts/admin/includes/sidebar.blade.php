@@ -111,12 +111,14 @@
                         </ul>
                     </div>
                 </li>
-             <li class="nav-item">
+                @if(Auth::user()->hasPermission('User_viewAny'))
+                <li class="nav-item">
                  <a href="#forms">
                      <i class="fas fa-user"></i>
                      <p>Nhân Viên</p>
                     </a>
                 </li>
+                @endif
                 @if(Auth::user()->hasPermission('UserGroup_viewAny'))
                 <li class="nav-item">
                     <a href="{{route('usergroups.index')}}">
