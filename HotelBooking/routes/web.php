@@ -5,6 +5,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
+use App\Http\Controllers\UserGroupsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,10 +57,18 @@ Route::group([
 
     });
 
+    Route::prefix('usergroups')->group(function () {
+        Route::get('/trash', [UserGroupsController::class, 'trashedItems'])->name('usergroups.trash');
+        Route::delete('/force_destroy/{id}', [UserGroupsController::class, 'force_destroy'])->name('usergroups.force_destroy');
+        Route::get('/restore/{id}', [UserGroupsController::class, 'restore'])->name('usergroups.restore');
+
+    });
+
     Route::resource('roomtype', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);
     Route::resource('customers', CustomersController::class);
     Route::resource('bookingrooms', BookingController::class);
+    Route::resource('usergroups', UserGroupsController::class);
 });
 
 

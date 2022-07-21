@@ -6,7 +6,6 @@ interface Service
 {
     public function getAll($request);
 
-
     public function findById($id);
 
     public function create($request);

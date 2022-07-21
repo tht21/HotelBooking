@@ -13,4 +13,7 @@ class User_groups extends Model
     {
         return $this->hasMany(User::class,'user_group_id','id');
     }
+    public function roles() {
+        return $this->belongsToMany(Role::class,'user_group_roles','user_groups_id','role_id');
+    }
 }

@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\user_groups;
 use App\Http\Requests\Storeuser_groupsRequest;
 use App\Http\Requests\Updateuser_groupsRequest;
+use App\Models\Role;
+use App\Services\Interfaces\UserGroupServiceInterface;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class UserGroupsController extends Controller
 {
@@ -13,9 +18,24 @@ class UserGroupsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    protected $userGroupService;
+
+    public function __construct(UserGroupServiceInterface $userGroupService)
     {
-        //
+        $this->UserGroupService = $userGroupService;
+    }
+    public function index(Request $request)
+    {
+        // $this->authorize('viewAny',user_groups::class);
+        $items = $this->UserGroupService->getAll($request);
+        // dd($userGroups);
+        // return response()->json($items, 200);
+        // $userGroups = UserGroup::all();
+        $params =[
+            'items' => $items,
+        ];
+        return view('admin.usergroups.index',$params);
     }
 
     /**
@@ -25,7 +45,8 @@ class UserGroupsController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', user_groups::class);
+        return view('admin.usergroups.create');
     }
 
     /**
@@ -36,7 +57,14 @@ class UserGroupsController extends Controller
      */
     public function store(Storeuser_groupsRequest $request)
     {
-        //
+        try {
+            $item = $this->UserGroupService->create($request->all());
+            return redirect()->route('usergroups.index')->with('success', 'Thêm nhóm' . ' ' . $item->name . ' ' .  'thành công');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('usergroups.index')->with('error', 'Thêm nhóm' . ' ' . $item->name . ' ' .  'không thành công');
+        }
+
     }
 
     /**
@@ -45,9 +73,10 @@ class UserGroupsController extends Controller
      * @param  \App\Models\user_groups  $user_groups
      * @return \Illuminate\Http\Response
      */
-    public function show(user_groups $user_groups)
+    public function show($id)
     {
-        //
+        $item = $this->UserGroupService->findById($id);
+        return response()->json($item, 200);
     }
 
     /**
@@ -56,9 +85,25 @@ class UserGroupsController extends Controller
      * @param  \App\Models\user_groups  $user_groups
      * @return \Illuminate\Http\Response
      */
-    public function edit(user_groups $user_groups)
+    public function edit($id)
     {
-        //
+        $item = user_groups::find($id);
+        // $this->authorize('update',  $userGroup);
+        $current_user = Auth::user();
+        $userRoles = $item->roles->pluck('id', 'name')->toArray();
+        // dd($current_user->userGroup->roles->toArray());
+        $roles = Role::all()->toArray();
+        $group_names = [];
+        foreach ($roles as $role) {
+            $group_names[$role['group_name']][] = $role;
+        }
+        $params = [
+            'item' => $item,
+            'userRoles' => $userRoles,
+            'roles' => $roles,
+            'group_names' => $group_names,
+        ];
+        return view('admin.usergroups.edit',$params);
     }
 
     /**
@@ -68,9 +113,15 @@ class UserGroupsController extends Controller
      * @param  \App\Models\user_groups  $user_groups
      * @return \Illuminate\Http\Response
      */
-    public function update(Updateuser_groupsRequest $request, user_groups $user_groups)
+    public function update(Updateuser_groupsRequest $request, $id)
     {
-        //
+        try {
+            $item = $this->UserGroupService->update($request->all(), $id);
+            return redirect()->route('usergroups.index')->with('success', 'Sửa nhóm' . ' ' . $item->name . ' ' .  'thành công');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('usergroups.index')->with('error', 'Sửa nhóm' . ' ' . $item->name . ' ' .  'không thành công');
+        }
     }
 
     /**
@@ -79,8 +130,50 @@ class UserGroupsController extends Controller
      * @param  \App\Models\user_groups  $user_groups
      * @return \Illuminate\Http\Response
      */
-    public function destroy(user_groups $user_groups)
+    public function destroy(Request $request,$id)
     {
-        //
+        try {
+            $item = $this->UserGroupService->destroy($id);
+            return redirect()->route('usergroups.index')->with('success', 'Xóa nhóm' . ' ' . $request->name . ' ' .  'thành công');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('usergroups.index')->with('error', 'Xóa nhóm' . ' ' . $request->name . ' ' .  'không thành công');
+        }
     }
+
+    public function trashedItems()
+    {
+        // dd($request);
+        $items = $this->UserGroupService->trashedItems();
+        // dd($items);
+        $params = [
+            'items' => $items,
+            // 'userGroup'=>$userGroup
+        ];
+        return view('admin.usergroups.trash',$params);
+    }
+
+    public function restore($id)
+    {
+        try {
+            $this->UserGroupService->restore($id);
+            return redirect()->route('usergroups.trash')->with('success', 'Khôi phục thành công');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('usergroups.trash')->with('success', 'Khôi phục thành công');
+        }
+    }
+
+    public function force_destroy($id)
+    {
+
+        try {
+            $userGroup = $this->UserGroupService->force_destroy($id);
+            return redirect()->route('usergroups.trash')->with('success', 'Xóa' . ' ' . $userGroup->name . ' ' .  'thành công');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('usergroups.trash')->with('error', 'Xóa' . ' ' . $userGroup->name . ' ' .  'không thành công');
+        }
+    }
+
 }
