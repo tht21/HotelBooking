@@ -7,10 +7,13 @@
     <title>Atlantis Lite - Bootstrap 4 Admin Dashboard</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
     <link rel="icon" href="{{ asset('admin/assets/img/icon.ico')}}" type="image/x-icon"/>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Fonts and icons -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" ></script>
     <script src="{{ asset('admin/assets/js/plugin/webfont/webfont.min.js')}}"></script>
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" ></script>
+   <script>
         WebFont.load({
             google: {"families": ["Lato:300,400,700,900"]},
             custom: {
@@ -87,6 +90,7 @@
 <!-- Atlantis DEMO methods, don't include it in your project! -->
 <script src="{{ asset('admin/assets/js/setting-demo.js')}}"></script>
 <script src="{{ asset('admin/assets/js/demo.js')}}"></script>
+
 <script>
     Circles.create({
         id: 'circles-1',

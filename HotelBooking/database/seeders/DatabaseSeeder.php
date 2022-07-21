@@ -95,7 +95,7 @@ class DatabaseSeeder extends Seeder
         $user->avatar = 'upload/avatar_admin.jpg';
         $user->phone = '0935779035';
         $user->gender = 'Nam';
-        $user->user_group_id = '1';
+        $user->user_group_id = '2';
         $user->save();
 
         $user = new User();
@@ -150,7 +150,7 @@ class DatabaseSeeder extends Seeder
 
     public function importRoles()
     {
-        $groups = ['Rooms', 'User', 'UserGroup','Customers','Bookings'];
+        $groups = ['Rooms', 'User', 'UserGroup','Customers','Bookings','RoomType'];
         $actions = ['viewAny', 'view', 'create', 'update', 'delete', 'restore', 'forceDelete'];
         foreach ($groups as $group) {
             foreach ($actions as $action) {
@@ -165,7 +165,7 @@ class DatabaseSeeder extends Seeder
 
     public function importUserGroupRoles()
     {
-        for ($i = 1; $i <= 35; $i++) {
+        for ($i = 1; $i <= 42; $i++) {
             DB::table('user_group_roles')->insert([
                 'user_groups_id' => 1,
                 'role_id' => $i,

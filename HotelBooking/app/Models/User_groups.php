@@ -9,6 +9,9 @@ class User_groups extends Model
 {
     use HasFactory;
     protected $table = 'user_groups';
+    protected $fillable = [
+        'id','name'
+    ];
     public function User()
     {
         return $this->hasMany(User::class,'user_group_id','id');
