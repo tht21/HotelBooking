@@ -75,12 +75,13 @@
                                 <div class="row form-group">
                                     <div class="col-3">
                                         <label>Tên nhân viên</label>
-                                        <input type="text" class="form-control" id="limit_people"
-                                               name="limit_people"
-                                               placeholder="Nhập số người">
-                                        @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('limit_people') }}</p>
-                                        @endif
+                                        <select class="form-control" name="room_types" id="exampleFormControlSelect1">
+                                            @foreach($rooms as $room)
+                                                <option
+                                                    value="{{$room->id}}" @selected(old('room_types')==$room->id)>{{$room->name}}</option>
+                                            @endforeach
+                                        </select>
+
                                     </div>
                                     <div class="col-3">
                                         <label>Quyền</label>
@@ -93,12 +94,12 @@
                                     </div>
                                     <div class="col-3">
                                         <label>Phòng</label>
-                                        <input type="text" class="form-control" id="limit_people"
-                                               name="limit_people"
-                                               placeholder="Nhập số người">
-                                        @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('limit_people') }}</p>
-                                        @endif
+                                        <select class="form-control" name="room" id="exampleFormControlSelect1">
+                                            @foreach($rooms as $room)
+                                                <option
+                                                    value="{{$room->id}}" @selected(old('room_types')==$room->id)>{{$room->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </form>

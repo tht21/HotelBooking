@@ -87,7 +87,6 @@ class RoomController extends Controller
     public function edit($id)
     {
         $room = $this->roomService->findById($id);
-        $room_image = count($room->room_image);
         $floors = $this->floorService->getAll($id);
         $roomTypes = $this->roomTypeService->getAll($id);
         $param = [

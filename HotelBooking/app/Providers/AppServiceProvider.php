@@ -9,16 +9,19 @@ use App\Repositories\Eloquent\EloquentRepository;
 use App\Repositories\Eloquent\FloorRepository;
 use App\Repositories\Eloquent\RoomRepository;
 
+use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\Interfaces\BookingRoomInterface;
 use App\Repositories\Interfaces\FloorInterface;
 use App\Repositories\Interfaces\RepositoryInterface;
 use App\Repositories\Interfaces\RoomInterface;
+use App\Repositories\Interfaces\UserInterface;
 use App\Services\BookingRoomService;
 use App\Services\FloorService;
 
 use App\Services\Interfaces\BookingRoomServiceInterface;
 use App\Services\Interfaces\FloorServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
+use App\Services\Interfaces\UserServiceInterface;
 use App\Services\RoomService;
 
 use App\Repositories\Eloquent\RoomTyperepository;
@@ -33,6 +36,7 @@ use App\Services\Interfaces\RoomTypeServiceInterface;
 use App\Services\Interfaces\UserGroupServiceInterface;
 use App\Services\RoomTypeService;
 use App\Services\UserGroupService;
+use App\Services\UserService;
 use App\View\Composer\Users;
 use Illuminate\Pagination\Paginator;
 
@@ -73,6 +77,10 @@ class  AppServiceProvider extends ServiceProvider
         //userGroup
         $this->app->singleton(UserGroupServiceInterface::class, UserGroupService::class);
         $this->app->singleton(UserGroupInterface::class, UserGroupRepository::class);
+
+        //user
+        $this->app->singleton(UserServiceInterface::class, UserService::class);
+        $this->app->singleton(UserInterface::class, UserRepository::class);
 
     }
 
