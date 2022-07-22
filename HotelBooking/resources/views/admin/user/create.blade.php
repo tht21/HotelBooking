@@ -17,7 +17,7 @@
                                     <div class="col-9">
                                         <label>Tên nhân viên </label>
                                         <input type="text" class="form-control" id="name" name="name"
-                                               placeholder="Nhập tên nhân viên">
+                                               placeholder="Nhập tên nhân viên" value="{{old('name')}}">
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('name') }}</p>
                                         @endif
@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input type="text" class="form-control" id="email" name="email"
-                                           placeholder="Nhập email nhân viên">
+                                           placeholder="Nhập email nhân viên" value="{{old('email')}}">
                                     @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('email') }}</p>
                                     @endif
@@ -42,15 +42,15 @@
                                 <div class="form-group">
                                     <label>Phone</label>
                                     <input type="text" class="form-control" id="phone" name="phone"
-                                           placeholder="Nhập số điện thoại nhân viên">
+                                           placeholder="Nhập số điện thoại nhân viên" value="{{old('phone')}}">
                                     @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('phone') }}</p>
                                     @endif
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="text" class="form-control" id="email" name="password"
-                                           placeholder="Nhập email nhân viên">
+                                    <input type="text" class="form-control" name="password"
+                                           placeholder="Nhập mật khẩu nhân viên" value="{{old('password')}}">
                                     @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('password') }}</p>
                                     @endif
@@ -59,7 +59,7 @@
                                     <div class="col-9">
                                         <label>Ngày sinh</label>
                                         <input type="date" class="form-control" id="email" name="birth_day"
-                                               placeholder="Nhập email nhân viên">
+                                               placeholder="Nhập email nhân viên" value="{{old('birth_day')}}">
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('birth_day') }}</p>
                                         @endif

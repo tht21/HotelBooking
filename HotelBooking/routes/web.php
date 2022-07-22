@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
+
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;

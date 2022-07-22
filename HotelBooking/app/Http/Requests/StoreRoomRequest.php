@@ -13,7 +13,7 @@ class StoreRoomRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,21 +24,26 @@ class StoreRoomRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'address' => 'required'
+            'name' => 'required|unique:rooms',
+            'price' => 'required',
+            'convenient' => 'required',
+            'image_path' => 'required',
+            'room_image_path' => 'required',
+            'description' => 'required',
+
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'Vui lòng nhập tên khách hàng',
-            'email.required' => 'Vui lòng nhập email',
-            'phone.required' => 'Vui lòng nhập số điện thoại',
-            'address.required' => 'Vui lòng nhập địa chỉ',
-            'email.email' => 'Vui lòng nhập đúng định dạng email',
+            'name.required' => 'Vui lòng nhập không được để trống',
+            'price.required' => 'Vui lòng nhập không được để trống',
+            'convenient.required' => 'Vui lòng nhập không được để trống',
+            'image_path.required' => 'Vui lòng nhập không được để trống',
+            'room_image_path.required' => 'Vui lòng nhập không được để trống',
+            'description.required' => 'Vui lòng nhập không được để trống',
+
         ];
-        
+
     }
 }

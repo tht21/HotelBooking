@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Services\Interfaces\UserGroupServiceInterface;
 use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
@@ -43,7 +45,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\StoreUserRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,7 +57,7 @@ class UserController extends Controller
             Log::error($e->getMessage());
         }
 
-        dd($request->all());
+
     }
 
     /**
