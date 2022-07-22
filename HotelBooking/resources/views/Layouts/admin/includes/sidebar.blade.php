@@ -19,13 +19,8 @@
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
                             <li>
-                                <a href="#profile">
+                                <a href="{{route('profile.index')}}">
                                     <span class="link-collapse">Hồ Sơ</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#edit">
-                                    <span class="link-collapse">Chỉnh Sửa Hồ Sơ</span>
                                 </a>
                             </li>
                             <li>

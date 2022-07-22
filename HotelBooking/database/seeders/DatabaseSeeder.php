@@ -117,7 +117,7 @@ class DatabaseSeeder extends Seeder
         $user->birth_day = '2003/06/27';
         $user->phone = '0916663237';
         $user->address = 'Quảng Trị';
-        $user->user_group_id = '1';
+        $user->user_group_id = '3';
         $user->gender = 'Nam';
         $user->avatar = 'upload/avatar_admin.jpg';
         $user->save();

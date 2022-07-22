@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Services\Interfaces\UserGroupServiceInterface;
 use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
@@ -28,6 +29,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = $this->userService->getAll($request);
+        // dd(Auth::user()->user_group_id);
         return view('admin.user.index', compact('users'));
     }
 

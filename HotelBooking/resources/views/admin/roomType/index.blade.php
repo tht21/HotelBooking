@@ -9,12 +9,12 @@
             <div class="card-header">
                <div class="d-flex align-items-center">
                   <h4 class="card-title">Danh Sách Loại Phòng</h4>
-                
+                  @if(Auth::user()->hasPermission('RoomType_create'))
                   <a href="{{route('roomtype.create')}}" class="btn btn-primary btn-round ml-auto"  >
                      <i class="fa fa-plus"></i>
                      Thêm Loại Phòng
                   </a>
-
+                  @endif
                </div> 
                   <ul class="nav nav-tabs card-header-tabs">
                      <div class="all">
@@ -57,17 +57,21 @@
                            <td>{{$roomtype->limit_people}}</td>
                            <td>
                               <div class="form-button-action">
+                                 @if(Auth::user()->hasPermission('RoomType_update'))
                                  <a href="{{route('roomtype.edit',$roomtype->id)}}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Chỉnh Sửa Loại Phòng">
                                     <i class="fa fa-edit"></i>
                                  </a>
+                                 @endif
                                  {{-- <a href="{{route('roomtype.destroy',$roomtype->id)}}" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
                                     <i class="fa fa-trash"></i>
                                  </a> --}}
+                                 @if(Auth::user()->hasPermission('RoomType_delete'))
                                  <form action="{{ route('roomtype.destroy',$roomtype->id)}}" style="display:inline" method="post">
                                     <button onclick="return confirm('Xóa {{$roomtype->name}} ?')" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa" ><i class="far fa-trash-alt"></i></button>
                                     @csrf
                                     @method('delete')
                                 </form>
+                                @endif
                               </div>
                            </td>
                         </tr>
