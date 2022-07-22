@@ -31,10 +31,17 @@
                             <div class="text text-danger"><b>{{session::get('error')}}</b></div>
                         @endif
                         <div class="d-flex align-items-center">
+
+                            @if(Auth::user()->hasPermission('User_create'))
+
+                            <a href="{{route('customers.create')}}" class="btn btn-primary btn-round ml-auto">
+
                             <a href="{{route('users.create')}}" class="btn btn-primary btn-round ml-auto">
+
                                 <i class="fa fa-plus"></i>
                                 Thêm nhân viên
                             </a>
+                            @endif
                         </div>
                         <div class="table-responsive">
                             <table id="basic-datatables" class="display table table-striped table-hover">
@@ -59,13 +66,25 @@
                                         <td>{{$user->address}}</td>
                                         <td>
                                             <div class="form-button-action">
+
+                                    @if(Auth::user()->hasPermission('User_update'))
+                                                <a href="{{route('customers.edit',$customer->id)}}"
+
                                                 <a href="{{route('users.edit',$user->id)}}"
+
                                                    data-toggle="tooltip" title=""
                                                    class="btn btn-link btn-primary btn-lg"
                                                    data-original-title="Chỉnh Sửa Thông Tin Nhân viên">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
+
+                                                @endif
+                                    @if(Auth::user()->hasPermission('User_delete'))
+                                    @if ($customer->)                        
+                                                <form action="{{ route('customers.destroy',$customer->id)}}"
+
                                                 <form action="{{ route('users.destroy',$user->id)}}"
+
                                                       style="display:inline" method="post">
                                                     <button onclick="return confirm('Xóa {{$user->name}} ?')"
                                                             data-toggle="tooltip" title=""
@@ -74,6 +93,8 @@
                                                     @csrf
                                                     @method('delete')
                                                 </form>
+                                                @endif
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
