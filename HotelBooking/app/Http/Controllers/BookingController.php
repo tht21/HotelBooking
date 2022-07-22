@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Requests\UpdateBookingRequest;
 use App\Models\Booking;
+use App\Http\Requests\UpdateBookingRequest;
 use App\Services\Interfaces\BookingRoomServiceInterface;
+use App\Services\Interfaces\CustomerServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
 use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
@@ -15,12 +15,14 @@ class BookingController extends Controller
     protected $bookingRoomService;
     protected $roomService;
     protected $userService;
+    protected $customerService;
 
-    public function __construct(BookingRoomServiceInterface $bookingRoomService, RoomServiceInterface $roomService, UserServiceInterface $userService)
+    public function __construct(BookingRoomServiceInterface $bookingRoomService, RoomServiceInterface $roomService, UserServiceInterface $userService, CustomerServiceInterface $customerService)
     {
         $this->bookingRoomService = $bookingRoomService;
         $this->roomService = $roomService;
         $this->userService = $userService;
+        $this->customerService = $customerService;
 
     }
 
@@ -32,6 +34,8 @@ class BookingController extends Controller
     public function index(Request $request)
     {
         $bookingrooms = $this->bookingRoomService->getAll($request);
+
+
         $rooms = $this->roomService->getAll($request);
         $param = [
             'bookingrooms' => $bookingrooms,
@@ -47,17 +51,20 @@ class BookingController extends Controller
      */
     public function create(Request $request)
     {
+
         $bookingrooms = $this->bookingRoomService->getAll($request);
         $rooms = $this->roomService->getAll($request);
         $users = $this->userService->getAll($request);
+        $customers = $this->customerService->getAll($request);
+
         $param = [
             'bookingrooms' => $bookingrooms,
             'rooms' => $rooms,
             'users' => $users,
+            'customers' => $customers
         ];
         return view("admin.bookingRoom.add", $param);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -83,6 +90,7 @@ class BookingController extends Controller
     public function list(Request $request)
     {
         $bookingrooms = $this->bookingRoomService->getAll($request);
+//        print_r($bookingrooms);die;
         $rooms = $this->roomService->getAll($request);
         // dd($bookingrooms);
         $param = [

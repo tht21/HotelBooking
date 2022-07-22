@@ -94,10 +94,9 @@
                             </div>
                         </div>
                         <div class="card-action">
-                            <button type="submit" class="btn btn-success">Lưu</button>
-                            <button class="btn btn-danger">Hủy</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                            <a href="{{route('rooms.index')}}" class="btn btn-danger">Hủy</a>
                         </div>
-
                     </div>
                 </form>
             </div>

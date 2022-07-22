@@ -13,4 +13,14 @@ class RoomBooking extends Model
     protected $fillable = [
         'id', 'room_id', 'booking_id'
     ];
+
+    function bookings()
+    {
+        return $this->belongsTo(Booking::class, 'booking_id', 'id');
+    }
+
+    function roomss()
+    {
+        return $this->belongsTo(Room::class, 'room_id', 'id');
+    }
 }
