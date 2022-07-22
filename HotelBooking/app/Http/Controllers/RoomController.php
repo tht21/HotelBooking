@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
 use App\Models\Room;
 use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
@@ -57,7 +58,7 @@ class RoomController extends Controller
      * @param \App\Http\Requests\StoreRoomRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRoomRequest $request)
     {
         try {
             $this->roomService->create($request);

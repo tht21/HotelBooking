@@ -11,6 +11,6 @@ class Customers extends Model
     use HasFactory,SoftDeletes;
     protected $table = 'customers';
     protected $fillable = [
-        'id', 'name', 'email', 'phone', 'address'
+        'id', 'name', 'email', 'phone', 'cmnd', 'address'
     ];
 }

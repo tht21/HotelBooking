@@ -69,6 +69,9 @@
                                         <label for="comment">Ảnh Chi tiết</label>
                                         <input type="file" name="room_image_path[]" class="form-control-file"
                                                id="exampleFormControlFile1" multiple>
+                                        @if ($errors->any())
+                                            <p style="color:red">{{ $errors->first('room_image_path') }}</p>
+                                        @endif
                                     </div>
                                     <div class="form-group">
                                         <label for="comment">Mô tả phòng</label>
@@ -85,9 +88,6 @@
                                             <option value="còn phòng">Còn phòng</option>
                                             <option value="hết phòng">Hết phòng</option>
                                         </select>
-                                        @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('status') }}</p>
-                                        @endif
                                     </div>
                                 </div>
 

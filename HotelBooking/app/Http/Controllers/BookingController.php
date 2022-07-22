@@ -2,22 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
 use App\Models\Booking;
 use App\Services\Interfaces\BookingRoomServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
-use Illuminate\Support\Facades\Request;
+use App\Services\Interfaces\UserServiceInterface;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BookingController extends Controller
 {
     protected $bookingRoomService;
     protected $roomService;
+    protected $userService;
 
-    public function __construct(BookingRoomServiceInterface $bookingRoomService, RoomServiceInterface $roomService)
+    public function __construct(BookingRoomServiceInterface $bookingRoomService, RoomServiceInterface $roomService, UserServiceInterface $userService)
     {
         $this->bookingRoomService = $bookingRoomService;
         $this->roomService = $roomService;
+        $this->userService = $userService;
+
     }
 
     /**
@@ -45,9 +49,11 @@ class BookingController extends Controller
     {
         $bookingrooms = $this->bookingRoomService->getAll($request);
         $rooms = $this->roomService->getAll($request);
+        $users = $this->userService->getAll($request);
         $param = [
             'bookingrooms' => $bookingrooms,
             'rooms' => $rooms,
+            'users' => $users,
         ];
         return view("admin.bookingRoom.add", $param);
     }
@@ -58,9 +64,14 @@ class BookingController extends Controller
      * @param \App\Http\Requests\StoreBookingRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBookingRequest $request)
+    public function store(Request $request)
     {
-        //
+        try {
+            $this->bookingRoomService->create($request);
+            return redirect()->route('bookingrooms.list');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+        }
     }
 
     /**
@@ -73,6 +84,7 @@ class BookingController extends Controller
     {
         $bookingrooms = $this->bookingRoomService->getAll($request);
         $rooms = $this->roomService->getAll($request);
+        // dd($bookingrooms);
         $param = [
             'bookingrooms' => $bookingrooms,
             'rooms' => $rooms,

@@ -13,7 +13,6 @@
                         <div class="col-12">
                             <form method="post" action="{{route('users.update',$user->id)}}"
                                   enctype="multipart/form-data">
-
                                 @method('put')
                                 @csrf
                                 <div class="row form-group">
@@ -29,9 +28,6 @@
                                         <label for="comment">Hình ảnh nhân viên</label>
                                         <input type="file" name="avatar" class="form-control"
                                                id="exampleFormControlFile1">
-                                        @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('avatar') }}</p>
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -54,9 +50,6 @@
                                     <label>Password</label>
                                     <input type="text" class="form-control" id="email" name="password"
                                            placeholder="Nhập password nhân viên" value="">
-                                    @if ($errors->any())
-                                        <p style="color:red">{{ $errors->first('password') }}</p>
-                                    @endif
                                 </div>
                                 <div class="row form-group">
                                     <div class="col-9">

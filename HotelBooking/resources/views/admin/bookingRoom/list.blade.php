@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="add-row" class="display table table-striped table-hover">
+                            <table id="add-row" class=" table table-striped table-hover">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -29,13 +29,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    @foreach($bookingrooms as $key=> $bookingroom )
-                                        <th>{{++$key}}</th>
+
+                                @foreach($bookingrooms as $key=> $bookingroom )
+                                    <tr>
+                                        <td>{{++$key}}</td>
                                         <td>{{$bookingroom->customer->name}}</td>
                                         <td>{{$bookingroom->total_room}}</td>
-                                        @foreach($bookingroom->room as $key=> $room )
-                                            <th>{{$room->name}}</th>
+                                        @foreach($bookingroom->room as  $room )
+                                            <td>{{$room->name}}</td>
                                             <td>{{$room->price}}</td>
                                             <td>{{$room->status}}</td>
                                         @endforeach
@@ -59,8 +60,9 @@
                                                 </form>
                                             </div>
                                         </td>
-                                    @endforeach
-                                </tr>
+                                    </tr>
+                                @endforeach
+
                                 </tbody>
                             </table>
                         </div>
