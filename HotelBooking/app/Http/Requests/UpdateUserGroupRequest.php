@@ -24,7 +24,15 @@ class UpdateUserGroupRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required'
+          
         ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Vui lòng nhập tên nhóm nhân viên',
+        ];
+        
     }
 }
