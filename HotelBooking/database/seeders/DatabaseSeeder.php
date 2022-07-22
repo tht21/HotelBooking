@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
 
         $user = new User();
         $user->name = 'Huỳnh Văn Toàn';
-        $user->email = 'toan@gmail.com';
+        $user->email = 'toan1@gmail.com';
         $user->password = Hash::make('123456');
         $user->birth_day = '2002/09/24';
         $user->address = 'Quảng Trị';
@@ -188,6 +188,42 @@ class DatabaseSeeder extends Seeder
         $room->floor_id = 1;
         $room->save();
 
+        $room = new Room();
+        $room->id = 2;
+        $room->name = '102';
+        $room->price = 10;
+        $room->convenient = 'wifi dieu hoa';
+        $room->image_path = 'upload/avatar_admin.jpg';
+        $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
+        $room->status = 'còn phòng';
+        $room->room_types_id = 1;
+        $room->floor_id = 1;
+        $room->save();
+
+        $room = new Room();
+        $room->id = 3;
+        $room->name = '103';
+        $room->price = 10;
+        $room->convenient = 'wifi dieu hoa';
+        $room->image_path = 'upload/avatar_admin.jpg';
+        $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
+        $room->status = 'còn phòng';
+        $room->room_types_id = 1;
+        $room->floor_id = 1;
+        $room->save();
+
+        $room = new Room();
+        $room->id = 4;
+        $room->name = '104';
+        $room->price = 10;
+        $room->convenient = 'wifi dieu hoa';
+        $room->image_path = 'upload/avatar_admin.jpg';
+        $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
+        $room->status = 'còn phòng';
+        $room->room_types_id = 1;
+        $room->floor_id = 1;
+        $room->save();
+
     }
 
     public function importRoomType()
@@ -223,6 +259,14 @@ class DatabaseSeeder extends Seeder
         $customers = new Customers();
         $customers->name = 'Linh';
         $customers->email = 'Linh@gmail.com';
+        $customers->phone = 12345;
+        $customers->address = 'Gio Linh';
+        $customers->cmnd = 34567465342;
+        $customers->save();
+
+        $customers = new Customers();
+        $customers->name = 'vinh';
+        $customers->email = 'Vinh@gmail.com';
         $customers->phone = 12345;
         $customers->address = 'Gio Linh';
         $customers->cmnd = 34567465342;

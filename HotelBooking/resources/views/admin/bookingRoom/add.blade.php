@@ -12,34 +12,29 @@
                                 <div class="card-title">Thông tin khách hàng</div>
                                 <div class="form-group">
                                     <label>Tên khách hàng</label>
-                                    <input type="text" class="form-control" name="name"
-                                           placeholder="Nhập tên khách hàng" value="{{old('name')}}">
-                                    @if ($errors->any())
-                                        <p style="color:red">{{ $errors->first('name') }}</p>
-                                    @endif
+                                    <select class="form-control" name="customer_id" id="exampleFormControlSelect1">
+                                        <option>--- Select khách hàng ---</option>
+                                        @foreach($customers as $customer)
+                                            <option
+                                                value="{{$customer->id}}">{{$customer->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="form-group">
-                                    <label>Email khách hàng</label>
-                                    <input type="text" class="form-control" name="email"
-                                           placeholder="Nhập tên email" value="{{old('email')}}">
-                                    @if ($errors->any())
-                                        <p style="color:red">{{ $errors->first('email') }}</p>
-                                    @endif
-                                </div>
+
                                 <div class="row form-group">
                                     <div class="col-6">
-                                        <label>CMND</label>
-                                        <input type="number" class="form-control" id="limit_people" name="cmnd"
-                                               placeholder="Nhập số CMND" value="{{old('cmnd')}}">
+                                        <label>Số lượng người</label>
+                                        <input type="number" class="form-control" id="name" name="limit_people"
+                                               placeholder="Nhập tên khách hàng" value="{{old('limit_people')}}">
                                         @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('cmnd') }}</p>
+                                            <p style="color:red">{{ $errors->first('limit_people') }}</p>
                                         @endif
                                         <br>
-                                        <label>Phone</label>
-                                        <input type="text" class="form-control" name="phone"
-                                               placeholder="Nhập số điện thoại" value="{{old('phone')}}">
+                                        <label>Tổng tiền phòng</label>
+                                        <input type="number" class="form-control" id="name" name="total_room"
+                                               placeholder="Nhập tên khách hàng" value="{{old('total_room')}}">
                                         @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('phone') }}</p>
+                                            <p style="color:red">{{ $errors->first('total_room') }}</p>
                                         @endif
                                     </div>
                                     <div class="col-6">
@@ -56,31 +51,7 @@
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('phone') }}</p>
                                         @endif
-
                                     </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col-6">
-                                        <label>Tổng số phòng</label>
-                                        <input type="number" class="form-control" id="name" name="total_room"
-                                               placeholder="Nhập tên khách hàng" value="{{old('total_room')}}">
-                                        @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('total_room') }}</p>
-                                        @endif
-                                    </div>
-                                    <div class="col-6">
-                                        <label>Số lượng người</label>
-                                        <input type="number" class="form-control" id="name" name="limit_people"
-                                               placeholder="Nhập tên khách hàng" value="{{old('limit_people')}}">
-                                        @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('limit_people') }}</p>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlFile1">Địa chỉ</label>
-                                    <textarea id="summernote1" data-toggle="summernote1" name="address" type="text"
-                                              class="form-control" value="ghi chú">{{old('address')}}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Ghi chú</label>

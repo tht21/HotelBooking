@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Thông tin phòng </h4>
+                            <h4 class="card-title">Thông tin khách đặt phòng </h4>
                             <button class="btn btn-primary btn-round ml-auto">
                                 <a href="{{route('bookingrooms.create')}}"> <i class="fa fa-plus"></i>
                                     Thêm khách đặt phòng</a>
@@ -15,54 +15,64 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        @if (Session::has('success'))
+                            <div class="text text-success"><b>{{session::get('success')}}</b></div>
+                        @endif
+                        @if (Session::has('error'))
+                            <div class="text text-danger"><b>{{session::get('error')}}</b></div>
+                        @endif
                         <div class="table-responsive">
                             <table id="add-row" class=" table table-striped table-hover">
                                 <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Tên khách hàng</th>
-                                    <th>Tổng phòng</th>
                                     <th>Tên phòng</th>
-                                    <th>Giá phòng</th>
-                                    <th>Tình trạng phòng</th>
+                                    <th>Tiền phòng</th>
+                                    <th>Tổng phòng</th>
+                                    <th>Số lượng người</th>
                                     <th style="width: 10%">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 @foreach($bookingrooms as $key=> $bookingroom )
-                                    <tr>
-                                        <td>{{++$key}}</td>
-                                        <td>{{$bookingroom->customer->name}}</td>
-                                        <td>{{$bookingroom->total_room}}</td>
-                                        @foreach($bookingroom->room as  $room )
-                                            <td>{{$room->name}}</td>
-                                            <td>{{$room->price}}</td>
-                                            <td>{{$room->status}}</td>
-                                        @endforeach
-                                        <td>
-                                            <div class="form-button-action">
-                                                <a href="{{route('bookingrooms.edit',$bookingroom->id)}}"
-                                                   data-toggle="tooltip" title=""
-                                                   class="btn btn-link btn-primary btn-lg"
-                                                   data-original-title="Chỉnh Sửa Loại Phòng">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>
-                                                <form action="{{ route('bookingrooms.destroy',$bookingroom->id)}}"
-                                                      style="display:inline" method="post">
-                                                    <button
-                                                        onclick="return confirm('Hủy đặt phòng {{$bookingroom->name}} ?')"
-                                                        data-toggle="tooltip" title="" class="btn btn-link btn-danger"
-                                                        data-original-title="Xóa"><i class="far fa-trash-alt"></i>
-                                                    </button>
-                                                    @csrf
-                                                    @method('delete')
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @foreach($bookingroom->roombooking as $key1=> $booking )
+                                        @if($bookingroom->id===$booking->booking_id)
+                                            <tr>
+                                                <td>{{$bookingroom->id}}</td>
+                                                <td>{{$bookingroom->customer->name}}</td>
+                                                <td>{{$booking->roomss->name}}</td>
+                                                <td>{{$booking->roomss->price}}</td>
+                                                <td>{{$bookingroom->total_room}}</td>
+                                                <td>{{$bookingroom->limit_people}}</td>
+                                                <td>
+                                                    <div class="form-button-action">
+                                                        <a href="{{route('bookingrooms.edit',$bookingroom->id)}}"
+                                                           data-toggle="tooltip" title=""
+                                                           class="btn btn-link btn-primary btn-lg"
+                                                           data-original-title="Chỉnh Sửa Loại Phòng">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                        <form
+                                                            action="{{ route('bookingrooms.destroy',$bookingroom->id)}}"
+                                                            style="display:inline" method="post">
+                                                            <button
+                                                                onclick="return confirm('Hủy đặt phòng {{$bookingroom->name}} ?')"
+                                                                data-toggle="tooltip" title=""
+                                                                class="btn btn-link btn-danger"
+                                                                data-original-title="Xóa">Hủy đặt
+                                                            </button>
+                                                            @csrf
+                                                            @method('delete')
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @else
+                                        @endif
+                                    @endforeach
                                 @endforeach
-
                                 </tbody>
                             </table>
                         </div>
