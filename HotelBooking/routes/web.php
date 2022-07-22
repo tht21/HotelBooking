@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 
 use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\UserController;
@@ -30,9 +31,7 @@ Route::group([
     'middleware' => ['auth']
 ], function () {
 
-    Route::get('/home', function () {
-        return view('layouts.admin.app');
-    })->name('home');
+    Route::get('/home',[HomeController::class,'index'])->name('home');
 
 
     Route::prefix('roomtype')->group(function () {

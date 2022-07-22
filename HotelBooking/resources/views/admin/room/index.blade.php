@@ -1,8 +1,7 @@
 @extends('layouts.admin.app')
 @section('content')
 <div class="page-inner">
-    @include('layouts.admin.includes.content',['key'=>'Danh sách phòng','name'=>'Quản lý phòng','key'=>'Danh sách
-    phòng'])
+    @include('layouts.admin.includes.content',['key'=>'Danh sách phòng','name'=>'Quản lý phòng','key'=>'Danh sách phòng'])
     <div class="row">
         <div class="col-md-12">
             <div class="card">
