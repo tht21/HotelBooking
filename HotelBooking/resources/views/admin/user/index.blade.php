@@ -68,7 +68,7 @@
                                             <div class="form-button-action">
 
                                     @if(Auth::user()->hasPermission('User_update'))
-                                                <a href="{{route('customers.edit',$customer->id)}}"
+                                
 
                                                 <a href="{{route('users.edit',$user->id)}}"
 
@@ -80,8 +80,8 @@
 
                                                 @endif
                                     @if(Auth::user()->hasPermission('User_delete'))
-                                    @if ($customer->)                        
-                                                <form action="{{ route('customers.destroy',$customer->id)}}"
+                                                          
+                                             
 
                                                 <form action="{{ route('users.destroy',$user->id)}}"
 
@@ -93,7 +93,7 @@
                                                     @csrf
                                                     @method('delete')
                                                 </form>
-                                                @endif
+                                                
                                                 @endif
                                             </div>
                                         </td>
