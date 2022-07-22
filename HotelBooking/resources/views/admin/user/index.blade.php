@@ -31,10 +31,13 @@
                             <div class="text text-danger"><b>{{session::get('error')}}</b></div>
                         @endif
                         <div class="d-flex align-items-center">
+                            @if(Auth::user()->hasPermission('User_create'))
+
                             <a href="{{route('customers.create')}}" class="btn btn-primary btn-round ml-auto">
                                 <i class="fa fa-plus"></i>
                                 Thêm Khách Hàng
                             </a>
+                            @endif
                         </div>
                         <div class="table-responsive">
                             <table id="basic-datatables" class="display table table-striped table-hover">
@@ -61,12 +64,16 @@
                                         <td>{{$customer->cmnd}}</td>
                                         <td>
                                             <div class="form-button-action">
+                                    @if(Auth::user()->hasPermission('User_update'))
                                                 <a href="{{route('customers.edit',$customer->id)}}"
                                                    data-toggle="tooltip" title=""
                                                    class="btn btn-link btn-primary btn-lg"
                                                    data-original-title="Chỉnh Sửa Thông Tin Khách Hàng">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
+                                                @endif
+                                    @if(Auth::user()->hasPermission('User_delete'))
+                                    @if ($customer->)                        
                                                 <form action="{{ route('customers.destroy',$customer->id)}}"
                                                       style="display:inline" method="post">
                                                     <button onclick="return confirm('Xóa {{$customer->name}} ?')"
@@ -76,6 +83,8 @@
                                                     @csrf
                                                     @method('delete')
                                                 </form>
+                                                @endif
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
