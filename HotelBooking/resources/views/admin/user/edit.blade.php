@@ -33,7 +33,7 @@
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input type="text" class="form-control" id="email" name="email"
-                                           placeholder="Nhập email nhân viên" value="{{$user->email}}">
+                                            value="{{$user->email}}">
                                     @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('email') }}</p>
                                     @endif
@@ -41,7 +41,7 @@
                                 <div class="form-group">
                                     <label>Phone</label>
                                     <input type="text" class="form-control" id="phone" name="phone"
-                                           placeholder="Nhập số điện thoại nhân viên" value="{{$user->phone}}">
+                                           value="{{$user->phone}}">
                                     @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('phone') }}</p>
                                     @endif
@@ -49,13 +49,13 @@
                                 <div class="form-group">
                                     <label>Password</label>
                                     <input type="text" class="form-control" id="email" name="password"
-                                           placeholder="Nhập password nhân viên" value="">
+                                           value="">
                                 </div>
                                 <div class="row form-group">
                                     <div class="col-9">
                                         <label>Ngày sinh</label>
                                         <input type="date" class="form-control" id="email" name="birth_day"
-                                               placeholder="Nhập email nhân viên" value="{{$user->birth_day}}">
+                                               value="{{$user->birth_day}}">
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('birth_day') }}</p>
                                         @endif

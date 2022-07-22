@@ -5,6 +5,7 @@ use App\Http\Controllers\BookingController;
 
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\UserController;
@@ -72,7 +73,7 @@ Route::group([
         Route::get('/restore/{id}', [UserController::class, 'restore'])->name('users.restore');
 
     });
-
+    Route::resource('profile',ProfileController::class);
     Route::resource('roomtype', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);
     Route::resource('customers', CustomersController::class);
