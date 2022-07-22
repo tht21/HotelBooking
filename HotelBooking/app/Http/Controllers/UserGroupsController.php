@@ -119,10 +119,10 @@ class UserGroupsController extends Controller
     {
         try {
             $item = $this->UserGroupService->update($request->all(), $id);
-            return redirect()->route('usergroups.index')->with('success', 'Sửa nhóm' . ' ' . $request->name . ' ' .  'thành công');
+            return redirect()->route('usergroups.index')->with('success', 'Cập nhật nhóm' . ' ' . $request->name . ' ' .  'thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('usergroups.index')->with('error', 'Sửa nhóm' . ' ' . $request->name . ' ' .  'không thành công');
+            return redirect()->route('usergroups.index')->with('error', 'Cập nhật nhóm' . ' ' . $request->name . ' ' .  'không thành công');
         }
     }
 
