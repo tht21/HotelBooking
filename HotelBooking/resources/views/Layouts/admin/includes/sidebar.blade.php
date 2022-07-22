@@ -110,33 +110,33 @@
                             @endif
                         </ul>
                     </div>
-                </li>
-                @if(Auth::user()->hasPermission('User_viewAny'))
-                <li class="nav-item">
+             </li>
+             @if(Auth::user()->hasPermission('User_viewAny'))
+                 <li class="nav-item">
+                     <a href="{{route('users.index')}}">
+                         <i class="fas fa-user"></i>
+                         <p>Nhân Viên</p>
+                     </a>
+                 </li>
+             @endif
+             @if(Auth::user()->hasPermission('UserGroup_viewAny'))
+                 <li class="nav-item">
+                     <a href="{{route('usergroups.index')}}">
+                         <i class="fas fa-users"></i>
+                         <p>Nhóm Nhân Viên</p>
+                     </a>
+                 </li>
+             @endif
+
+             <li class="nav-item">
                  <a href="#forms">
-                     <i class="fas fa-user"></i>
-                     <p>Nhân Viên</p>
-                    </a>
-                </li>
-                @endif
-                @if(Auth::user()->hasPermission('UserGroup_viewAny'))
-                <li class="nav-item">
-                    <a href="{{route('usergroups.index')}}">
-                        <i class="fas fa-users"></i>
-                        <p>Nhóm Nhân Viên</p>
-                    </a>
-                </li>
-                @endif  
-          
-                <li class="nav-item">
-                    <a href="#forms">
-                        <i class="fas fa-list"></i>
-                        <p>Menu</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#maps">
-                        <i class="fas fa-phone"></i>
+                     <i class="fas fa-list"></i>
+                     <p>Menu</p>
+                 </a>
+             </li>
+             <li class="nav-item">
+                 <a href="#maps">
+                     <i class="fas fa-phone"></i>
                         <p>Liên Hệ</p>
                     </a>
                 </li>

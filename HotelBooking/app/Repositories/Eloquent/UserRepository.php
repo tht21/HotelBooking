@@ -4,13 +4,17 @@ namespace App\Repositories\Eloquent;
 
 
 use App\Models\User;
-use App\Repositories\Eloquent\EloquentRepository;
-use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
 use App\Repositories\Interfaces\UserInterface;
+use App\Traits\StorageImageTrait;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class UserRepository extends EloquentRepository implements UserInterface
 {
+    use StorageImageTrait;
+
     public function getModel()
     {
         return User::class;
@@ -37,35 +41,63 @@ class UserRepository extends EloquentRepository implements UserInterface
 
     public function create($request)
     {
-        $users = $this->model;
-
         try {
-            $users->save();
-
+            DB::beginTransaction();
+            $object = $this->model;
+            $object->name = $request->name;
+            $object->phone = $request->phone;
+            $object->password = Hash::make($request->password);
+            $object->birth_day = $request->birth_day;
+            $object->email = $request->email;
+            $object->gender = $request->gender;
+            $object->address = $request->address;
+            $object->user_group_id = $request->user_group_id;
+            //     $object->avatar=$request->avatar;
+            $dataUploadImage = $this->storageUpload($request, 'avatar', 'room');
+            $object->avatar = $dataUploadImage['file_path'];
+            $object->save();
+            DB::commit();
+            Session::flash('success', 'Thêm nhân viên' . ' ' . $request->name . ' ' . 'thành công');
             return true;
         } catch (\Exception $e) {
-            Log::error($e->getMessage());
-            return false;
+            DB::rollBack();
+            Log::error('Message: ' . $e->getMessage() . ' --- Line : ' . $e->getLine());
+
         }
-        return $roomtypes;
+        return $object;
     }
 
 
     public function update($request, $id)
     {
-        $roomtypes = $this->model->find($id);
-        // dd($roomtypes);
-        $roomtypes->name = $request->name;
-        $roomtypes->limit_people = $request->limit_people;
-        try {
-            $roomtypes->save();
 
+        try {
+            DB::beginTransaction();
+            $object = $this->model->find($id);
+            // dd(  $object);
+            $object->name = $request->name;
+            $object->phone = $request->phone;
+            if ($request->password) {
+                $object->password = Hash::make($request->password);
+            }
+            $object->birth_day = $request->birth_day;
+            $object->email = $request->email;
+            $object->gender = $request->gender;
+            $object->address = $request->address;
+            $object->user_group_id = $request->user_group_id;
+            $dataUploadImage = $this->storageUpload($request, 'avatar', 'room');
+            $object->avatar = $dataUploadImage['file_path'];
+            // dd($object);
+            $object->save();
+            DB::commit();
+            Session::flash('success', 'Thêm nhân viên' . ' ' . $request->name . ' ' . 'thành công');
             return true;
         } catch (\Exception $e) {
-            Log::error($e->getMessage());
-            return false;
+            DB::rollBack();
+            Log::error('Message: ' . $e->getMessage() . ' --- Line : ' . $e->getLine());
+
         }
-        return $roomtypes;
+        return $object;
     }
 
     public function trashedItems()

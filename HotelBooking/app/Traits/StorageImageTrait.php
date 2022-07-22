@@ -9,6 +9,7 @@ trait StorageImageTrait
 {
     public function storageUpload($request, $fieldName, $foderName)
     {
+
         if ($request->hasFile($fieldName)) {
             $file = $request->$fieldName;
             $fileNameOrigin = $file->getClientOriginalName();

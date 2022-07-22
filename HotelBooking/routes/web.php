@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
+
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
@@ -63,6 +64,12 @@ Route::group([
         Route::get('/trash', [UserGroupsController::class, 'trashedItems'])->name('usergroups.trash');
         Route::delete('/force_destroy/{id}', [UserGroupsController::class, 'force_destroy'])->name('usergroups.force_destroy');
         Route::get('/restore/{id}', [UserGroupsController::class, 'restore'])->name('usergroups.restore');
+
+    });
+    Route::prefix('users')->group(function () {
+        Route::get('/trash', [UserController::class, 'trashedItems'])->name('users.trash');
+        Route::delete('/force_destroy/{id}', [UserController::class, 'force_destroy'])->name('users.force_destroy');
+        Route::get('/restore/{id}', [UserController::class, 'restore'])->name('users.restore');
 
     });
 

@@ -17,11 +17,18 @@
                             @endif
                         </button>
                     </div>
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table id="add-row" class="display table table-striped table-hover">
                             <thead>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="add-row" class=" table table-striped table-hover">
+                                <thead>
+
                                 <tr>
                                     <th>#</th>
                                     <th>Tên khách hàng</th>
@@ -31,10 +38,12 @@
                                     <th>Tình trạng phòng</th>
                                     <th style="width: 10%">Action</th>
                                 </tr>
+
                             </thead>
                             <tbody>
-                                <tr>
+                                
                                     @foreach($bookingrooms as $key=> $bookingroom )
+                                    <tr>
                                     <th>{{++$key}}</th>
                                     <td>{{$bookingroom->customer->name}}</td>
                                     <td>{{$bookingroom->total_room}}</td>
@@ -68,10 +77,14 @@
                                             @endif
                                         </div>
                                     </td>
+                                    </tr>
                                     @endforeach
-                                </tr>
+                                
                             </tbody>
                         </table>
+
+                                
+                        </div>
                     </div>
                 </div>
             </div>

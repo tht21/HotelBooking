@@ -26,44 +26,40 @@ class UserService implements UserServiceInterface
 
     public function create($request)
     {
-        $userGroup = $this->userRepository->create($request);
-        return $userGroup;
-
+        $user = $this->userRepository->create($request);
+        return $user;
     }
 
     public function update($request, $id)
     {
-        $userGroup = $this->userRepository->findById($id);
-        $this->userRepository->update($request, $userGroup);
-        return $userGroup;
+        return $this->userRepository->update($request, $id);
+
     }
 
     public function destroy($id)
     {
-        $userGroup = $this->userRepository->findById($id);
-        $this->userRepository->destroy($userGroup);
-        return $userGroup;
+        return $this->userRepository->destroy($id);
 
     }
 
     public function trashedItems()
     {
 
-        return $this->userGroupRepository->trashedItems();
+        return $this->userRepository->trashedItems();
 
     }
 
     public function restore($id)
     {
 
-        return $this->userGroupRepository->restore($id);
+        return $this->userRepository->restore($id);
 
     }
 
     public function force_destroy($id)
     {
 
-        return $this->userGroupRepository->force_destroy($id);
+        return $this->userRepository->force_destroy($id);
 
     }
 

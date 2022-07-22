@@ -32,4 +32,5 @@ class Room extends Model
             $room->room_image()->delete();
         });
     }
+
 }
