@@ -42,21 +42,22 @@
                                         <input placeholder="Ngày đặt phòng" type="date" id="example"
                                                class="form-control" name="from_date" value="{{old('from_date')}}">
                                         @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('phone') }}</p>
+                                            <p style="color:red">{{ $errors->first('from_date') }}</p>
                                         @endif
                                         <br>
                                         <label>To Date</label>
                                         <input placeholder="Ngày trả phòng" type="date" id="example"
                                                class="form-control" name="to_date" value="{{old('to_date')}}">
                                         @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('phone') }}</p>
+                                            <p style="color:red">{{ $errors->first('to_date') }}</p>
                                         @endif
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">Ghi chú</label>
                                     <textarea id="summernote1" data-toggle="summernote1" name="note" type="text"
-                                              class="form-control" value="ghi chú">{{old('note')}}ghi chú</textarea>
+                                              class="form-control"
+                                              value="ghi chú">{{old('note')}}ghi chú khách hàng</textarea>
                                 </div>
                                 <hr>
                                 <div class="card-title">Thông tin Nhân viên</div>
@@ -65,14 +66,13 @@
                                         <label>Tên nhân viên</label>
                                         <select class="form-control" name="user_id" id="exampleFormControlSelect1">
                                             @foreach($users as $user)
-                                                <option
-                                                    value="{{$user->id}}">{{$user->name}}</option>
+                                                <option value="{{$user->id}}">{{$user->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col-3">
                                         <label>Quyền</label>
-                                        <select class="form-control" name="user_id" id="exampleFormControlSelect1">
+                                        <select class="form-control" name="user_id">
                                             @foreach($users as $user)
                                                 <option
                                                     value="{{$user->userGroup->id}}">{{$user->userGroup->name}}</option>

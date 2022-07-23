@@ -49,7 +49,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($bookingrooms as $key=> $bookingroom )
+                                @foreach($books as $key=> $bookingroom )
                                     @foreach($bookingroom->roombooking as $key1=> $booking )
                                         @if($bookingroom->id===$booking->booking_id)
                                             <tr>
@@ -71,7 +71,7 @@
                                                             action="{{ route('bookingrooms.destroy',$bookingroom->id)}}"
                                                             style="display:inline" method="post">
                                                             <button
-                                                                onclick="return confirm('Hủy đặt phòng {{$booking->roomss->name}} ?')"
+                                                                onclick="return confirm('Hủy đặt phòng {{$bookingroom->name}} ?')"
                                                                 data-toggle="tooltip" title=""
                                                                 class="btn btn-link btn-danger"
                                                                 data-original-title="Xóa">Hủy đặt
@@ -79,10 +79,6 @@
                                                             @csrf
                                                             @method('delete')
                                                         </form>
-                                                        {{--                                                        <a data-url="{{ route('bookingrooms.destroy',$bookingroom->id)}}"--}}
-                                                        {{--                                                           class="btn btn-link btn-danger " id="deleteBook"--}}
-                                                        {{--                                                           data-target="#delete">Hủy--}}
-                                                        {{--                                                            đặt</a>--}}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -100,43 +96,4 @@
         </div>
     </div>
 @endsection
-@section('js')
-    {{--    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>--}}
-    {{--    <script>--}}
-    {{--        $(document).on('click', '#deleteBook', function (e) {--}}
-    {{--            e.preventDefault();--}}
-    {{--            var url = $(this).attr('data-url');--}}
-    {{--            var _this = $(this);--}}
-    {{--            let csrf = '{{ csrf_token() }}';--}}
-    {{--            Swal.fire({--}}
-    {{--                title: 'Khách hàng muốn hủy đặt phòng?',--}}
-    {{--                text: "You won't be able to revert this!",--}}
-    {{--                icon: 'warning',--}}
-    {{--                showCancelButton: true,--}}
-    {{--                confirmButtonColor: '#3085d6',--}}
-    {{--                cancelButtonColor: '#d33',--}}
-    {{--                confirmButtonText: 'Yes, delete it!'--}}
-    {{--            }).then((result) => {--}}
-    {{--                if (result.isConfirmed) {--}}
-    {{--                    $.ajax({--}}
-    {{--                        url: url,--}}
-    {{--                        method: 'delete',--}}
-    {{--                        data: {--}}
-    {{--                            _token: csrf--}}
-    {{--                        },--}}
-    {{--                        success: function (response) {--}}
-    {{--                            console.log(response);--}}
-    {{--                            Swal.fire(--}}
-    {{--                                'Hủy đặt phòng!',--}}
-    {{--                                'Khách hàng đã hủy phòng .',--}}
-    {{--                                'success'--}}
-    {{--                            )--}}
-    {{--                            window.location.reload();--}}
-    {{--                        }--}}
-    {{--                    });--}}
-    {{--                }--}}
-    {{--                document.reload();--}}
-    {{--            })--}}
-    {{--        });--}}
-    {{--    </script>--}}
-@endsection
+
