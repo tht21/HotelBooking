@@ -64,9 +64,7 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
             DB::beginTransaction();
             $object = $this->model->find($id);
             $object->delete();
-            //   $object->roombooking()->delete();
-            dd($object->delete());
-
+            $object->roombooking()->delete();
             DB::commit();
             Session::flash('success', 'Khách hàng hủy đặt hàng thành công');
             return true;
@@ -91,6 +89,7 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
         $object = $this->model->withTrashed()->find($id);
         try {
             $object->restore();
+            $object->roombooking()->restore();
             return true;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
@@ -105,6 +104,7 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
         $object = $this->model->withTrashed()->find($id);
         try {
 //            dd($room);
+            $object->roombooking()->forceDelete();
             $object->forceDelete();
             return true;
         } catch (\Exception $e) {

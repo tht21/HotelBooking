@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Danh sách đặt phòng</h4>
+                            <h4 class="card-title">Lịch sử đặt phòng</h4>
                             <button class="btn btn-primary btn-round ml-auto">
                                 <a href="{{route('bookingrooms.create')}}"> <i class="fa fa-plus"></i>
                                     Thêm khách đặt phòng</a>
@@ -16,7 +16,7 @@
                         <ul class="nav nav-tabs card-header-tabs">
                             <div class="all">
                                 <li class="nav-item1">
-                                    <a class="nav-link active" href="{{route('bookingrooms.index')}}">Tất Cả</a>
+                                    <a class="nav-link active" href="{{route('bookingrooms.list')}}">Tất Cả</a>
                                 </li>
                             </div>
                             <div class="trash">
@@ -49,42 +49,37 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($books as $key=> $bookingroom )
-                                    @foreach($bookingroom->roombooking as $key1=> $booking )
-                                        @if($bookingroom->id===$booking->booking_id)
-                                            <tr>
-                                                <td>{{$bookingroom->id}}</td>
-                                                <td>{{$bookingroom->customer->name}}</td>
-                                                <td>{{$booking->roomss->name}}</td>
-                                                <td>{{$booking->roomss->price}}</td>
-                                                <td>{{$bookingroom->total_room}}</td>
-                                                <td>{{$bookingroom->limit_people}}</td>
-                                                <td>
-                                                    <div class="form-button-action">
-                                                        <a href="{{route('bookingrooms.edit',$bookingroom->id)}}"
-                                                           data-toggle="tooltip" title=""
-                                                           class="btn btn-link btn-primary btn-lg"
-                                                           data-original-title="Chỉnh Sửa Loại Phòng">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>
-                                                        <form
-                                                            action="{{ route('bookingrooms.destroy',$bookingroom->id)}}"
-                                                            style="display:inline" method="post">
-                                                            <button
-                                                                onclick="return confirm('Hủy đặt phòng {{$bookingroom->name}} ?')"
+                                @foreach($bookingrooms as $key=> $bookingroom )
+                                    @foreach($bookingroom->room as $key=> $booking )
+                                        <tr>
+                                            <td>{{$bookingroom->id}}</td>
+                                            <td>{{$bookingroom->customer->name}}</td>
+                                            <td>{{$booking->name}}</td>
+                                            <td>{{$booking->price}}</td>
+                                            <td>{{$bookingroom->total_room}}</td>
+                                            <td>{{$bookingroom->limit_people}}</td>
+                                            <td>
+                                                <div class="form-button-action">
+                                                    <a href="{{route('bookingrooms.restore',$bookingroom->id)}}"
+                                                       data-toggle="tooltip"
+                                                       title="" class="btn btn-link btn-primary btn-lg"
+                                                       data-original-title="Khôi Phục Loại Phòng">
+                                                        <i class="fas fa-trash-restore"></i>
+                                                    </a>
+                                                    <form
+                                                        action="{{ route('bookingrooms.force_destroy',$bookingroom->id)}}"
+                                                        style="display:inline" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button onclick="return confirm('Xóa {{$booking->name}} ?')"
                                                                 data-toggle="tooltip" title=""
                                                                 class="btn btn-link btn-danger"
-                                                                data-original-title="Xóa">Hủy đặt
-                                                            </button>
-                                                            @csrf
-                                                            @method('delete')
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @else
-                                            khong cp
-                                        @endif
+                                                                data-original-title="Xóa Vĩnh Viễn"><i
+                                                                class="far fa-trash-alt"></i></button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 @endforeach
                                 </tbody>
@@ -96,4 +91,3 @@
         </div>
     </div>
 @endsection
-

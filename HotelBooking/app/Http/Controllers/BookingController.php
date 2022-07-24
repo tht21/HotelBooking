@@ -144,7 +144,6 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-
         try {
             $this->bookingRoomService->destroy($id);
             // return response()->json(['data'=>'removed'],200);
@@ -157,11 +156,10 @@ class BookingController extends Controller
 
     public function trashedItems()
     {
-        // dd($request);
-        $books = $this->bookingRoomService->trashedItems();
-        // dd($items);
+        $bookingrooms = $this->bookingRoomService->trashedItems();
+        //   dd($bookingrooms);
         $params = [
-            'books' => $books,
+            'bookingrooms' => $bookingrooms,
         ];
         return view('admin.bookingRoom.trash', $params);
     }
@@ -182,10 +180,10 @@ class BookingController extends Controller
         //dd($this->roomService->force_destroy($id));
         try {
             $room = $this->bookingRoomService->force_destroy($id);
-            return redirect()->route('bookingrooms.trash')->with('success' . 'Xóa thành công');
+            return redirect()->route('bookingrooms.trash');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('bookingrooms.trash')->with('error', 'Xóa không thành công');
+            return redirect()->route('bookingrooms.trash');
         }
     }
 }
