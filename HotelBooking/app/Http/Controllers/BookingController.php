@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Exports\BookingExport;
 use App\Http\Requests\StoreBookingRequest;
 use App\Models\Booking;
 use App\Http\Requests\UpdateBookingRequest;
@@ -10,6 +11,7 @@ use App\Services\Interfaces\RoomServiceInterface;
 use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
 
 class BookingController extends Controller
 {
@@ -185,5 +187,10 @@ class BookingController extends Controller
             Log::error($e->getMessage());
             return redirect()->route('bookingrooms.trash');
         }
+    }
+
+    public function export()
+    {
+        return FacadesExcel::download(new BookingExport, 'Booking.xlsx');
     }
 }

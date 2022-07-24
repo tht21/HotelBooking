@@ -9,9 +9,15 @@
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Danh sách đặt phòng</h4>
                             <button class="btn btn-primary btn-round ml-auto">
-                                <a href="{{route('bookingrooms.create')}}"> <i class="fa fa-plus"></i>
-                                    Thêm khách đặt phòng</a>
+                                <a href="{{route('bookingrooms.create')}}"> <i class="fa fa-plus"></i>Thêm khách đặt
+                                    phòng</a>
                             </button>
+
+                            <a href="{{route('bookingrooms.export')}}" class="btn btn-primary">
+                                <i class="fas fa-file"></i>
+                                <span class="ml-1">Xuất file excel</span>
+                            </a>
+
                         </div>
                         <ul class="nav nav-tabs card-header-tabs">
                             <div class="all">
