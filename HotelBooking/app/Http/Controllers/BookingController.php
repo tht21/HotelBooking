@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\StoreBookingRequest;
 use App\Models\Booking;
 use App\Http\Requests\UpdateBookingRequest;
 use App\Services\Interfaces\BookingRoomServiceInterface;
@@ -65,6 +66,7 @@ class BookingController extends Controller
         ];
         return view("admin.bookingRoom.add", $param);
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -106,9 +108,20 @@ class BookingController extends Controller
      * @param \App\Models\Booking $booking
      * @return \Illuminate\Http\Response
      */
-    public function edit(Booking $booking)
+    public function edit($id)
     {
+        $bookingrooms = $this->bookingRoomService->findById($id);
+        $rooms = $this->roomService->getAll($id);
+        $users = $this->userService->getAll($id);
+        $customers = $this->customerService->getAll($id);
 
+        $param = [
+            'bookingrooms' => $bookingrooms,
+            'rooms' => $rooms,
+            'users' => $users,
+            'customers' => $customers
+        ];
+        return view('admin.bookingRoom.edit', $param);
     }
 
     /**
@@ -129,8 +142,48 @@ class BookingController extends Controller
      * @param \App\Models\Booking $booking
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Booking $booking)
+    public function destroy($id)
     {
-        //
+        try {
+            $this->bookingRoomService->destroy($id);
+            // return response()->json(['data'=>'removed'],200);
+            return redirect()->route('bookingrooms.list');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('bookingrooms.list');
+        }
+    }
+
+    public function trashedItems()
+    {
+        $bookingrooms = $this->bookingRoomService->trashedItems();
+        //   dd($bookingrooms);
+        $params = [
+            'bookingrooms' => $bookingrooms,
+        ];
+        return view('admin.bookingRoom.trash', $params);
+    }
+
+    public function restore($id)
+    {
+        try {
+            $this->bookingRoomService->restore($id);
+            return redirect()->route('bookingrooms.trash')->with('success', 'Khôi phục thành công');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('bookingrooms.trash')->with('success', 'Khôi phục thành công');
+        }
+    }
+
+    public function force_destroy($id)
+    {
+        //dd($this->roomService->force_destroy($id));
+        try {
+            $room = $this->bookingRoomService->force_destroy($id);
+            return redirect()->route('bookingrooms.trash');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('bookingrooms.trash');
+        }
     }
 }

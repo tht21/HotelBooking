@@ -1,33 +1,33 @@
 @extends('layouts.admin.app')
 @section('content')
     <div class="page-inner">
-        @include('layouts.admin.includes.content',['key'=>'Danh sách phòng','name'=>'Quản lý phòng','key'=>'Danh sách phòng'])
+        @include('layouts.admin.includes.content',['key'=>'Danh sách đặt phòng','name'=>'Quản lý phòng','key'=>'Danh sách đặt phòng'])
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h4 class="card-title">Danh sách phòng</h4>
+                            <h4 class="card-title">Danh sách đặt phòng</h4>
                             <button class="btn btn-primary btn-round ml-auto">
-                                @if(Auth::user()->hasPermission('Bookings_create'))
-                                    <a href="{{route('bookingrooms.create')}}"> <i class="fa fa-plus"></i>
-                                        Thêm khách đặt phòng</a>
-                                @endif
+                                <a href="{{route('bookingrooms.create')}}"> <i class="fa fa-plus"></i>
+                                    Thêm khách đặt phòng</a>
                             </button>
                         </div>
                         <ul class="nav nav-tabs card-header-tabs">
                             <div class="all">
                                 <li class="nav-item1">
-                                    <a class="nav-link active" href="{{route('rooms.index')}}">Tất Cả</a>
+                                    <a class="nav-link active" href="{{route('bookingrooms.index')}}">Tất Cả</a>
                                 </li>
                             </div>
                             <div class="trash">
                                 <li class="nav-item2">
-                                    <a class="nav-link active " href="{{route('rooms.trash')}}">Thùng Rác</a>
+                                    <a class="nav-link active " href="{{route('bookingrooms.trash')}}">Thùng Rác</a>
                                 </li>
                             </div>
                         </ul>
                     </div>
+
+
                     <div class="card-body">
                         @if (Session::has('success'))
                             <div class="text text-success"><b>{{session::get('success')}}</b></div>
@@ -71,7 +71,7 @@
                                                             action="{{ route('bookingrooms.destroy',$bookingroom->id)}}"
                                                             style="display:inline" method="post">
                                                             <button
-                                                                onclick="return confirm('Hủy đặt phòng {{$bookingroom->name}} ?')"
+                                                                onclick="return confirm('Hủy đặt phòng {{$booking->roomss->name}} ?')"
                                                                 data-toggle="tooltip" title=""
                                                                 class="btn btn-link btn-danger"
                                                                 data-original-title="Xóa">Hủy đặt
@@ -79,10 +79,15 @@
                                                             @csrf
                                                             @method('delete')
                                                         </form>
+                                                        {{--                                                        <a data-url="{{ route('bookingrooms.destroy',$bookingroom->id)}}"--}}
+                                                        {{--                                                           class="btn btn-link btn-danger " id="deleteBook"--}}
+                                                        {{--                                                           data-target="#delete">Hủy--}}
+                                                        {{--                                                            đặt</a>--}}
                                                     </div>
                                                 </td>
                                             </tr>
                                         @else
+                                            khong cp
                                         @endif
                                     @endforeach
                                 @endforeach
@@ -94,4 +99,44 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    {{--    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>--}}
+    {{--    <script>--}}
+    {{--        $(document).on('click', '#deleteBook', function (e) {--}}
+    {{--            e.preventDefault();--}}
+    {{--            var url = $(this).attr('data-url');--}}
+    {{--            var _this = $(this);--}}
+    {{--            let csrf = '{{ csrf_token() }}';--}}
+    {{--            Swal.fire({--}}
+    {{--                title: 'Khách hàng muốn hủy đặt phòng?',--}}
+    {{--                text: "You won't be able to revert this!",--}}
+    {{--                icon: 'warning',--}}
+    {{--                showCancelButton: true,--}}
+    {{--                confirmButtonColor: '#3085d6',--}}
+    {{--                cancelButtonColor: '#d33',--}}
+    {{--                confirmButtonText: 'Yes, delete it!'--}}
+    {{--            }).then((result) => {--}}
+    {{--                if (result.isConfirmed) {--}}
+    {{--                    $.ajax({--}}
+    {{--                        url: url,--}}
+    {{--                        method: 'delete',--}}
+    {{--                        data: {--}}
+    {{--                            _token: csrf--}}
+    {{--                        },--}}
+    {{--                        success: function (response) {--}}
+    {{--                            console.log(response);--}}
+    {{--                            Swal.fire(--}}
+    {{--                                'Hủy đặt phòng!',--}}
+    {{--                                'Khách hàng đã hủy phòng .',--}}
+    {{--                                'success'--}}
+    {{--                            )--}}
+    {{--                            window.location.reload();--}}
+    {{--                        }--}}
+    {{--                    });--}}
+    {{--                }--}}
+    {{--                document.reload();--}}
+    {{--            })--}}
+    {{--        });--}}
+    {{--    </script>--}}
 @endsection

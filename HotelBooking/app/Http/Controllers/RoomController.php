@@ -137,7 +137,7 @@ class RoomController extends Controller
     {
         // dd($request);
         $rooms = $this->roomService->trashedItems();
-        // dd($items);
+     //    dd($rooms);
         $params = [
             'rooms' => $rooms,
         ];
