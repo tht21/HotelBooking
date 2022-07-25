@@ -109,30 +109,30 @@
     </div>
 @endsection
 @section('js')
-    {{--    <script type="text/javascript">--}}
-    {{--        $(document).ready(function () {--}}
-    {{--            $(".checkin_date").on('blur', function () {--}}
-    {{--                var _checkindate = $(this).val();--}}
-    {{--                // Ajax--}}
-    {{--                $.ajax({--}}
-    {{--                    url: "{{url('admin/bookingrooms')}}/available-rooms/" + _checkindate,--}}
-    {{--                    dataType: 'json',--}}
-    {{--                    // beforeSend:function(){--}}
-    {{--                    //     $(".room-list").html('<option>--- Loading ---</option>');--}}
-    {{--                    // },--}}
-    {{--                    success: function (res) {--}}
-    {{--                        console.log(res)--}}
-    {{--                        // var _html='';--}}
-    {{--                        // $.each(res.data,function(index,row){--}}
-    {{--                        //     _html+='<option data-price="'+row.roomtype.price+'" value="'+row.room.id+'">'+row.room.title+'-'+row.roomtype.title+'</option>';--}}
-    {{--                        // });--}}
-    {{--                        // $(".room-list").html(_html);--}}
-    {{--                        // var _selectedPrice=$(".room-list").find('option:selected').attr('data-price');--}}
-    {{--                        // $(".room-price").val(_selectedPrice);--}}
-    {{--                        // $(".show-room-price").text(_selectedPrice);--}}
-    {{--                    }--}}
-    {{--                });--}}
-    {{--            });--}}
-    {{--        });--}}
-    {{--    </script>--}}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".checkin_date").on('blur', function () {
+                var _checkindate = $(this).val();
+                // Ajax
+                $.ajax({
+                    url: "{{url('admin/bookingrooms')}}/available-rooms/" + _checkindate,
+                    dataType: 'json',
+                    // beforeSend:function(){
+                    //     $(".room-list").html('<option>--- Loading ---</option>');
+                    // },
+                    success: function (res) {
+                        console.log(res)
+                        // var _html='';
+                        // $.each(res.data,function(index,row){
+                        //     _html+='<option data-price="'+row.roomtype.price+'" value="'+row.room.id+'">'+row.room.title+'-'+row.roomtype.title+'</option>';
+                        // });
+                        // $(".room-list").html(_html);
+                        // var _selectedPrice=$(".room-list").find('option:selected').attr('data-price');
+                        // $(".room-price").val(_selectedPrice);
+                        // $(".show-room-price").text(_selectedPrice);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
