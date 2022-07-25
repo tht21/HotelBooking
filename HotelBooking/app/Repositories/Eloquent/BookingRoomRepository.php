@@ -30,6 +30,8 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
         try {
             DB::beginTransaction();
             $object = $this->model;
+
+            // if($object){}
             $dataBooking = [
                 'customer_id' => $request->customer_id,
                 'limit_people' => $request->limit_people,
@@ -40,14 +42,28 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
                 'user_id' => $request->user_id,
             ];
             $object = $object->create($dataBooking);
-//dd($request->room_id);
+
+
+            $status = [
+                'status' => 'hết phòng'
+            ];
             foreach ($request->room_id as $Item) {
-                $object->roombooking()->create([
+                $roombooking = $object->roombooking()->create([
                     'booking_id' => $object->id,
                     'room_id' => $Item,
                 ]);
+                // $object->room()->create($status);
             }
-
+            //check status
+            foreach ($object->room as $i) {
+                $i['status'] = 'hết phòng';
+                $a = [
+                    'status' => $i['status'],
+                ];
+                // dd($a);
+            }
+            $object->room()->update($a);
+            //   $object->room()->create($status);
             DB::commit();
             Session::flash('success', 'Thêm khách đặt phòng thành công');
             return true;

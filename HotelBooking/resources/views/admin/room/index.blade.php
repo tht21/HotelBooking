@@ -51,7 +51,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($rooms as $key=>$room)
+                            @foreach($rooms as $key=>$room)
 
                                 <tr>
                                     <td>{{++$key}}</td>
@@ -59,18 +59,21 @@
                                     <td>{{$room->name}}</td>
                                     <td>{{$room->price}}</td>
                                     <td>{{$room->room_type ? $room->room_type->name : ''}}</td>
-                                    <td>{{$room->status}}</td>
+                                    <td>
+                                        {{$room->status}}
+                                    </td>
                                     <td>
                                         <div class="form-button-action">
                                             @if(Auth::user()->hasPermission('Rooms_update'))
 
-                                            <a href="{{route('rooms.edit',$room->id)}}" data-toggle="tooltip" title=""
-                                                class="btn btn-link btn-primary btn-lg"
-                                                data-original-title="Chỉnh Sửa Loại Phòng">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
+                                                <a href="{{route('rooms.edit',$room->id)}}" data-toggle="tooltip"
+                                                   title=""
+                                                   class="btn btn-link btn-primary btn-lg"
+                                                   data-original-title="Chỉnh Sửa Loại Phòng">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
                                             @endif
-                                           
+
                                             @if(Auth::user()->hasPermission('Rooms_delete'))
 
                                             <form action="{{ route('rooms.destroy',$room->id)}}" style="display:inline"
