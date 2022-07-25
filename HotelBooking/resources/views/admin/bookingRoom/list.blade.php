@@ -61,7 +61,7 @@
                                                 <td>{{$bookingroom->id}}</td>
                                                 <td>{{$bookingroom->customer->name}}</td>
                                                 <td>{{$booking->roomss->name}}</td>
-                                                <td>{{$booking->roomss->price}}</td>
+                                                <td>{{number_format($booking->roomss->price)}} VNĐ</td>
                                                 <td>{{$bookingroom->total_room}}</td>
                                                 <td>{{$bookingroom->limit_people}}</td>
                                                 <td>
