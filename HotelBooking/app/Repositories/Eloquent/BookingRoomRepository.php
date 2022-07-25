@@ -25,6 +25,7 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
 
     public function create($request)
     {
+        //dd($request->all());
 
         try {
             DB::beginTransaction();
@@ -39,14 +40,14 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
                 'user_id' => $request->user_id,
             ];
             $object = $object->create($dataBooking);
-            // dd();
+//dd($request->room_id);
+            foreach ($request->room_id as $Item) {
+                $object->roombooking()->create([
+                    'booking_id' => $object->id,
+                    'room_id' => $Item,
+                ]);
+            }
 
-            // dd($request);
-            $param = [
-                'booking_id' => $object->id,
-                'room_id' => $request->room_id,
-            ];
-            $object->roombooking()->create($param);
             DB::commit();
             Session::flash('success', 'Thêm khách đặt phòng thành công');
             return true;
