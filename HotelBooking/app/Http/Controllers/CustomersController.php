@@ -54,10 +54,10 @@ class CustomersController extends Controller
     {
         try {
             $customer = $this->customerService->create($request);
-            return redirect()->route('customers.index')->with('success', ' Thêm loại phòng ' . $request->name . ' thành công ');
+            return redirect()->route('customers.index')->with('success', ' Thêm khách hàng ' . $request->name . ' thành công ');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('customers.index')->with('error', ' Thêm loại phòng ' . $request->name . ' không thành công ');
+            return redirect()->route('customers.index')->with('error', ' Thêm khách hàng ' . $request->name . ' không thành công ');
         }
     }
 

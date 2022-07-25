@@ -39,9 +39,9 @@
                         </a>
                         @endif
                     </div>
-                        <div class="table-responsive">
-                            <table id="basic-datatables" class="display table table-striped table-hover">
-                                <thead>
+                    <div class="table-responsive">
+                        <table id="basic-datatables" class="display table table-striped table-hover">
+                            <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Ảnh đại diện</th>
@@ -50,28 +50,27 @@
                                     <th>Số điện thoại</th>
                                     <th>Nhóm nhân viên</th>
                                 </tr>
-                                </thead>
-                                <tbody>
+                            </thead>
+                            <tbody>
                                 @foreach ($users as $key => $user)
 
-                                    <tr>
-                                        <td>{{ $key = $key + 1}}</td>
-                                        <td><img src="{{asset($user->avatar)}}" height="70" width="80"></td>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->address}}</td>
-                                        <td>{{$user->phone}}</td>
-                                        <td>{{$user->userGroup->name}}</td>
-                                        <td>
-                                            <div class="form-button-action">
-                                                @if($user->userGroup->id != 1)
-                                                    @if(Auth::user()->hasPermission('User_update'))
-                                                        <a href="{{route('users.edit',$user->id)}}"
-                                                           data-toggle="tooltip" title=""
-                                                           class="btn btn-link btn-primary btn-lg"
-                                                           data-original-title="Chỉnh Sửa Thông Tin Nhân viên">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>
-                                                    @endif
+                                <tr>
+                                    <td>{{ $key = $key + 1}}</td>
+                                    <td><img src="{{asset($user->avatar)}}" height="70" width="80"></td>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->address}}</td>
+                                    <td>{{$user->phone}}</td>
+                                    <td>{{$user->userGroup->name}}</td>
+                                    <td>
+                                        <div class="form-button-action">
+                                            @if(Auth::user()->hasPermission('User_update'))
+                                            <a href="{{route('users.edit',$user->id)}}" data-toggle="tooltip" title=""
+                                                class="btn btn-link btn-primary btn-lg"
+                                                data-original-title="Chỉnh Sửa Thông Tin Nhân viên">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            @endif
+                                            @if($user->userGroup->id != 1)
                                             @if(Auth::user()->hasPermission('User_delete'))
                                             <form action="{{ route('users.destroy',$user->id)}}" style="display:inline"
                                                 method="post">
