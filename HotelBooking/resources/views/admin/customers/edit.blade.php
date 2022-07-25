@@ -11,7 +11,8 @@
          <div class="card-body">
             <div class="row">
                <div class="col-12">
-                  <form method="post" action="{{route('customers.store')}}">
+                  <form method="post" action="{{route('customers.update',$customer->id)}}">
+                     @method('put')
                      @csrf
                      <div class="form-group">
                         <label>Tên Khách hàng</label>
@@ -48,9 +49,6 @@
                         <p style="color:red">{{ $errors->first('cmnd') }}</p>
                         @endif
                      </div>
-                     {{-- <button type="submit" class="btn btn-primary btn-round ml-auto">Submit</button>
-
-                     <a class="btn btn-warning btn-round ml-auto" href="{{route('roomtype.index')}}"">Quay Lại</a> --}}
                            <button type=" submit" class="btn btn-primary">Lưu</button>
                         <a href="{{route('customers.index')}}" class="btn btn-danger">Hủy</a>
                   </form>

@@ -96,8 +96,10 @@ class CustomersController extends Controller
      */
     public function update(Request $request,$id)
     {
+      
         try {
             $this->customerService->update($request, $id);
+            
             return redirect()->route('customers.index')->with('success', 'Sửa thông tin khách hàng' . ' ' . $request->name . ' ' .  'thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
