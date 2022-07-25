@@ -24,17 +24,17 @@
                 sessionStorage.fonts = true;
             }
         });
-    </script>
+   </script>
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/atlantis.min.css')}}">
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/demo.css')}}">
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-
+    <link href="{{asset('admin/vendor/select2/dist/css/select2.min.css')}}" rel="stylesheet"/>
 </head>
 <body>
 <div class="wrapper">
@@ -195,6 +195,9 @@
     });
 </script>
 @yield('js')
+<script src="{{asset('admin/vendor/select2/dist/js/select2.min.js')}}"></script>
+<script src="{{asset('admin/booking/add/add.js')}}"></script>
+
 </body>
 </html>
 

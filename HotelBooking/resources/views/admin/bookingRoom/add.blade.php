@@ -15,10 +15,13 @@
                                     <select class="form-control" name="customer_id" id="exampleFormControlSelect1">
                                         <option>--- Select khách hàng ---</option>
                                         @foreach($customers as $customer)
-                                            <option
-                                                value="{{$customer->id}}">{{$customer->name}}</option>
+                                            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                         @endforeach
                                     </select>
+
+                                    @if ($errors->any())
+                                        <p style=" color:red">{{ $errors->first('customer_id') }}</p>
+                                    @endif
                                 </div>
 
                                 <div class="row form-group">
@@ -40,7 +43,8 @@
                                     <div class="col-6">
                                         <label>From Date</label>
                                         <input placeholder="Ngày đặt phòng" type="date" id="example"
-                                               class="form-control" name="from_date" value="{{old('from_date')}}">
+                                               class="form-control checkin_date" name="from_date"
+                                               value="{{old('from_date')}}">
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('from_date') }}</p>
                                         @endif
@@ -80,25 +84,54 @@
                                         </select>
                                     </div>
                                     <div class="col-3">
-                                        <label>Phòng</label>
-                                        <select class="form-control" id="exampleFormControlSelect1" name="room_id">
+                                        <label>Phòng có sẵn</label>
+                                        <select class="form-control rooms_select_choose" id="exampleFormControlSelect1"
+                                                name="room_id[]" multiple="multiple">
                                             @foreach($rooms as $room)
                                                 <option value="{{$room->id}}">{{$room->name}}</option>
                                             @endforeach
                                         </select>
+                                        {{--                                        <select class="form-control rooms_select_choose room_list" id="exampleFormControlSelect1"--}}
+                                        {{--                                                name="room_id[]" multiple="multiple">--}}
+
+                                        {{--                                        </select>--}}
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Lưu</button>
                                 <a href="{{route('bookingrooms.index')}}" class="btn btn-danger">Hủy</a>
-
                             </div>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-    </div>
 @endsection
 @section('js')
-
+    {{--    <script type="text/javascript">--}}
+    {{--        $(document).ready(function(){--}}
+    {{--            $(".checkin_date").on('blur',function(){--}}
+    {{--                var _checkindate=$(this).val();--}}
+    {{--                // Ajax--}}
+    {{--                $.ajax({--}}
+    {{--                    url:"{{url('admin/bookingrooms')}}/available-rooms/"+_checkindate,--}}
+    {{--                    dataType:'json',--}}
+    {{--                    // beforeSend:function(){--}}
+    {{--                    //     $(".room-list").html('<option>--- Loading ---</option>');--}}
+    {{--                    // },--}}
+    {{--                    success:function(res){--}}
+    {{--                        console.log(res)--}}
+    {{--                        // var _html='';--}}
+    {{--                        // $.each(res.data,function(index,row){--}}
+    {{--                        //     _html+='<option data-price="'+row.roomtype.price+'" value="'+row.room.id+'">'+row.room.title+'-'+row.roomtype.title+'</option>';--}}
+    {{--                        // });--}}
+    {{--                        // $(".room-list").html(_html);--}}
+    {{--                        // var _selectedPrice=$(".room-list").find('option:selected').attr('data-price');--}}
+    {{--                        // $(".room-price").val(_selectedPrice);--}}
+    {{--                        // $(".show-room-price").text(_selectedPrice);--}}
+    {{--                    }--}}
+    {{--                });--}}
+    {{--            });--}}
+    {{--        });--}}
+    {{--    </script>--}}
 @endsection

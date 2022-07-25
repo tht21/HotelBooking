@@ -54,6 +54,7 @@ Route::group([
         Route::get('/export', [BookingController::class, 'export'])->name('bookingrooms.export');
         Route::delete('/force_destroy/{id}', [BookingController::class, 'force_destroy'])->name('bookingrooms.force_destroy');
         Route::get('/restore/{id}', [BookingController::class, 'restore'])->name('bookingrooms.restore');
+        Route::get('/available-rooms/{checkin_date}', [BookingController::class, 'available_room'])->name('bookingrooms.available_room');
     });
     Route::prefix('customers')->group(function () {
         Route::get('/trash', [CustomersController::class, 'trashedItems'])->name('customers.trash');

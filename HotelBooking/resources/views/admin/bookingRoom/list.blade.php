@@ -12,7 +12,6 @@
                                 <a href="{{route('bookingrooms.create')}}"> <i class="fa fa-plus"></i>Thêm khách đặt
                                     phòng</a>
                             </button>
-
                             <a href="{{route('bookingrooms.export')}}" class="btn btn-primary">
                                 <i class="fas fa-file"></i>
                                 <span class="ml-1">Xuất file excel</span>

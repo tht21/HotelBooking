@@ -10,6 +10,7 @@ use App\Services\Interfaces\CustomerServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
 use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
 
@@ -75,7 +76,7 @@ class BookingController extends Controller
      * @param \App\Http\Requests\StoreBookingRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBookingRequest $request)
     {
         try {
             $this->bookingRoomService->create($request);
@@ -193,4 +194,15 @@ class BookingController extends Controller
     {
         return FacadesExcel::download(new BookingExport, 'Booking.xlsx');
     }
+//    public function available_room(Request $request,$checkin_date){
+//        $rooms=DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM bookings WHERE '$checkin_date' BETWEEN checkin_date AND checkout_date)");
+//        return DB::table('customers')
+//            ->join('bookings', 'bookings.customer_id', '=', 'customers.id')
+//            ->join('room_bookings', 'bookings.id', '=', 'room_bookings.booking_id')
+//            ->join('rooms', 'room_bookings.room_id', '=', 'rooms.id')
+//            ->select('bookings.id','customers.name as customer_name', 'customers.phone', 'rooms.name', 'rooms.price', 'bookings.from_date', 'bookings.to_date', 'bookings.limit_people')
+//            ->get();
+//
+//        return response()->json($checkin_date);
+//    }
 }
