@@ -4,7 +4,7 @@
 <head>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>Atlantis Lite - Bootstrap 4 Admin Dashboard</title>
+    <title>Hotel Zante</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
     <link rel="icon" href="{{ asset('admin/assets/img/icon.ico')}}" type="image/x-icon"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
