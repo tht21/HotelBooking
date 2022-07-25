@@ -54,7 +54,7 @@
                                 @foreach($rooms as $key=>$room)
 
                                 <tr>
-                                    <td>{{$key++}}</td>
+                                    <td>{{++$key}}</td>
                                     <td><img src="{{asset($room->image_path)}}" height="70" width="80"></td>
                                     <td>{{$room->name}}</td>
                                     <td>{{$room->price}}</td>

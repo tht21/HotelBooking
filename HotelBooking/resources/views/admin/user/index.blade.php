@@ -56,7 +56,7 @@
 
                                     <tr>
                                         <td>{{ $key = $key + 1}}</td>
-                                        <td>{{$user->avatar}}</td>
+                                        <td><img src="{{asset($user->avatar)}}" height="70" width="80"></td>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->address}}</td>
                                         <td>{{$user->phone}}</td>
