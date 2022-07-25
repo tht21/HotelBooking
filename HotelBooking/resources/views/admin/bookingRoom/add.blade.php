@@ -91,7 +91,8 @@
                                                 <option value="{{$room->id}}">{{$room->name}}</option>
                                             @endforeach
                                         </select>
-                                        {{--                                        <select class="form-control rooms_select_choose room_list" id="exampleFormControlSelect1"--}}
+                                        {{--                                        <select class="form-control rooms_select_choose room_list"--}}
+                                        {{--                                                id="exampleFormControlSelect1"--}}
                                         {{--                                                name="room_id[]" multiple="multiple">--}}
 
                                         {{--                                        </select>--}}
@@ -109,17 +110,17 @@
 @endsection
 @section('js')
     {{--    <script type="text/javascript">--}}
-    {{--        $(document).ready(function(){--}}
-    {{--            $(".checkin_date").on('blur',function(){--}}
-    {{--                var _checkindate=$(this).val();--}}
+    {{--        $(document).ready(function () {--}}
+    {{--            $(".checkin_date").on('blur', function () {--}}
+    {{--                var _checkindate = $(this).val();--}}
     {{--                // Ajax--}}
     {{--                $.ajax({--}}
-    {{--                    url:"{{url('admin/bookingrooms')}}/available-rooms/"+_checkindate,--}}
-    {{--                    dataType:'json',--}}
+    {{--                    url: "{{url('admin/bookingrooms')}}/available-rooms/" + _checkindate,--}}
+    {{--                    dataType: 'json',--}}
     {{--                    // beforeSend:function(){--}}
     {{--                    //     $(".room-list").html('<option>--- Loading ---</option>');--}}
     {{--                    // },--}}
-    {{--                    success:function(res){--}}
+    {{--                    success: function (res) {--}}
     {{--                        console.log(res)--}}
     {{--                        // var _html='';--}}
     {{--                        // $.each(res.data,function(index,row){--}}

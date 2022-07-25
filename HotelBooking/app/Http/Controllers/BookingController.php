@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Exports\BookingExport;
 use App\Http\Requests\StoreBookingRequest;
-use App\Models\Booking;
 use App\Http\Requests\UpdateBookingRequest;
+use App\Models\Booking;
 use App\Services\Interfaces\BookingRoomServiceInterface;
 use App\Services\Interfaces\CustomerServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
@@ -194,15 +195,20 @@ class BookingController extends Controller
     {
         return FacadesExcel::download(new BookingExport, 'Booking.xlsx');
     }
-//    public function available_room(Request $request,$checkin_date){
-//        $rooms=DB::SELECT("SELECT * FROM rooms WHERE id NOT IN (SELECT room_id FROM bookings WHERE '$checkin_date' BETWEEN checkin_date AND checkout_date)");
-//        return DB::table('customers')
-//            ->join('bookings', 'bookings.customer_id', '=', 'customers.id')
-//            ->join('room_bookings', 'bookings.id', '=', 'room_bookings.booking_id')
-//            ->join('rooms', 'room_bookings.room_id', '=', 'rooms.id')
-//            ->select('bookings.id','customers.name as customer_name', 'customers.phone', 'rooms.name', 'rooms.price', 'bookings.from_date', 'bookings.to_date', 'bookings.limit_people')
-//            ->get();
-//
-//        return response()->json($checkin_date);
-//    }
+
+    public function available_room(Request $request, $checkin_date)
+    {
+
+        $check = DB::table('rooms')
+            ->join('room_bookings', 'rooms.id', '=', 'room_bookings.room_id')
+            ->join('bookings', 'room_bookings.booking_id', '=', 'bookings.id')
+            ->select('rooms.*', 'room_bookings.room_id',)
+            ->whereNotIn('id', function ($query) use ($checkin_date) {
+                $query->where($checkin_date);
+                $query->whereBetween('from_date AND to_date');
+            })
+            ->get();
+
+        return response()->json($check);
+    }
 }
