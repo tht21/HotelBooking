@@ -20,7 +20,7 @@ class HomeController extends Controller
         $empty_room = Room::where('status','=','còn phòng')->count();
         $busy_room = Room::where('status','=','hết phòng')->count();
         $user_group_count = UserGroup::count();
-        $roomtype_count= Room::where('room_types_id', '=', 2)->count();
+        $roomtype_count= Room::where('room_types_id', '!=', 1)->count();
         $order_room = Booking::count();
 
         $param =[

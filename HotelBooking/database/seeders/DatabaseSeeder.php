@@ -230,8 +230,20 @@ class DatabaseSeeder extends Seeder
     {
         $roomType = new RoomType();
         $roomType->id = 1;
-        $roomType->name = 'vip';
+        $roomType->name = 'VIP';
         $roomType->limit_people = 4;
+        $roomType->save();
+
+        $roomType = new RoomType();
+        $roomType->id = 2;
+        $roomType->name = 'Phòng Đôi';
+        $roomType->limit_people = 2;
+        $roomType->save();
+
+        $roomType = new RoomType();
+        $roomType->id = 3;
+        $roomType->name = 'Phòng Đơn';
+        $roomType->limit_people = 1;
         $roomType->save();
 
     }
