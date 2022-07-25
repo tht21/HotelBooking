@@ -59,6 +59,7 @@ class CustomerRepository extends EloquentRepository implements CustomerInterface
     public function update($request, $id)
     {
         $customers = $this->model->find($id);
+        // dd($customers);
         $customers->name = $request->name;
         $customers->email = $request->email;
         $customers->phone = $request->phone;
