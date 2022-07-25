@@ -32,8 +32,8 @@ Route::group([
     'middleware' => ['auth']
 ], function () {
 
-    Route::get('/home',[HomeController::class,'index'])->name('home');
-    Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
     Route::prefix('roomtype')->group(function () {
@@ -60,22 +60,19 @@ Route::group([
         Route::get('/trash', [CustomersController::class, 'trashedItems'])->name('customers.trash');
         Route::delete('/force_destroy/{id}', [CustomersController::class, 'force_destroy'])->name('customers.force_destroy');
         Route::get('/restore/{id}', [CustomersController::class, 'restore'])->name('customers.restore');
-
     });
 
     Route::prefix('usergroups')->group(function () {
         Route::get('/trash', [UserGroupsController::class, 'trashedItems'])->name('usergroups.trash');
         Route::delete('/force_destroy/{id}', [UserGroupsController::class, 'force_destroy'])->name('usergroups.force_destroy');
         Route::get('/restore/{id}', [UserGroupsController::class, 'restore'])->name('usergroups.restore');
-
     });
     Route::prefix('users')->group(function () {
         Route::get('/trash', [UserController::class, 'trashedItems'])->name('users.trash');
         Route::delete('/force_destroy/{id}', [UserController::class, 'force_destroy'])->name('users.force_destroy');
         Route::get('/restore/{id}', [UserController::class, 'restore'])->name('users.restore');
-
     });
-    Route::resource('profile',ProfileController::class);
+    Route::resource('profile', ProfileController::class);
     Route::resource('roomtype', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);
     Route::resource('customers', CustomersController::class);
@@ -85,3 +82,11 @@ Route::group([
 });
 
 
+Route::group([
+    'prefix' => 'website',
+    // 'middleware' => ['auth']
+], function () {
+    Route::get('home', function () {
+        return view('web.home.index');
+    });
+});
