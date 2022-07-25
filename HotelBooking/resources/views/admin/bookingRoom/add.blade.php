@@ -28,14 +28,14 @@
                                     <div class="col-6">
                                         <label>Số lượng người</label>
                                         <input type="number" class="form-control" id="name" name="limit_people"
-                                               placeholder="Nhập tên khách hàng" value="{{old('limit_people')}}">
+                                               placeholder="Nhập số lượng người" value="{{old('limit_people')}}">
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('limit_people') }}</p>
                                         @endif
                                         <br>
                                         <label>Tổng tiền phòng</label>
                                         <input type="number" class="form-control" id="name" name="total_room"
-                                               placeholder="Nhập tên khách hàng" value="{{old('total_room')}}">
+                                               placeholder="Tổng tiền" value="{{old('total_room')}}">
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('total_room') }}</p>
                                         @endif
