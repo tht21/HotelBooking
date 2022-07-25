@@ -54,11 +54,7 @@
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
                             @if(Auth::user()->hasPermission('Bookings_viewAny'))
-                            <li>
-                                <a href="components/avatars.html">
-                                    <span class="sub-item">Xem Dạng Lịch</span>
-                                </a>
-                            </li>
+                            
                             <li>
                                 <a href="{{route('bookingrooms.index')}}">
                                     <span class="sub-item">Xem Dạng Danh Sách</span>

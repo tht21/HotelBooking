@@ -14,13 +14,13 @@ class HomeController extends Controller
 {
     public function index(){
         $room_count = Room::count();
-        $roomtype_vip = RoomType::where('name', '=', 'vip')->count();
+        $roomtype_vip = Room::where('room_types_id', '=', 1)->count();
         $user_count = User::where('user_group_id', '!=', 1 )->count();
         $customer_count = Customers::count();
         $empty_room = Room::where('status','=','còn phòng')->count();
         $busy_room = Room::where('status','=','hết phòng')->count();
         $user_group_count = UserGroup::count();
-        $roomtype_count= RoomType::where('name', '=', 'Thường')->count();
+        $roomtype_count= Room::where('room_types_id', '=', 2)->count();
         $order_room = Booking::count();
 
         $param =[
