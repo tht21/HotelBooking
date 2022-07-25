@@ -80,6 +80,14 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
         try {
             DB::beginTransaction();
             $object = $this->model->find($id);
+            foreach ($object->room as $i) {
+                $i['status'] = 'còn phòng';
+                $a = [
+                    'status' => $i['status'],
+                ];
+                // dd($a);
+            }
+            $object->room()->update($a);
             $object->delete();
             $object->roombooking()->delete();
             DB::commit();

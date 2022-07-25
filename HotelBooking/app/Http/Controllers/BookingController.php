@@ -198,12 +198,11 @@ class BookingController extends Controller
 
     public function available_room(Request $request, $checkin_date)
     {
-
         $check = DB::table('rooms')
             ->join('room_bookings', 'rooms.id', '=', 'room_bookings.room_id')
             ->join('bookings', 'room_bookings.booking_id', '=', 'bookings.id')
-            ->select('rooms.*', 'room_bookings.room_id',)
-            ->whereNotIn('id', function ($query) use ($checkin_date) {
+            ->select('rooms.*', 'room_bookings.from_date', 'room_bookings.to_date')
+            ->whereNotIn('rooms.id', function ($query) use ($checkin_date) {
                 $query->where($checkin_date);
                 $query->whereBetween('from_date AND to_date');
             })
