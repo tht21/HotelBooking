@@ -57,7 +57,7 @@
                                     <td>{{++$key}}</td>
                                     <td><img src="{{asset($room->image_path)}}" height="70" width="80"></td>
                                     <td>{{$room->name}}</td>
-                                    <td>{{$room->price}}</td>
+                                    <td>{{number_format($room->price)}} VNĐ</td>
                                     <td>{{$room->room_type ? $room->room_type->name : ''}}</td>
                                     <td>
                                         {{$room->status}}
