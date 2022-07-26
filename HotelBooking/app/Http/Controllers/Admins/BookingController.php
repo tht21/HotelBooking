@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Exports\BookingExport;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookingRequest;
 use App\Services\Interfaces\BookingRoomServiceInterface;
 use App\Services\Interfaces\CustomerServiceInterface;

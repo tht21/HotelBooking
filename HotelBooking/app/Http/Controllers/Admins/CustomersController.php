@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCustomersRequest;
 use App\Models\Customers;
 use App\Services\Interfaces\CustomerServiceInterface;
@@ -17,6 +18,7 @@ class CustomersController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $customerService;
+
     public function __construct(CustomerServiceInterface $customerService)
     {
         $this->customerService = $customerService;

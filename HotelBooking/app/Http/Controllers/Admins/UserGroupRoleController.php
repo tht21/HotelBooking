@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUser_group_roleRequest;
 use App\Http\Requests\UpdateUser_group_roleRequest;
 use App\Models\User_group_role;
