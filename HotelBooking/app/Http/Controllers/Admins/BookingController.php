@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admins;
 use App\Exports\BookingExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookingRequest;
+use App\Models\Booking;
 use App\Services\Interfaces\BookingRoomServiceInterface;
 use App\Services\Interfaces\CustomerServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
@@ -37,9 +38,8 @@ class BookingController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('viewAny', Booking::class);
         $bookingrooms = $this->bookingRoomService->getAll($request);
-
-
         $rooms = $this->roomService->getAll($request);
         $param = [
             'bookingrooms' => $bookingrooms,
@@ -56,11 +56,11 @@ class BookingController extends Controller
     public function create(Request $request)
     {
 
+        $this->authorize('create', Booking::class);
         $bookingrooms = $this->bookingRoomService->getAll($request);
         $rooms = $this->roomService->getAll($request);
         $users = $this->userService->getAll($request);
         $customers = $this->customerService->getAll($request);
-
         $param = [
             'bookingrooms' => $bookingrooms,
             'rooms' => $rooms,
@@ -94,6 +94,7 @@ class BookingController extends Controller
      */
     public function list(Request $request)
     {
+        $this->authorize('viewAny', Booking::class);
         $bookingrooms = $this->bookingRoomService->getAll($request);
 //        print_r($bookingrooms);die;
         $rooms = $this->roomService->getAll($request);
@@ -114,6 +115,7 @@ class BookingController extends Controller
     public function edit($id)
     {
         $bookingrooms = $this->bookingRoomService->findById($id);
+        $this->authorize('update', $bookingrooms);
         $rooms = $this->roomService->getAll($id);
         $users = $this->userService->getAll($id);
         $customers = $this->customerService->getAll($id);

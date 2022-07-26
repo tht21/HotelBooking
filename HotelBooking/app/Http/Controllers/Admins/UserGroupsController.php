@@ -31,9 +31,6 @@ class UserGroupsController extends Controller
     {
         $this->authorize('viewAny',UserGroup::class);
         $items = $this->UserGroupService->getAll($request);
-        // dd($userGroups);
-        // return response()->json($items, 200);
-        // $userGroups = UserGroup::all();
         $params =[
             'items' => $items,
         ];
@@ -90,7 +87,7 @@ class UserGroupsController extends Controller
     public function edit($id)
     {
         $item = UserGroup::find($id);
-        // $this->authorize('update',  $userGroup);
+        $this->authorize('update',  $item);
         $current_user = Auth::user();
         $userRoles = $item->roles->pluck('id', 'name')->toArray();
         // dd($current_user->userGroup->roles->toArray());

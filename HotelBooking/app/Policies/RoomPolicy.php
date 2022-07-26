@@ -18,7 +18,7 @@ class RoomPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->hasPermission('Rooms_viewAny');
     }
 
     /**
@@ -30,7 +30,7 @@ class RoomPolicy
      */
     public function view(User $user, Room $room)
     {
-        //
+        return $user->hasPermission('Rooms_view');
     }
 
     /**
@@ -41,7 +41,7 @@ class RoomPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->hasPermission('Rooms_create');
     }
 
     /**
@@ -53,7 +53,7 @@ class RoomPolicy
      */
     public function update(User $user, Room $room)
     {
-        //
+        return $user->hasPermission('Rooms_update');
     }
 
     /**
@@ -65,7 +65,7 @@ class RoomPolicy
      */
     public function delete(User $user, Room $room)
     {
-        //
+        return $user->hasPermission('Rooms_delete');
     }
 
     /**
@@ -77,7 +77,7 @@ class RoomPolicy
      */
     public function restore(User $user, Room $room)
     {
-        //
+        return $user->hasPermission('Rooms_restore');
     }
 
     /**
@@ -89,6 +89,6 @@ class RoomPolicy
      */
     public function forceDelete(User $user, Room $room)
     {
-        //
+        return $user->hasPermission('Rooms_forceDelete');
     }
 }
