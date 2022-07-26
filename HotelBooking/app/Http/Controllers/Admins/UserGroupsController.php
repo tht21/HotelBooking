@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserGroupRequest;
 use App\Http\Requests\UpdateUserGroupRequest;
 use App\Models\Role;
@@ -25,9 +26,10 @@ class UserGroupsController extends Controller
     {
         $this->UserGroupService = $userGroupService;
     }
+
     public function index(Request $request)
     {
-       $this->authorize('viewAny',UserGroup::class);
+        $this->authorize('viewAny',UserGroup::class);
         $items = $this->UserGroupService->getAll($request);
         // dd($userGroups);
         // return response()->json($items, 200);

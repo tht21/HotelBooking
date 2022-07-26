@@ -1,5 +1,6 @@
 @extends('layouts.web.app')
 @section('content')
+    @include('layouts.web.includes.content')
 <section class="white_bg" id="rooms">
    <div class="container">
        <div class="main_title mt_wave mt_blue a_center">

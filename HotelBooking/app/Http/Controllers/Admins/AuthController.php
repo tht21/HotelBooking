@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,8 +13,8 @@ class AuthController extends Controller
         return view('admin.auth.login');
     }
 
-     public function postLogin(AuthRequest $request)
-     {
+    public function postLogin(AuthRequest $request)
+    {
         $data = $request->only('email','password');
         // dd(Hash::make(123456789));
         if( Auth::attempt($data)){

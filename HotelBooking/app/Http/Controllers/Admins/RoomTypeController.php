@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoomtypeRequest;
 use App\Http\Requests\UpdateRoomtypeRequest;
 use App\Services\Interfaces\RoomTypeServiceInterface;
@@ -11,10 +12,12 @@ use Illuminate\Support\Facades\Log;
 class RoomTypeController extends Controller
 {
     protected $roomTypeService;
+
     public function __construct(RoomTypeServiceInterface $roomTypeService)
     {
         $this->roomTypeService = $roomTypeService;
     }
+
     /**
      * Display a listing of the resource.
      *

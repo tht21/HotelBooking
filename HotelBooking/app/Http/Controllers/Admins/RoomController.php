@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoomRequest;
 use App\Models\Room;
 use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
@@ -136,7 +137,7 @@ class RoomController extends Controller
     {
         // dd($request);
         $rooms = $this->roomService->trashedItems();
-     //    dd($rooms);
+        //    dd($rooms);
         $params = [
             'rooms' => $rooms,
         ];

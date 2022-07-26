@@ -41,7 +41,7 @@
 <body>
    <div class="wrapper">
       @include('layouts.web.includes.header')
-      @include('layouts.web.includes.content')
+
             @yield('content')
       @include('layouts.web.includes.footer')
    </div>
@@ -49,17 +49,17 @@
    <div id="back_to_top">
    <i class="fa fa-angle-up" aria-hidden="true"></i>
    </div>
-   
+
    <div id="notification"></div>
-   
+
    <div class='buy-now left'>
-   <a href="https://1.envato.market/PKZzY" target="_blank" class='buy-now-btn'>
-      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-   </a>
-   <div class='ripple'></div>
+       <a href="https://1.envato.market/PKZzY" target="_blank" class='buy-now-btn'>
+           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+       </a>
+       <div class='ripple'></div>
    </div>
-   
-   
+
+
    <script type="text/javascript" src="{{asset('web/js/jquery.min.js')}}"></script>
    <script type="text/javascript" src="{{asset('web/js/bootstrap.min.js')}}"></script>
    <script type="text/javascript" src="{{asset('web/js/bootstrap-datepicker.min.js')}}"></script>
@@ -77,7 +77,7 @@
    <script type="text/javascript" src="{{asset('web/js/countUp.min.js')}}"></script>
    <script type="text/javascript" src="{{asset('web/js/jquery.countdown.min.js')}}"></script>
    <script type="text/javascript" src="{{asset('web/js/main.js')}}"></script>
-   
+
    <script type="text/javascript" src="{{asset('web/revolution/js/jquery.themepunch.tools.min.js')}}"></script>
    <script type="text/javascript"
    src="{{asset('web/revolution/js/jquery.themepunch.revolution.min.js')}}"></script>
@@ -99,9 +99,9 @@
    src="{{asset('web/revolution/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
    <script type="text/javascript"
    src="{{asset('web/revolution/js/extensions/revolution.extension.video.min.js')}}"></script>
-   
+
    </script>
-   
-   </body>
-   
-   </html>
+
+</body>
+
+</html>
