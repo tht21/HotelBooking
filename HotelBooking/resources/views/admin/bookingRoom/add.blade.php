@@ -99,7 +99,7 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Lưu</button>
-                                <a href="{{route('bookingrooms.index')}}" class="btn btn-danger">Hủy</a>
+                                <a href="{{route('bookingrooms.list')}}" class="btn btn-danger">Hủy</a>
                             </div>
                         </div>
                     </div>

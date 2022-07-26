@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\User;
 use App\Services\Interfaces\UserGroupServiceInterface;
 use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('viewAny',  User::class);
         $users = $this->userService->getAll($request);
         // dd(Auth::user()->user_group_id);
         return view('admin.user.index', compact('users'));
@@ -40,6 +42,7 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
+        $this->authorize('create',  User::class);
         $userGroups = $this->userGroupService->getAll($request);
         return view('admin.user.create', compact('userGroups'));
     }
@@ -83,6 +86,7 @@ class UserController extends Controller
     {
         $userGroups = $this->userGroupService->getAll($id);
         $user = $this->userService->findById($id);
+        $this->authorize('update', $user);
         return view('admin.user.edit', compact('userGroups', 'user'));
     }
 

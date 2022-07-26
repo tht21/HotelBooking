@@ -32,6 +32,7 @@ class RoomController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('viewAny',  Room::class);
         $rooms = $this->roomService->getAll($request);
         return view("admin.room.index", compact('rooms'));
     }
@@ -43,6 +44,7 @@ class RoomController extends Controller
      */
     public function create(Request $request)
     {
+        $this->authorize('create',  Room::class);
         $floors = $this->floorService->getAll($request);
         $roomTypes = $this->roomTypeService->getAll($request);
         $param = [
@@ -90,6 +92,7 @@ class RoomController extends Controller
         $room = $this->roomService->findById($id);
         $floors = $this->floorService->getAll($id);
         $roomTypes = $this->roomTypeService->getAll($id);
+        $this->authorize('update',$room);
         $param = [
             'floors' => $floors,
             'roomTypes' => $roomTypes,

@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\user_groups;
+use App\Models\UserGroup;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserGroupsPolicy
@@ -28,7 +28,7 @@ class UserGroupsPolicy
      * @param  \App\Models\user_groups  $userGroups
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, user_groups $userGroups)
+    public function view(User $user, UserGroup $userGroups)
     {
         return $user->hasPermission('UserGroup_view');
     }
@@ -51,7 +51,7 @@ class UserGroupsPolicy
      * @param  \App\Models\user_groups  $userGroups
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, user_groups $userGroup)
+    public function update(User $user, UserGroup $userGroup)
     {
         return $user->hasPermission('UserGroup_update');
     }
@@ -63,7 +63,7 @@ class UserGroupsPolicy
      * @param  \App\Models\UserGroup  $userGroup
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, user_groups $userGroup)
+    public function delete(User $user, UserGroup $userGroup)
     {
         return $user->hasPermission('UserGroup_delete');
     }
@@ -75,7 +75,7 @@ class UserGroupsPolicy
      * @param  \App\Models\UserGroup  $userGroup
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, user_groups $userGroup)
+    public function restore(User $user, UserGroup $userGroup)
     {
         return $user->hasPermission('UserGroup_restore');
     }
@@ -87,7 +87,7 @@ class UserGroupsPolicy
      * @param  \App\Models\UserGroup  $userGroup
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, user_groups $userGroup)
+    public function forceDelete(User $user, UserGroup $userGroup)
     {
         return $user->hasPermission('UserGroup_forceDelete');
     }

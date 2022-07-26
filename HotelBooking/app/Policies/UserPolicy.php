@@ -2,93 +2,92 @@
 
 namespace App\Policies;
 
-use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class BookingPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
     /**
      * Determine whether the user can view any models.
      *
-     * @param \App\Models\User $user
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function viewAny(User $user)
     {
-        return $user->hasPermission('Bookings_viewAny');
+        return $user->hasPermission('User_viewAny');
     }
 
     /**
      * Determine whether the user can view the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Booking $booking
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Booking $booking)
+    public function view(User $user, User $model)
     {
-        return $user->hasPermission('Bookings_view');
+        return $user->hasPermission('User_view');
     }
 
     /**
      * Determine whether the user can create models.
      *
-     * @param \App\Models\User $user
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user)
     {
-        return $user->hasPermission('Bookings_create');
+        return $user->hasPermission('User_create');
     }
 
     /**
      * Determine whether the user can update the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Booking $booking
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Booking $booking)
+    public function update(User $user, User $model)
     {
-        return $user->hasPermission('Bookings_update');
+        return $user->hasPermission('User_update');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Booking $booking
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Booking $booking)
+    public function delete(User $user, User $model)
     {
-        return $user->hasPermission('Bookings_delete');
+        return $user->hasPermission('User_delete');
     }
 
     /**
      * Determine whether the user can restore the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Booking $booking
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Booking $booking)
+    public function restore(User $user, User $model)
     {
-        return $user->hasPermission('Bookings_restore');
+        return $user->hasPermission('User_restore');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Booking $booking
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Booking $booking)
+    public function forceDelete(User $user, User $model)
     {
-        return $user->hasPermission('Bookings_forceDelete');
+        return $user->hasPermission('User_forceDelete');
     }
 }
