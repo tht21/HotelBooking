@@ -20,7 +20,7 @@ class CustomerRepository extends EloquentRepository implements CustomerInterface
             $name = $request->name;
             $customers->where('name', 'LIKE', '%' . $name . '%');
         }
-        return $customers->orderBy('id', 'desc')->paginate(10);
+        return $customers->orderBy('id', 'desc')->paginate(2);
     }
 
     public function destroy($id)
@@ -99,17 +99,17 @@ class CustomerRepository extends EloquentRepository implements CustomerInterface
 
     public function force_destroy($id)
     {
-        
+
         try {
             $customer = $this->model->withTrashed()->find($id);
-     
+
             $customer->forceDelete();
-           
+
             return $customer;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return false;
         }
-       
+
     }
 }

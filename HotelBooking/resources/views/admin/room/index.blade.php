@@ -92,8 +92,11 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+
                     </div>
                 </div>
+                {{$rooms->appends(request()->query())}}
             </div>
         </div>
     </div>

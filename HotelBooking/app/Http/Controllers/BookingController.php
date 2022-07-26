@@ -135,9 +135,16 @@ class BookingController extends Controller
      * @param \App\Models\Booking $booking
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBookingRequest $request, Booking $booking)
+    public function update(Request $request, $id)
     {
-        //
+
+        try {
+            $this->bookingRoomService->update($request, $id);
+            return redirect()->route('bookingrooms.list');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('bookingrooms.list');
+        }
     }
 
     /**
@@ -201,7 +208,7 @@ class BookingController extends Controller
         $check = DB::table('rooms')
             ->join('room_bookings', 'rooms.id', '=', 'room_bookings.room_id')
             ->join('bookings', 'room_bookings.booking_id', '=', 'bookings.id')
-            ->select('rooms.*', 'room_bookings.from_date', 'room_bookings.to_date')
+            ->select('rooms.*', 'room_bookings.*', 'bookings.*')
             ->whereNotIn('rooms.id', function ($query) use ($checkin_date) {
                 $query->where($checkin_date);
                 $query->whereBetween('from_date AND to_date');

@@ -4,7 +4,8 @@
         @include('layouts.admin.includes.content',['key'=> 'Quản lý đặt phòng ','name'=> ' Quản Lý Phòng','key' => 'Quản lý đặt phòng'])
         <div class="col-md-12">
             <div class="card">
-                <form method="post" action="{{route('bookingrooms.store')}}">
+                <form method="post" action="{{route('bookingrooms.update',$bookingrooms->id)}}">
+                    @method('put')
                     @csrf
                     <div class="card-body">
                         <div class="row">
@@ -12,7 +13,7 @@
                                 <div class="card-title">Chỉnh sửa khách hàng</div>
                                 <div class="form-group">
                                     <label>Mã khách hàng</label>
-                                    <input type="number" class="form-control" id="name"
+                                    <input type="number" class="form-control" id="name" name="customer_id"
                                            placeholder="Nhập tên khách hàng" value="{{$bookingrooms->customer->id}}"
                                            readonly>
                                 </div>
@@ -67,21 +68,20 @@
                                 <div class="row form-group">
                                     <div class="col-3">
                                         <label>Tên nhân viên</label>
-                                        <input type="text" class="form-control" id="name"
-                                               placeholder="Nhập tên khách hàng" value="{{$bookingrooms->user->name}}"
+                                        <input type="text" class="form-control" id="name" name="user_id"
+                                               placeholder="{{$bookingrooms->user->name}}"
+                                               value="{{$bookingrooms->user->id}}"
                                                readonly>
                                     </div>
                                     <div class="col-3">
-                                        <label>Quyền</label>
-                                        <input type="text" class="form-control" id="name"
-                                               placeholder="Nhập tên khách hàng"
-                                               value="{{$bookingrooms->user->userGroup->name}}" readonly>
                                     </div>
                                     <div class="col-3">
                                         <label>Phòng</label>
                                         <select class="form-control rooms_select_choose" name="room_id" multiple>
                                             @foreach($bookingrooms->room as $room)
-                                                <option value="{{$room->id}}" selected>{{$room->name}}</option>
+                                                <option value="{{$room->id}}">{{$room->name}}</option>
+                                                {{--                                                <option value="{{$room->id}}" selected>{{$room->name}}</option>--}}
+
                                             @endforeach
                                         </select>
                                     </div>

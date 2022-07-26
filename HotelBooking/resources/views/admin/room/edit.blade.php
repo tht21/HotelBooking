@@ -46,13 +46,13 @@
 
                                     <div class="form-group">
                                         <label for="exampleFormControlFile1">Tiện nghi</label>
-                                        <textarea id="summer" data-toggle="summernote" name="convenient" type="text"
+                                        <textarea data-toggle="summernote" name="convenient" type="text"
                                                   class="form-control">{{$room->convenient}}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="comment">Ảnh</label>
                                         <input type="file" name="image_path" class="form-control-file"
-                                               id="exampleFormControlFile1" value="{{$room ->image_path}}">
+                                               id="exampleFormControlFile1">
                                         <br>
                                         <img src="{{$room->image_path}}" height="70" width="80">
                                     </div>

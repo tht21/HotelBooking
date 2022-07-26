@@ -92,6 +92,7 @@
                   </table>
                </div>
             </div>
+{{--             {{$customers->appends(request()->query())}}--}}
          </div>
       </div>
    </div>

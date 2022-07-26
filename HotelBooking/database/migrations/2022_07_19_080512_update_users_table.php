@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('birth_day');
             $table->string('address');
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->string('phone');
             $table->string('gender');
             $table->unsignedBigInteger('user_group_id');
