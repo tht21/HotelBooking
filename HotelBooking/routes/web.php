@@ -1,15 +1,14 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BookingController;
-
-use App\Http\Controllers\CustomersController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RoomController;
-use App\Http\Controllers\RoomTypeController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserGroupsController;
+use App\Http\Controllers\Admins\AuthController;
+use App\Http\Controllers\Admins\BookingController;
+use App\Http\Controllers\Admins\CustomersController;
+use App\Http\Controllers\Admins\HomeController;
+use App\Http\Controllers\Admins\ProfileController;
+use App\Http\Controllers\Admins\RoomController;
+use App\Http\Controllers\Admins\RoomTypeController;
+use App\Http\Controllers\Admins\UserController;
+use App\Http\Controllers\Admins\UserGroupsController;
 use Illuminate\Support\Facades\Route;
 
 /*

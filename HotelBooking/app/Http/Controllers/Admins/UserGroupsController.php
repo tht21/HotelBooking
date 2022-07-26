@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admins;
 
-use App\Models\UserGroup;
-use App\Http\Requests\Storeuser_groupsRequest;
 use App\Http\Requests\StoreUserGroupRequest;
-use App\Http\Requests\Updateuser_groupsRequest;
 use App\Http\Requests\UpdateUserGroupRequest;
 use App\Models\Role;
+use App\Models\UserGroup;
 use App\Services\Interfaces\UserGroupServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

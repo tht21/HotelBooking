@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admins;
 
-use App\Models\Customers;
 use App\Http\Requests\StoreCustomersRequest;
-use App\Http\Requests\UpdateCustomersRequest;
+use App\Models\Customers;
 use App\Services\Interfaces\CustomerServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -96,10 +95,10 @@ class CustomersController extends Controller
      */
     public function update(Request $request,$id)
     {
-      
+
         try {
             $this->customerService->update($request, $id);
-            
+
             return redirect()->route('customers.index')->with('success', 'Sửa thông tin khách hàng' . ' ' . $request->name . ' ' .  'thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());

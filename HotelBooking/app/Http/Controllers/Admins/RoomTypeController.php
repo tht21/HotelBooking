@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admins;
 
 use App\Http\Requests\StoreRoomtypeRequest;
 use App\Http\Requests\UpdateRoomtypeRequest;
@@ -90,14 +90,14 @@ class RoomTypeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRoomtypeRequest $request, $id) 
+    public function update(UpdateRoomtypeRequest $request, $id)
     {
         try {
             $this->roomTypeService->update($request, $id);
-            return redirect()->route('roomtype.index')->with('success', 'Sửa loại phòng' . ' ' . $request->name . ' ' .  'thành công');
+            return redirect()->route('roomtype.index')->with('success', 'Sửa loại phòng' . ' ' . $request->name . ' ' . 'thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('roomtype.index')->with('error', 'Sửa loại phòng' . ' ' . $request->name . ' ' .  'không thành công');
+            return redirect()->route('roomtype.index')->with('error', 'Sửa loại phòng' . ' ' . $request->name . ' ' . 'không thành công');
         }
     }
 
