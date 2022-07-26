@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admins;
 
 use App\Models\Booking;
 use App\Models\Customers;
 use App\Models\Room;
-use App\Models\RoomType;
 use App\Models\User;
 use App\Models\UserGroup;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $room_count = Room::count();
         $roomtype_vip = Room::where('room_types_id', '=', 1)->count();
         $user_count = User::where('user_group_id', '!=', 1 )->count();

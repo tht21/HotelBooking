@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admins;
 
 use App\Http\Requests\StoreRoomRequest;
-use App\Http\Requests\UpdateRoomRequest;
 use App\Models\Room;
 use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
 use App\Services\Interfaces\FloorServiceInterface;
