@@ -27,6 +27,7 @@ class CustomersController extends Controller
     public function index(Request $request)
     {
         // dd(trans('translation.hello'));
+        $this->authorize('viewAny',Customers::class);
         $customers = $this->customerService->getAll($request);
         $params = [
             "customers" => $customers,
@@ -41,6 +42,7 @@ class CustomersController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',Customers::class);
         return view('admin.customers.add');
     }
 
@@ -81,6 +83,7 @@ class CustomersController extends Controller
     public function edit(Customers $customers,$id)
     {
         $customer = $this->customerService->findById($id);
+        $this->authorize('update',$customer);
         $params = [
             'customer' => $customer,
         ];
@@ -96,7 +99,6 @@ class CustomersController extends Controller
      */
     public function update(Request $request,$id)
     {
-      
         try {
             $this->customerService->update($request, $id);
             

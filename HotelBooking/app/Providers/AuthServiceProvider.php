@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Customers;
 use App\Models\RoomType;
 use App\Models\UserGroup;
+use App\Policies\CustomersPolicy;
 use App\Policies\RoomTypePolicy;
 use App\Policies\UserGroupPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -19,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         RoomType::class => RoomTypePolicy::class,
         UserGroup::class => UserGroupPolicy::class,
+        Customers::class => CustomersPolicy::class
     ];
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRoomtypeRequest;
 use App\Http\Requests\UpdateRoomtypeRequest;
+use App\Models\RoomType;
 use App\Services\Interfaces\RoomTypeServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -22,6 +23,7 @@ class RoomTypeController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('viewAny',RoomType::class);
         $roomtypes = $this->roomTypeService->getAll($request);
         $params = [
             "roomtypes" => $roomtypes,
@@ -36,6 +38,7 @@ class RoomTypeController extends Controller
      */
     public function create()
     {
+        $this->authorize('create',RoomType::class);
         return view('admin.roomType.add');
     }
 
@@ -77,6 +80,7 @@ class RoomTypeController extends Controller
     public function edit($id)
     {
         $roomtype = $this->roomTypeService->findById($id);
+        $this->authorize('update',$roomtype);
         $params = [
             'roomtype' => $roomtype,
         ];

@@ -90,7 +90,7 @@ class UserGroupsController extends Controller
     public function edit($id)
     {
         $item = UserGroup::find($id);
-        // $this->authorize('update',  $userGroup);
+        $this->authorize('update',  $item);
         $current_user = Auth::user();
         $userRoles = $item->roles->pluck('id', 'name')->toArray();
         // dd($current_user->userGroup->roles->toArray());
