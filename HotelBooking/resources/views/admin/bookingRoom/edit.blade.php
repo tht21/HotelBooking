@@ -17,28 +17,20 @@
                                            placeholder="Nhập tên khách hàng" value="{{$bookingrooms->customer->id}}"
                                            readonly>
                                 </div>
-                                <div class="form-group">
-                                    <label>Tên khách hàng</label>
-                                    <input type="text" class="form-control" id="name"
-                                           placeholder="Nhập tên khách hàng" value="{{$bookingrooms->customer->name}}"
-                                           readonly>
-                                </div>
-
                                 <div class="row form-group">
                                     <div class="col-6">
+                                        <label>Tên khách hàng</label>
+                                        <input type="text" class="form-control" id="name"
+                                               placeholder="Nhập tên khách hàng"
+                                               value="{{$bookingrooms->customer->name}}"
+                                               readonly>
+                                        <br>
                                         <label>Số lượng người</label>
                                         <input type="number" class="form-control" id="name" name="limit_people"
-                                               placeholder="Nhập tên khách hàng"
+                                               placeholder="Số lượng khách hàng"
                                                value="{{$bookingrooms->limit_people}}">
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('limit_people') }}</p>
-                                        @endif
-                                        <br>
-                                        <label>Tổng tiền phòng</label>
-                                        <input type="number" class="form-control" id="name" name="total_room"
-                                               placeholder="Nhập tên khách hàng" value="{{$bookingrooms->total_room}}">
-                                        @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('total_room') }}</p>
                                         @endif
                                     </div>
                                     <div class="col-6">

@@ -33,7 +33,7 @@
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input type="text" class="form-control" id="email" name="email"
-                                            value="{{$user->email}}">
+                                           value="{{$user->email}}">
                                     @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('email') }}</p>
                                     @endif
@@ -54,7 +54,8 @@
                                 <div class="row form-group">
                                     <div class="col-9">
                                         <label>Ngày sinh</label>
-                                        <input type="date" class="form-control" id="email" name="birth_day"
+                                        <input type="date" id="example"
+                                               class="form-control" name="birth_day"
                                                value="{{$user->birth_day}}">
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('birth_day') }}</p>

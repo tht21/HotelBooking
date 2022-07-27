@@ -7,15 +7,15 @@
                 <div class="col-md-8">
                     <div class="slider">
                         <div id="slider-larg" class="owl-carousel image-gallery">
-
-                            <div class="item lightbox-image-icon">
-                                <a href="images/rooms/single-room/single-room1.jpg"
-                                   class="hover_effect h_lightbox h_blue">
-                                    <img class="img-responsive" src="images/rooms/single-room/single-room1.jpg"
-                                         alt="Image">
-                                </a>
-                            </div>
-
+                            @foreach($rooms as $room)
+                                <div class="item lightbox-image-icon">
+                                    <a href="images/rooms/single-room/single-room1.jpg"
+                                       class="hover_effect h_lightbox h_blue">
+                                        <img class="img-responsive" src="{{$room->image_path}}"
+                                             alt="Image">
+                                    </a>
+                                </div>
+                            @endforeach
                         </div>
                         <div id="thumbs" class="owl-carousel">
 

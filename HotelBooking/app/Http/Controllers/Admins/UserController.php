@@ -55,6 +55,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+
         try {
             $this->userService->create($request);
             return redirect()->route('users.index');

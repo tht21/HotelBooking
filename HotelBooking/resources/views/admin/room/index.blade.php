@@ -40,21 +40,21 @@
                     <div class="table-responsive">
                         <table id="add-row" class="display table table-striped table-hover">
                             <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Ảnh phòng</th>
-                                    <th>Tên phòng</th>
-                                    <th>Giá phòng</th>
-                                    <th>Loại phòng</th>
-                                    <th>Trạng thái</th>
-                                    <th style="width: 10%">Action</th>
-                                </tr>
+                            <tr>
+                                <th>Mã phòng</th>
+                                <th>Ảnh phòng</th>
+                                <th>Tên phòng</th>
+                                <th>Giá phòng</th>
+                                <th>Loại phòng</th>
+                                <th>Trạng thái</th>
+                                <th style="width: 10%">Action</th>
+                            </tr>
                             </thead>
                             <tbody>
                             @foreach($rooms as $key=>$room)
 
                                 <tr>
-                                    <td>{{++$key}}</td>
+                                    <td>{{$room->id}}</td>
                                     <td><img src="{{asset($room->image_path)}}" height="70" width="80"></td>
                                     <td>{{$room->name}}</td>
                                     <td>{{number_format($room->price)}} VNĐ</td>
