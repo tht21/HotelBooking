@@ -10,6 +10,7 @@ use App\Http\Controllers\Admins\RoomTypeController;
 use App\Http\Controllers\Admins\UserController;
 use App\Http\Controllers\Admins\UserGroupsController;
 use App\Http\Controllers\Webs\RoomDetailController;
+use App\Http\Controllers\Webs\RoomWebController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -90,4 +91,5 @@ Route::group([
         return view('web.home.index');
     });
     Route::get('roomDetail', [RoomDetailController::class, 'index'])->name('roomDetail.index');
+    Route::get('room', [RoomWebController::class, 'index'])->name('room.index');
 });
