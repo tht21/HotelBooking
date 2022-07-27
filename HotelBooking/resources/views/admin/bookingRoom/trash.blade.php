@@ -39,7 +39,7 @@
                             <table id="add-row" class="display table table-striped table-hover">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Mã đơn hàng</th>
                                     <th>Tên khách hàng</th>
                                     <th>Tên phòng</th>
                                     <th>Tiền phòng</th>
@@ -49,38 +49,36 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($bookingrooms as $key=> $bookingroom )
-                                    @foreach($bookingroom->room as $key=> $booking )
-                                        <tr>
-                                            <td>{{$bookingroom->id}}</td>
-                                            <td>{{$bookingroom->customer->name}}</td>
-                                            <td>{{$booking->name}}</td>
-                                            <td>{{$booking->price}}</td>
-                                            <td>{{$bookingroom->total_room}}</td>
-                                            <td>{{$bookingroom->limit_people}}</td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <a href="{{route('bookingrooms.restore',$bookingroom->id)}}"
-                                                       data-toggle="tooltip"
-                                                       title="" class="btn btn-link btn-primary btn-lg"
-                                                       data-original-title="Khôi Phục Loại Phòng">
-                                                        <i class="fas fa-trash-restore"></i>
-                                                    </a>
-                                                    <form
-                                                        action="{{ route('bookingrooms.force_destroy',$bookingroom->id)}}"
-                                                        style="display:inline" method="post">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button onclick="return confirm('Xóa {{$booking->name}} ?')"
-                                                                data-toggle="tooltip" title=""
-                                                                class="btn btn-link btn-danger"
-                                                                data-original-title="Xóa Vĩnh Viễn"><i
-                                                                class="far fa-trash-alt"></i></button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                @foreach($roomBooks as $bookingroom)
+                                    <tr>
+                                        <td>{{$bookingroom->id}}</td>
+                                        <td>{{$bookingroom->bookings->customer->name}}</td>
+                                        <td>{{$bookingroom->roomss->name}}</td>
+                                        <td>{{$bookingroom->roomss->price}}</td>
+                                        <td>{{$bookingroom->bookings->total_room}}</td>
+                                        <td>{{$bookingroom->bookings->limit_people}}</td>
+                                        <td>
+                                            <div class="form-button-action">
+                                                <a href="{{route('bookingrooms.restore',$bookingroom->id)}}"
+                                                   data-toggle="tooltip"
+                                                   title="" class="btn btn-link btn-primary btn-lg"
+                                                   data-original-title="Khôi Phục Loại Phòng">
+                                                    <i class="fas fa-trash-restore"></i>
+                                                </a>
+                                                <form
+                                                    action="{{ route('bookingrooms.force_destroy',$bookingroom->id)}}"
+                                                    style="display:inline" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button onclick="return confirm('Xóa  ?')"
+                                                            data-toggle="tooltip" title=""
+                                                            class="btn btn-link btn-danger"
+                                                            data-original-title="Xóa Vĩnh Viễn"><i
+                                                            class="far fa-trash-alt"></i></button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>

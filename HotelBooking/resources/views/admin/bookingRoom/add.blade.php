@@ -33,6 +33,14 @@
                                             <p style="color:red">{{ $errors->first('limit_people') }}</p>
                                         @endif
                                         <br>
+                                        <label>Phòng </label>
+                                        <select class="form-control rooms_select_choose" id="exampleFormControlSelect1"
+                                                name="room_id[]" multiple="multiple">
+                                            @foreach($rooms as $room)
+                                                <option value="{{$room->id}}">{{$room->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        <br> <br>
                                         <label>Tổng tiền phòng</label>
                                         <input type="number" class="form-control" id="name" name="total_room"
                                                placeholder="Tổng tiền" value="{{old('total_room')}}">
@@ -55,6 +63,11 @@
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('to_date') }}</p>
                                         @endif
+                                        <br>
+                                        <label>Số ngày </label>
+                                        <input type="text" class="form-control"
+                                               {{--                                               value="{{}}"--}}
+                                               readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -75,27 +88,11 @@
                                         </select>
                                     </div>
                                     <div class="col-3">
-                                        <label>Quyền</label>
-                                        <select class="form-control" name="user_id">
-                                            @foreach($users as $user)
-                                                <option
-                                                    value="{{$user->userGroup->id}}">{{$user->userGroup->name}}</option>
-                                            @endforeach
-                                        </select>
+
                                     </div>
                                     <div class="col-3">
-                                        <label>Phòng có sẵn</label>
-                                        <select class="form-control rooms_select_choose" id="exampleFormControlSelect1"
-                                                name="room_id[]" multiple="multiple">
-                                            @foreach($rooms as $room)
-                                                <option value="{{$room->id}}">{{$room->name}}</option>
-                                            @endforeach
-                                        </select>
-                                        {{--                                        <select class="form-control rooms_select_choose room_list"--}}
-                                        {{--                                                id="exampleFormControlSelect1"--}}
-                                        {{--                                                name="room_id[]" multiple="multiple">--}}
 
-                                        {{--                                        </select>--}}
+
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Lưu</button>
@@ -109,30 +106,4 @@
     </div>
 @endsection
 @section('js')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".checkin_date").on('blur', function () {
-                var _checkindate = $(this).val();
-                // Ajax
-                $.ajax({
-                    url: "{{url('admin/bookingrooms')}}/available-rooms/" + _checkindate,
-                    dataType: 'json',
-                    // beforeSend:function(){
-                    //     $(".room-list").html('<option>--- Loading ---</option>');
-                    // },
-                    success: function (res) {
-                        console.log(res)
-                        // var _html='';
-                        // $.each(res.data,function(index,row){
-                        //     _html+='<option data-price="'+row.roomtype.price+'" value="'+row.room.id+'">'+row.room.title+'-'+row.roomtype.title+'</option>';
-                        // });
-                        // $(".room-list").html(_html);
-                        // var _selectedPrice=$(".room-list").find('option:selected').attr('data-price');
-                        // $(".room-price").val(_selectedPrice);
-                        // $(".show-room-price").text(_selectedPrice);
-                    }
-                });
-            });
-        });
-    </script>
 @endsection

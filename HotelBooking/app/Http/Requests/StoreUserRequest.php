@@ -31,7 +31,6 @@ class StoreUserRequest extends FormRequest
             'address' => 'required',
             'avatar' => 'required',
             'phone' => 'required|unique:users',
-            'gender ' => 'required',
 
         ];
     }

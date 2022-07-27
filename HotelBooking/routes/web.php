@@ -5,6 +5,7 @@ use App\Http\Controllers\Admins\BookingController;
 use App\Http\Controllers\Admins\CustomersController;
 use App\Http\Controllers\Admins\HomeController;
 use App\Http\Controllers\Admins\ProfileController;
+use App\Http\Controllers\Admins\RoomBookController;
 use App\Http\Controllers\Admins\RoomController;
 use App\Http\Controllers\Admins\RoomTypeController;
 use App\Http\Controllers\Admins\UserController;
@@ -56,6 +57,7 @@ Route::group([
         Route::delete('/force_destroy/{id}', [BookingController::class, 'force_destroy'])->name('bookingrooms.force_destroy');
         Route::get('/restore/{id}', [BookingController::class, 'restore'])->name('bookingrooms.restore');
         Route::get('/available-rooms/{checkin_date}', [BookingController::class, 'available_room'])->name('bookingrooms.available_room');
+
     });
     Route::prefix('customers')->group(function () {
         Route::get('/trash', [CustomersController::class, 'trashedItems'])->name('customers.trash');
@@ -73,6 +75,7 @@ Route::group([
         Route::delete('/force_destroy/{id}', [UserController::class, 'force_destroy'])->name('users.force_destroy');
         Route::get('/restore/{id}', [UserController::class, 'restore'])->name('users.restore');
     });
+
     Route::resource('profile', ProfileController::class);
     Route::resource('roomtype', RoomTypeController::class);
     Route::resource('rooms', RoomController::class);

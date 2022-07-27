@@ -29,8 +29,6 @@ class UpdateUserRequest extends FormRequest
             'birth_day' => 'required',
             'address' => 'required',
             'phone' => 'required',
-            'gender ' => 'required',
-
         ];
     }
 
