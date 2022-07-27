@@ -194,7 +194,7 @@
         height: 100
     });
 </script>
-@yield('js')
+
 <script src="{{asset('admin/vendor/select2/dist/js/select2.min.js')}}"></script>
 <script src="{{asset('admin/booking/add/add.js')}}"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -220,6 +220,7 @@
             break;
     }
     @endif
+    @yield('js')
 </script>
 </body>
 </html>
