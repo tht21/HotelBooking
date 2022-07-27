@@ -2,7 +2,7 @@
 
 namespace App\Services\Interfaces;
 
-interface  RoomServiceInterface extends Service
+interface  RoomBookServiceInterface extends Service
 {
     public function trashedItems();
 

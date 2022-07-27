@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Interfaces;
+namespace App\Repositories\Interfaces;
 
-interface  RoomServiceInterface extends Service
+interface RoomBookInterface extends RepositoryInterface
 {
     public function trashedItems();
 

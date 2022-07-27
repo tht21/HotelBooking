@@ -20,7 +20,7 @@ class CustomerRepository extends EloquentRepository implements CustomerInterface
             $name = $request->name;
             $customers->where('name', 'LIKE', '%' . $name . '%');
         }
-        return $customers->orderBy('id', 'desc')->paginate(2);
+        return $customers->orderBy('id', 'desc')->paginate(5);
     }
 
     public function destroy($id)

@@ -22,8 +22,29 @@ class UserRepository extends EloquentRepository implements UserInterface
 
     public function getAll($request)
     {
-        $result = $this->model->paginate(10);
-        return $result;
+        $user = $this->model->select('*');
+        if (isset($request->name) && $request->name) {
+            $name = $request->name;
+            $user->where('name', 'LIKE', '%' . $name . '%');
+        }
+        if (isset($request->phone) && $request->phone) {
+            $phone = $request->phone;
+            $user->where('phone', 'LIKE', '%' . $phone . '%');
+        }
+        if (isset($request->address) && $request->address) {
+            $address = $request->address;
+            $user->where('address', 'LIKE', '%' . $address . '%');
+        }
+        if (isset($request->user_group_id) && $request->user_group_id) {
+            $user_group_id = $request->user_group_id;
+            $user->where('user_group_id', 'LIKE', '%' . $user_group_id . '%');
+        }
+
+
+        $user->orderBy('id', 'desc');
+        $users = $user->paginate(5);
+
+        return $users;
     }
 
     public function destroy($id)
@@ -85,12 +106,17 @@ class UserRepository extends EloquentRepository implements UserInterface
             $object->gender = $request->gender;
             $object->address = $request->address;
             $object->user_group_id = $request->user_group_id;
-            $dataUploadImage = $this->storageUpload($request, 'avatar', 'room');
-            $object->avatar = $dataUploadImage['file_path'];
+            if ($request->avatar) {
+                $dataUploadImage = $this->storageUpload($request, 'avatar', 'room');
+                $object->avatar = $dataUploadImage['file_path'];
+            } else {
+                $object->avatar = $object->avatar;
+            }
+
             // dd($object);
             $object->save();
             DB::commit();
-            Session::flash('success', 'Thêm nhân viên' . ' ' . $request->name . ' ' . 'thành công');
+            Session::flash('success', 'Chỉnh sửa nhân viên' . ' ' . $request->name . ' ' . 'thành công');
             return true;
         } catch (\Exception $e) {
             DB::rollBack();

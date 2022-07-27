@@ -7,11 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookingRequest;
 use App\Services\Interfaces\BookingRoomServiceInterface;
 use App\Services\Interfaces\CustomerServiceInterface;
+use App\Services\Interfaces\RoomBookServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
 use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
 
 class BookingController extends Controller
@@ -20,13 +21,15 @@ class BookingController extends Controller
     protected $roomService;
     protected $userService;
     protected $customerService;
+    protected $roomBookService;
 
-    public function __construct(BookingRoomServiceInterface $bookingRoomService, RoomServiceInterface $roomService, UserServiceInterface $userService, CustomerServiceInterface $customerService)
+    public function __construct(BookingRoomServiceInterface $bookingRoomService, RoomServiceInterface $roomService, UserServiceInterface $userService, CustomerServiceInterface $customerService, RoomBookServiceInterface $roomBookService)
     {
         $this->bookingRoomService = $bookingRoomService;
         $this->roomService = $roomService;
         $this->userService = $userService;
         $this->customerService = $customerService;
+        $this->roomBookService = $roomBookService;
 
     }
 
@@ -154,8 +157,9 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
+
         try {
-            $this->bookingRoomService->destroy($id);
+            $this->roomBookService->destroy($id);
             // return response()->json(['data'=>'removed'],200);
             return redirect()->route('bookingrooms.list');
         } catch (\Exception $e) {
@@ -166,10 +170,10 @@ class BookingController extends Controller
 
     public function trashedItems()
     {
-        $bookingrooms = $this->bookingRoomService->trashedItems();
-        //   dd($bookingrooms);
+
+        $bookingrooms = $this->roomBookService->trashedItems();
         $params = [
-            'bookingrooms' => $bookingrooms,
+            'roomBooks' => $bookingrooms,
         ];
         return view('admin.bookingRoom.trash', $params);
     }
@@ -177,7 +181,7 @@ class BookingController extends Controller
     public function restore($id)
     {
         try {
-            $this->bookingRoomService->restore($id);
+            $this->roomBookService->restore($id);
             return redirect()->route('bookingrooms.trash')->with('success', 'Khôi phục thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
@@ -189,31 +193,19 @@ class BookingController extends Controller
     {
         //dd($this->roomService->force_destroy($id));
         try {
-            $room = $this->bookingRoomService->force_destroy($id);
-            return redirect()->route('bookingrooms.trash');
+            $room = $this->roomBookService->force_destroy($id);
+            return redirect()->route('bookingrooms.trash')->with('success' . 'Xóa thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('bookingrooms.trash');
+            return redirect()->route('bookingrooms.trash')->with('error', 'Xóa không thành công');
         }
     }
+
 
     public function export()
     {
         return FacadesExcel::download(new BookingExport, 'Booking.xlsx');
     }
 
-    public function available_room(Request $request, $checkin_date)
-    {
-        $check = DB::table('rooms')
-            ->join('room_bookings', 'rooms.id', '=', 'room_bookings.room_id')
-            ->join('bookings', 'room_bookings.booking_id', '=', 'bookings.id')
-            ->select('rooms.*', 'room_bookings.*', 'bookings.*')
-            ->whereNotIn('rooms.id', function ($query) use ($checkin_date) {
-                $query->where($checkin_date);
-                $query->whereBetween('from_date AND to_date');
-            })
-            ->get();
 
-        return response()->json($check);
-    }
 }

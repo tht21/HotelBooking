@@ -26,7 +26,8 @@
                             </div>
                             <div class="trash">
                                 <li class="nav-item2">
-                                    <a class="nav-link active " href="{{route('bookingrooms.trash')}}">Thùng Rác</a>
+                                    <a class="nav-link active " href="{{route('bookingrooms.trash')}}">lịch sử đặt
+                                        phòng</a>
                                 </li>
                             </div>
                         </ul>
@@ -44,9 +45,11 @@
                             <table id="add-row" class="display table table-striped table-hover">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Mã đơn hàng</th>
                                     <th>Tên khách hàng</th>
                                     <th>Tên phòng</th>
+                                    <th>Ngày nhận phòng</th>
+                                    <th>Ngày trả phòng</th>
                                     <th>Tiền phòng</th>
                                     <th>Tổng phòng</th>
                                     <th>Số lượng người</th>
@@ -56,12 +59,16 @@
                                 <tbody>
                                 @foreach($bookingrooms as $key=> $bookingroom )
                                     @foreach($bookingroom->roombooking as $key1=> $booking )
+
                                         @if($bookingroom->id===$booking->booking_id)
+
                                             <tr>
-                                                <td>{{$bookingroom->id}}</td>
+                                                <td>{{$booking->id}}</td>
                                                 <td>{{$bookingroom->customer->name}}</td>
                                                 <td>{{$booking->roomss->name}}</td>
-                                                <td>{{number_format($booking->roomss->price)}} VNĐ</td>
+                                                <td>{{Helper::dateFormat($bookingroom->from_date)}}</td>
+                                                <td>{{Helper::dateFormat($bookingroom->to_date)}}</td>
+                                                <td>{{ Helper::convertToRupiah($booking->roomss->price)}} </td>
                                                 <td>{{$bookingroom->total_room}}</td>
                                                 <td>{{$bookingroom->limit_people}}</td>
                                                 <td>
@@ -73,7 +80,7 @@
                                                             <i class="fa fa-edit"></i>
                                                         </a>
                                                         <form
-                                                            action="{{ route('bookingrooms.destroy',$bookingroom->id)}}"
+                                                            action="{{ route('bookingrooms.destroy',$booking->id)}}"
                                                             style="display:inline" method="post">
                                                             <button
                                                                 onclick="return confirm('Hủy đặt phòng {{$booking->roomss->name}} ?')"
@@ -84,10 +91,6 @@
                                                             @csrf
                                                             @method('delete')
                                                         </form>
-                                                        {{--                                                        <a data-url="{{ route('bookingrooms.destroy',$bookingroom->id)}}"--}}
-                                                        {{--                                                           class="btn btn-link btn-danger " id="deleteBook"--}}
-                                                        {{--                                                           data-target="#delete">Hủy--}}
-                                                        {{--                                                            đặt</a>--}}
                                                     </div>
                                                 </td>
                                             </tr>
