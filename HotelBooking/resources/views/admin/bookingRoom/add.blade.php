@@ -36,7 +36,6 @@
                                         <label>Phòng </label>
                                         <select class="form-control rooms_select_choose" id="exampleFormControlSelect1"
                                                 name="room_id[]" multiple="multiple">
-                                            <option value="">123</option>
                                             @foreach($rooms as $room)
                                                 <option value="{{$room->id}}">{{$room->name}}</option>
                                             @endforeach
@@ -64,6 +63,11 @@
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('to_date') }}</p>
                                         @endif
+                                        <br>
+                                        <label>Số ngày </label>
+                                        <input type="text" class="form-control"
+                                               {{--                                               value="{{}}"--}}
+                                               readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">

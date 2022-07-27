@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admins;
 use App\Exports\BookingExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookingRequest;
+use App\Models\Booking;
 use App\Services\Interfaces\BookingRoomServiceInterface;
 use App\Services\Interfaces\CustomerServiceInterface;
 use App\Services\Interfaces\RoomBookServiceInterface;
@@ -56,7 +57,7 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request, Booking $bookRoom)
     {
 
         $bookingrooms = $this->bookingRoomService->getAll($request);
@@ -65,6 +66,7 @@ class BookingController extends Controller
         $customers = $this->customerService->getAll($request);
 
         $param = [
+            'bookroom' => $bookRoom,
             'bookingrooms' => $bookingrooms,
             'rooms' => $rooms,
             'users' => $users,
