@@ -21,9 +21,9 @@ class RoomRepository extends EloquentRepository implements RoomInterface
 
     public function getAll($request)
     {
-        $result = $this->model->paginate(3);
+        $result = $this->model->paginate(9);
         return $result;
-    }
+    }   
 
     public function create($request)
     {
