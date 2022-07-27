@@ -92,11 +92,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-
-
                     </div>
+                    {{$rooms->appends(request()->query())}}
                 </div>
-                {{$rooms->appends(request()->query())}}
             </div>
         </div>
     </div>
