@@ -3,8 +3,8 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Booking;
-use App\Models\RoomBooking;
 use App\Repositories\Interfaces\BookingRoomInterface;
+use DateTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -21,7 +21,8 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
 
     public function getAll($request)
     {
-        $result = $this->model->paginate(10);
+        $result = $this->model->orderBy('id', 'desc')->paginate(10);
+
         return $result;
     }
 
@@ -32,13 +33,17 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
         try {
             DB::beginTransaction();
             $object = $this->model;
+            $from = new DateTime($request->from_date);
+            $to = new DateTime($request->to_date);
+            $day = $from->diff($to);
+            $days = $day->days;
 
             $dataBooking = [
                 'customer_id' => $request->customer_id,
                 'limit_people' => $request->limit_people,
-                'total_room' => $request->total_room,
                 'from_date' => $request->from_date,
                 'to_date' => $request->to_date,
+                'total_room' => $days,
                 'note' => $request->note,
                 'user_id' => $request->user_id,
             ];
@@ -118,9 +123,6 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
         }
         return $object;
     }
-
-
-
 
 
 }

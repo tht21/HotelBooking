@@ -40,13 +40,7 @@
                                                 <option value="{{$room->id}}">{{$room->name}}</option>
                                             @endforeach
                                         </select>
-                                        <br> <br>
-                                        <label>Tổng tiền phòng</label>
-                                        <input type="number" class="form-control" id="name" name="total_room"
-                                               placeholder="Tổng tiền" value="{{old('total_room')}}">
-                                        @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('total_room') }}</p>
-                                        @endif
+                                        <br>
                                     </div>
                                     <div class="col-6">
                                         <label>From Date</label>
@@ -63,11 +57,6 @@
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('to_date') }}</p>
                                         @endif
-                                        <br>
-                                        <label>Số ngày </label>
-                                        <input type="text" class="form-control"
-                                               {{--                                               value="{{}}"--}}
-                                               readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">

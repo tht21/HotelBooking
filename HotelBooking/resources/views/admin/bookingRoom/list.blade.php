@@ -46,11 +46,11 @@
                                 <thead>
                                 <tr>
                                     <th>Mã đơn hàng</th>
+                                    <th>Nhân viên phụ trách</th>
                                     <th>Tên khách hàng</th>
                                     <th>Tên phòng</th>
                                     <th>Ngày nhận phòng</th>
                                     <th>Ngày trả phòng</th>
-                                    <th>Tiền phòng</th>
                                     <th>Tổng phòng</th>
                                     <th>Số lượng người</th>
                                     <th style="width: 10%">Action</th>
@@ -59,17 +59,16 @@
                                 <tbody>
                                 @foreach($bookingrooms as $key=> $bookingroom )
                                     @foreach($bookingroom->roombooking as $key1=> $booking )
-
                                         @if($bookingroom->id===$booking->booking_id)
 
                                             <tr>
                                                 <td>{{$booking->id}}</td>
+                                                <td>{{$bookingroom->user->name}}</td>
                                                 <td>{{$bookingroom->customer->name}}</td>
                                                 <td>{{$booking->roomss->name}}</td>
                                                 <td>{{Helper::dateFormat($bookingroom->from_date)}}</td>
                                                 <td>{{Helper::dateFormat($bookingroom->to_date)}}</td>
-                                                <td>{{ Helper::convertToRupiah($booking->roomss->price)}} </td>
-                                                <td>{{$bookingroom->total_room}}</td>
+                                                <td>{{Helper::convertToRupiah($bookingroom->total_room * $booking->roomss->price) }}</td>
                                                 <td>{{$bookingroom->limit_people}}</td>
                                                 <td>
                                                     <div class="form-button-action">
