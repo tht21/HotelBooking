@@ -1,5 +1,6 @@
 @extends('layouts.web.app')
 @section('content')
+
 <main id="rooms_list">
    <div class="container">
       @foreach ($rooms as $room)
@@ -267,3 +268,4 @@
    </div>
 </main>
 @endsection
+

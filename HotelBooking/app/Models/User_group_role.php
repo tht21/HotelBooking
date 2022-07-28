@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class User_group_role extends Model
 {
     use HasFactory;
+
     protected $table = 'user_group_roles';
 }

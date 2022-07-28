@@ -4,7 +4,6 @@ namespace App\Repositories\Eloquent;
 
 
 use App\Models\Floor;
-
 use App\Repositories\Interfaces\FloorInterface;
 
 class FloorRepository extends EloquentRepository implements FloorInterface

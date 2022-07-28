@@ -31,6 +31,7 @@ class UpdateCustomersRequest extends FormRequest
             'cmnd' => 'required'
         ];
     }
+
     public function messages()
     {
         return [
@@ -41,6 +42,6 @@ class UpdateCustomersRequest extends FormRequest
             'cmnd.required' => 'Vui lòng nhập số cmnd',
             'email.email' => 'Vui lòng nhập đúng định dạng email',
         ];
-        
+
     }
 }

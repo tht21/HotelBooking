@@ -29,12 +29,30 @@ class UserGroupsController extends Controller
 
     public function index(Request $request)
     {
-        $this->authorize('viewAny',UserGroup::class);
+        $this->authorize('viewAny', UserGroup::class);
         $items = $this->UserGroupService->getAll($request);
-        $params =[
+        $params = [
             'items' => $items,
         ];
-        return view('admin.usergroups.index',$params);
+        return view('admin.usergroups.index', $params);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\Storeuser_groupsRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreUserGroupRequest $request)
+    {
+        try {
+            $item = $this->UserGroupService->create($request->all());
+            return redirect()->route('usergroups.index')->with('success', 'Thêm nhóm' . ' ' . $item->name . ' ' . 'thành công');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('usergroups.index')->with('error', 'Thêm nhóm' . ' ' . $item->name . ' ' . 'không thành công');
+        }
+
     }
 
     /**
@@ -49,27 +67,9 @@ class UserGroupsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\Storeuser_groupsRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreUserGroupRequest $request)
-    {
-        try {
-            $item = $this->UserGroupService->create($request->all());
-            return redirect()->route('usergroups.index')->with('success', 'Thêm nhóm' . ' ' . $item->name . ' ' .  'thành công');
-        } catch (\Exception $e) {
-            Log::error($e->getMessage());
-            return redirect()->route('usergroups.index')->with('error', 'Thêm nhóm' . ' ' . $item->name . ' ' .  'không thành công');
-        }
-
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param  \App\Models\user_groups  $user_groups
+     * @param \App\Models\user_groups $user_groups
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -81,13 +81,13 @@ class UserGroupsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\user_groups  $user_groups
+     * @param \App\Models\user_groups $user_groups
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $item = UserGroup::find($id);
-        $this->authorize('update',  $item);
+        $this->authorize('update', $item);
         $current_user = Auth::user();
         $userRoles = $item->roles->pluck('id', 'name')->toArray();
         // dd($current_user->userGroup->roles->toArray());
@@ -102,41 +102,41 @@ class UserGroupsController extends Controller
             'roles' => $roles,
             'group_names' => $group_names,
         ];
-        return view('admin.usergroups.edit',$params);
+        return view('admin.usergroups.edit', $params);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Updateuser_groupsRequest  $request
-     * @param  \App\Models\user_groups  $user_groups
+     * @param \App\Http\Requests\Updateuser_groupsRequest $request
+     * @param \App\Models\user_groups $user_groups
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateUserGroupRequest $request, $id)
     {
         try {
             $item = $this->UserGroupService->update($request->all(), $id);
-            return redirect()->route('usergroups.index')->with('success', 'Cập nhật nhóm' . ' ' . $request->name . ' ' .  'thành công');
+            return redirect()->route('usergroups.index')->with('success', 'Cập nhật nhóm' . ' ' . $request->name . ' ' . 'thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('usergroups.index')->with('error', 'Cập nhật nhóm' . ' ' . $request->name . ' ' .  'không thành công');
+            return redirect()->route('usergroups.index')->with('error', 'Cập nhật nhóm' . ' ' . $request->name . ' ' . 'không thành công');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\user_groups  $user_groups
+     * @param \App\Models\user_groups $user_groups
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
         try {
             $item = $this->UserGroupService->destroy($id);
-            return redirect()->route('usergroups.index')->with('success', 'Xóa nhóm' . ' ' . $request->name . ' ' .  'thành công');
+            return redirect()->route('usergroups.index')->with('success', 'Xóa nhóm' . ' ' . $request->name . ' ' . 'thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('usergroups.index')->with('error', 'Xóa nhóm' . ' ' . $request->name . ' ' .  'không thành công');
+            return redirect()->route('usergroups.index')->with('error', 'Xóa nhóm' . ' ' . $request->name . ' ' . 'không thành công');
         }
     }
 
@@ -149,7 +149,7 @@ class UserGroupsController extends Controller
             'items' => $items,
             // 'userGroup'=>$userGroup
         ];
-        return view('admin.usergroups.trash',$params);
+        return view('admin.usergroups.trash', $params);
     }
 
     public function restore($id)
@@ -168,10 +168,10 @@ class UserGroupsController extends Controller
 
         try {
             $userGroup = $this->UserGroupService->force_destroy($id);
-            return redirect()->route('usergroups.trash')->with('success', 'Xóa' . ' ' . $userGroup->name . ' ' .  'thành công');
+            return redirect()->route('usergroups.trash')->with('success', 'Xóa' . ' ' . $userGroup->name . ' ' . 'thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('usergroups.trash')->with('error', 'Xóa' . ' ' . $userGroup->name . ' ' .  'không thành công');
+            return redirect()->route('usergroups.trash')->with('error', 'Xóa' . ' ' . $userGroup->name . ' ' . 'không thành công');
         }
     }
 

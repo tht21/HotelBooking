@@ -18,7 +18,7 @@ class CustomerService implements CustomerServiceInterface
     {
         return $this->customerRepository->getAll($request);
     }
-    
+
     public function findById($id)
     {
         return $this->customerRepository->findById($id);
@@ -26,8 +26,8 @@ class CustomerService implements CustomerServiceInterface
 
     public function create($request)
     {
-       $customer = $this->customerRepository->create($request); 
-       return $customer; 
+        $customer = $this->customerRepository->create($request);
+        return $customer;
     }
 
     public function update($request, $id)
@@ -49,6 +49,7 @@ class CustomerService implements CustomerServiceInterface
     {
         return $this->customerRepository->restore($id);
     }
+
     public function force_destroy($id)
     {
         return $this->customerRepository->force_destroy($id);

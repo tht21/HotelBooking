@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
-   'hello'=> 'hello',
+    'hello' => 'hello',
 ];

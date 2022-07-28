@@ -25,23 +25,12 @@ class RoomTypeController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('viewAny',  RoomType::class);
+        $this->authorize('viewAny', RoomType::class);
         $roomtypes = $this->roomTypeService->getAll($request);
         $params = [
             "roomtypes" => $roomtypes,
         ];
         return view('admin.roomType.index', $params);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $this->authorize('create', RoomType::class);
-        return view('admin.roomType.add');
     }
 
     /**
@@ -60,6 +49,17 @@ class RoomTypeController extends Controller
             Log::error($e->getMessage());
             return redirect()->route('roomtype.index')->with('error', ' Thêm loại phòng ' . $request->name . ' không thành công ');
         }
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $this->authorize('create', RoomType::class);
+        return view('admin.roomType.add');
     }
 
     /**
@@ -82,11 +82,11 @@ class RoomTypeController extends Controller
     public function edit($id)
     {
         $roomtype = $this->roomTypeService->findById($id);
-        $this->authorize('update',  $roomtype);
+        $this->authorize('update', $roomtype);
         $params = [
             'roomtype' => $roomtype,
         ];
-        return view('admin.roomType.edit',$params);
+        return view('admin.roomType.edit', $params);
     }
 
     /**
@@ -151,10 +151,10 @@ class RoomTypeController extends Controller
         try {
             $roomtype = $this->roomTypeService->force_destroy($id);
 
-            return redirect()->route('roomtype.trash')->with('success', 'Xóa' . ' ' . $roomtype->name . ' ' .  'thành công');
+            return redirect()->route('roomtype.trash')->with('success', 'Xóa' . ' ' . $roomtype->name . ' ' . 'thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('roomtype.trash')->with('error', 'Xóa' . ' ' . $roomtype->name . ' ' .  'không thành công');
+            return redirect()->route('roomtype.trash')->with('error', 'Xóa' . ' ' . $roomtype->name . ' ' . 'không thành công');
         }
     }
 }

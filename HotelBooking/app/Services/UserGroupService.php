@@ -18,10 +18,6 @@ class UserGroupService implements UserGroupServiceInterface
     {
         return $this->userGroupRepository->getAll($request);
     }
-    public function findById($id)
-    {
-        return $this->userGroupRepository->findById($id);
-    }
 
     public function create($request)
     {
@@ -37,6 +33,11 @@ class UserGroupService implements UserGroupServiceInterface
         return $userGroup;
     }
 
+    public function findById($id)
+    {
+        return $this->userGroupRepository->findById($id);
+    }
+
     public function destroy($id)
     {
         $userGroup = $this->userGroupRepository->findById($id);
@@ -45,18 +46,22 @@ class UserGroupService implements UserGroupServiceInterface
 
     }
 
-    public function trashedItems(){
+    public function trashedItems()
+    {
 
         return $this->userGroupRepository->trashedItems();
 
     }
 
-    public function restore($id){
+    public function restore($id)
+    {
 
         return $this->userGroupRepository->restore($id);
 
     }
-    public function force_destroy($id){
+
+    public function force_destroy($id)
+    {
 
         return $this->userGroupRepository->force_destroy($id);
 

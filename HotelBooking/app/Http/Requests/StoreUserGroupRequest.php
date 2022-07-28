@@ -25,14 +25,15 @@ class StoreUserGroupRequest extends FormRequest
     {
         return [
             'name' => 'required'
-          
+
         ];
     }
+
     public function messages()
     {
         return [
             'name.required' => 'Vui lòng nhập tên nhóm nhân viên',
         ];
-        
+
     }
 }

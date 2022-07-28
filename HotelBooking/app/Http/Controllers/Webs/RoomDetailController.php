@@ -22,7 +22,7 @@ class RoomDetailController extends Controller
         $this->roomTypeService = $roomTypeService;
     }
 
-    public function index($id)
+    public function index(Request $id)
     {
         $rooms = $this->roomService->getAll($id);
         $roomTypes = $this->roomTypeService->getAll($id);

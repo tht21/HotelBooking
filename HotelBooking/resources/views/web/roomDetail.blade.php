@@ -9,7 +9,7 @@
                         <div id="slider-larg" class="owl-carousel image-gallery">
                             @foreach($rooms as $room)
                                 <div class="item lightbox-image-icon">
-                                    <a href="images/rooms/single-room/single-room1.jpg"
+                                    <a href="{{$room->image_path}}"
                                        class="hover_effect h_lightbox h_blue">
                                         <img class="img-responsive" src="{{$room->image_path}}"
                                              alt="Image">
@@ -18,38 +18,11 @@
                             @endforeach
                         </div>
                         <div id="thumbs" class="owl-carousel">
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb1.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb2.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb3.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb4.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb5.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb6.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb7.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb8.jpg" alt="Image">
-                            </div>
+                            @foreach($rooms as $roomss)
+                                <div class="item"><img class="img-responsive"
+                                                       src="{{$roomss->room_image->name}}" alt="Image">
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="main_title mt50">

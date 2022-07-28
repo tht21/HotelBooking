@@ -37,20 +37,9 @@ class CustomersController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $this->authorize('create', Customers::class);
-        return view('admin.customers.add');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCustomersRequest  $request
+     * @param \App\Http\Requests\StoreCustomersRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCustomersRequest $request)
@@ -65,9 +54,20 @@ class CustomersController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $this->authorize('create', Customers::class);
+        return view('admin.customers.add');
+    }
+
+    /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Customers  $customers
+     * @param \App\Models\Customers $customers
      * @return \Illuminate\Http\Response
      */
     public function show(Customers $customers)
@@ -78,43 +78,43 @@ class CustomersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Customers  $customers
+     * @param \App\Models\Customers $customers
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customers $customers,$id)
+    public function edit(Customers $customers, $id)
     {
         $customer = $this->customerService->findById($id);
         $this->authorize('update', $customer);
         $params = [
             'customer' => $customer,
         ];
-        return view('admin.customers.edit',$params);
+        return view('admin.customers.edit', $params);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCustomersRequest  $request
-     * @param  \App\Models\Customers  $customers
+     * @param \App\Http\Requests\UpdateCustomersRequest $request
+     * @param \App\Models\Customers $customers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
 
         try {
             $this->customerService->update($request, $id);
 
-            return redirect()->route('customers.index')->with('success', 'Sửa thông tin khách hàng' . ' ' . $request->name . ' ' .  'thành công');
+            return redirect()->route('customers.index')->with('success', 'Sửa thông tin khách hàng' . ' ' . $request->name . ' ' . 'thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('customers.index')->with('error', 'Sửa thông tin khách hàng' . ' ' . $request->name . ' ' .  'không thành công');
+            return redirect()->route('customers.index')->with('error', 'Sửa thông tin khách hàng' . ' ' . $request->name . ' ' . 'không thành công');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Customers  $customers
+     * @param \App\Models\Customers $customers
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -155,10 +155,10 @@ class CustomersController extends Controller
         try {
             $customer = $this->customerService->force_destroy($id);
 
-            return redirect()->route('customers.trash')->with('success', 'Xóa' . ' ' . $customer->name . ' ' .  'thành công');
+            return redirect()->route('customers.trash')->with('success', 'Xóa' . ' ' . $customer->name . ' ' . 'thành công');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->route('customers.trash')->with('error', 'Xóa' . ' ' . $customer->name . ' ' .  'không thành công');
+            return redirect()->route('customers.trash')->with('error', 'Xóa' . ' ' . $customer->name . ' ' . 'không thành công');
         }
     }
 }

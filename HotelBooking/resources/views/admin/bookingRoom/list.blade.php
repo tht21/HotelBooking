@@ -32,8 +32,6 @@
                             </div>
                         </ul>
                     </div>
-
-
                     <div class="card-body">
                         @if (Session::has('success'))
                             <div class="text text-success"><b>{{session::get('success')}}</b></div>

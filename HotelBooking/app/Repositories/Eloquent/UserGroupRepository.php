@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Repositories\Eloquent;
 
 use App\Models\UserGroup;
-use App\Repositories\Eloquent\EloquentRepository;
 use App\Repositories\Interfaces\UserGroupInterface;
 
 class UserGroupRepository extends EloquentRepository implements UserGroupInterface
@@ -12,6 +12,7 @@ class UserGroupRepository extends EloquentRepository implements UserGroupInterfa
     {
         return UserGroup::class;
     }
+
     public function getAll($request)
     {
         $userGroup = $this->model->select('*');
@@ -70,7 +71,6 @@ class UserGroupRepository extends EloquentRepository implements UserGroupInterfa
             return false;
         }
     }
-
 
 
 }
