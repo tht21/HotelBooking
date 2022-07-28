@@ -18,30 +18,20 @@
                     <ul class="nav navbar-nav">
                         <li class="mobile_menu_title" style="display:none;">MENU</li>
                         <li class="dropdown simple_menu active">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">HOME <b class=""></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="index.html">Home Version 1</a></li>
-                                <li><a href="index2.html">Home Version 2</a></li>
-                                <li><a href="index3.html">Home Version 3</a></li>
-                                <li><a href="index4.html">Home Version 4</a></li>
-                                <li><a href="boxed.html">Boxed Layout</a></li>
-                            </ul>
+                            <a href="{{route('homeweb')}}"  data-toggle="dropdown">Home<b class=""></b></a>
                         </li>
                         <li class="dropdown simple_menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">ROOMS <b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rooms<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="rooms-list.html">Rooms List View</a></li>
-                                <li><a href="rooms-grid.html">Rooms Grid View</a></li>
-                                <li><a href="rooms-block.html">Rooms Block View</a></li>
-                                <li><a href="room.html">Room Details 1</a></li>
-                                <li><a href="room2.html">Room Details 2</a></li>
+                                <li><a href="{{route('room.index')}}">Room List</a></li>
+                               
                             </ul>
                         </li>
                         <li class="dropdown mega_menu mega_menu_fullwidth"><a href="#" data-toggle="dropdown"
                                 class="dropdown-toggle" aria-expanded="true">PAGES <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <div class="mega_menu_inner">
+                                    {{-- <div class="mega_menu_inner">
                                         <div class="row">
                                             <ul class="col-md-3">
                                                 <li class="list_title">PAGES</li>
@@ -86,7 +76,7 @@
                                                 <li><a href="our-staff.html">Our Staff</a></li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </li>
                             </ul>
                         </li>
