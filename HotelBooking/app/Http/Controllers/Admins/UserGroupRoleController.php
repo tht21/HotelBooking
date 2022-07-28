@@ -32,7 +32,7 @@ class UserGroupRoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreUser_group_roleRequest  $request
+     * @param \App\Http\Requests\StoreUser_group_roleRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreUser_group_roleRequest $request)
@@ -43,7 +43,7 @@ class UserGroupRoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User_group_role  $user_group_role
+     * @param \App\Models\User_group_role $user_group_role
      * @return \Illuminate\Http\Response
      */
     public function show(User_group_role $user_group_role)
@@ -54,7 +54,7 @@ class UserGroupRoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User_group_role  $user_group_role
+     * @param \App\Models\User_group_role $user_group_role
      * @return \Illuminate\Http\Response
      */
     public function edit(User_group_role $user_group_role)
@@ -65,8 +65,8 @@ class UserGroupRoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateUser_group_roleRequest  $request
-     * @param  \App\Models\User_group_role  $user_group_role
+     * @param \App\Http\Requests\UpdateUser_group_roleRequest $request
+     * @param \App\Models\User_group_role $user_group_role
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateUser_group_roleRequest $request, User_group_role $user_group_role)
@@ -77,7 +77,7 @@ class UserGroupRoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User_group_role  $user_group_role
+     * @param \App\Models\User_group_role $user_group_role
      * @return \Illuminate\Http\Response
      */
     public function destroy(User_group_role $user_group_role)

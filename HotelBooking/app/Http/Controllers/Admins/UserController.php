@@ -28,23 +28,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('viewAny', User::class );
+        $this->authorize('viewAny', User::class);
         $users = $this->userService->getAll($request);
         $userGroups = $this->userGroupService->getAll($request);
         // dd(Auth::user()->user_group_id);
         return view('admin.user.index', compact('users', 'userGroups'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        $this->authorize('create', User::class );
-        $userGroups = $this->userGroupService->getAll($request);
-        return view('admin.user.create', compact('userGroups'));
     }
 
     /**
@@ -64,6 +52,18 @@ class UserController extends Controller
         }
 
 
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+        $this->authorize('create', User::class);
+        $userGroups = $this->userGroupService->getAll($request);
+        return view('admin.user.create', compact('userGroups'));
     }
 
     /**

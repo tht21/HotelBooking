@@ -48,19 +48,15 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
                 'user_id' => $request->user_id,
             ];
             $object = $object->create($dataBooking);
-            $status = [
-                'status' => 'hết phòng'
-            ];
             foreach ($request->room_id as $Item) {
                 $roombooking = $object->roombooking()->create([
                     'booking_id' => $object->id,
                     'room_id' => $Item,
                 ]);
-                // $object->room()->create($status);
             }
             //check status
             foreach ($object->room as $i) {
-                $i['status'] = 'hết phòng';
+                $i['status'] = '1';
                 $a = [
                     'status' => $i['status'],
                 ];
@@ -106,7 +102,7 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
             }
             //check status
             foreach ($object->room as $i) {
-                $i['status'] = 'hết phòng';
+                $i['status'] = 1;
                 $a = [
                     'status' => $i['status'],
                 ];

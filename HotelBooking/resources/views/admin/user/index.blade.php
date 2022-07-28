@@ -10,12 +10,6 @@
                     <div class="card-header">
                         <h4 class="card-title">Quản Lý Nhân Viên</h4>
                         <div class="card-body">
-                            @if (Session::has('success'))
-                                <div class="text text-success"><b>{{session::get('success')}}</b></div>
-                            @endif
-                            @if (Session::has('error'))
-                                <div class="text text-danger"><b>{{session::get('error')}}</b></div>
-                            @endif
                             <div class="row">
                                 <div class="col-lg-4">
                                     <form action="" method="GET" id="form-search" class="form-dark">
@@ -62,6 +56,12 @@
                         </div>
 
                         <div class="table-responsive">
+                            @if (Session::has('success'))
+                                <div class="text text-success"><b>{{session::get('success')}}</b></div>
+                            @endif
+                            @if (Session::has('error'))
+                                <div class="text text-danger"><b>{{session::get('error')}}</b></div>
+                            @endif
                             <table id="datatable" class="display table table-striped table-hover">
                                 <thead>
                                 <tr>

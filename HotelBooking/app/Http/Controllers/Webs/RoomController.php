@@ -9,15 +9,18 @@ use Illuminate\Http\Request;
 class RoomController extends Controller
 {
     protected $roomService;
+
     public function __construct(RoomServiceInterface $roomService)
     {
         $this->roomService = $roomService;
     }
-    public function index(Request $request){
+
+    public function index(Request $request)
+    {
         $rooms = $this->roomService->getAll($request);
         $param = [
             'rooms' => $rooms
         ];
-        return view('web.room',compact('param'));
+        return view('web.room', compact('param'));
     }
 }

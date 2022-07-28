@@ -5,13 +5,11 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoomRequest;
 use App\Models\Room;
-use App\Models\RoomType;
 use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
 use App\Services\Interfaces\FloorServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Helpers\Helper;
 
 class RoomController extends Controller
 {
@@ -40,23 +38,6 @@ class RoomController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
-    {
-        $this->authorize('create',Room::class);
-        $floors = $this->floorService->getAll($request);
-        $roomTypes = $this->roomTypeService->getAll($request);
-        $param = [
-            'floors' => $floors,
-            'roomTypes' => $roomTypes,
-        ];
-        return view('admin.room.create', $param);
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param \App\Http\Requests\StoreRoomRequest $request
@@ -70,6 +51,23 @@ class RoomController extends Controller
         } catch (\Exception $e) {
             Log::error($e->getMessage());
         }
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+        $this->authorize('create', Room::class);
+        $floors = $this->floorService->getAll($request);
+        $roomTypes = $this->roomTypeService->getAll($request);
+        $param = [
+            'floors' => $floors,
+            'roomTypes' => $roomTypes,
+        ];
+        return view('admin.room.create', $param);
     }
 
     /**
@@ -94,7 +92,7 @@ class RoomController extends Controller
         $room = $this->roomService->findById($id);
         $floors = $this->floorService->getAll($id);
         $roomTypes = $this->roomTypeService->getAll($id);
-        $this->authorize('update',$room);
+        $this->authorize('update', $room);
         $param = [
             'floors' => $floors,
             'roomTypes' => $roomTypes,

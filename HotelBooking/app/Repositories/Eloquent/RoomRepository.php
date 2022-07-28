@@ -21,49 +21,9 @@ class RoomRepository extends EloquentRepository implements RoomInterface
 
     public function getAll($request)
     {
-        $result = $this->model->orderBy('id', 'desc')->paginate(3);
+        $result = $this->model->paginate(15);
 
         return $result;
-    }   
-
-    public function create($request)
-    {
-        try {
-            DB::beginTransaction();
-            $object = $this->model;
-            $object->name = $request->name;
-            $object->price = $request->price;
-            $object->room_types_id = $request->room_types;
-            $object->floor_id = $request->floor;
-            $object->convenient = $request->convenient;
-            $object->description = $request->description;
-            $object->status = $request->status;
-//       $object->image_path = $request->image;
-
-            $dataUploadImage = $this->storageUpload($request, 'image_path', 'room');
-
-            $object->image_path = $dataUploadImage['file_path'];
-
-            $object->save();
-            if ($request->hasFile('room_image_path')) {
-                foreach ($request->room_image_path as $fileItem) {
-                    $dataProductImageDetail = $this->storageUploadDetail($fileItem, 'room');
-                    $dataProductImageDetailCreate = [
-                        'name' => $dataProductImageDetail['file_path'],
-                    ];
-                    $object->room_image()->create($dataProductImageDetailCreate);
-                }
-            }
-            DB::commit();
-            Session::flash('success', 'Thêm phòng' . ' ' . $request->name . ' ' . 'thành công');
-            return true;
-        } catch (\Exception $e) {
-            DB::rollBack();
-            Log::error('Message: ' . $e->getMessage() . ' --- Line : ' . $e->getLine());
-            return false;
-        }
-
-        return $object;
     }
 
     public function update($request, $id)
@@ -103,6 +63,46 @@ class RoomRepository extends EloquentRepository implements RoomInterface
         } catch (\Exception $e) {
             DB::rollBack();
             Session::flash('success', 'Chỉnh sửa phòng' . ' ' . $request->name . ' ' . 'không thành công');
+            Log::error('Message: ' . $e->getMessage() . ' --- Line : ' . $e->getLine());
+            return false;
+        }
+
+        return $object;
+    }
+
+    public function create($request)
+    {
+        try {
+            DB::beginTransaction();
+            $object = $this->model;
+            $object->name = $request->name;
+            $object->price = $request->price;
+            $object->room_types_id = $request->room_types;
+            $object->floor_id = $request->floor;
+            $object->convenient = $request->convenient;
+            $object->description = $request->description;
+            $object->status = $request->status;
+//       $object->image_path = $request->image;
+
+            $dataUploadImage = $this->storageUpload($request, 'image_path', 'room');
+
+            $object->image_path = $dataUploadImage['file_path'];
+
+            $object->save();
+            if ($request->hasFile('room_image_path')) {
+                foreach ($request->room_image_path as $fileItem) {
+                    $dataProductImageDetail = $this->storageUploadDetail($fileItem, 'room');
+                    $dataProductImageDetailCreate = [
+                        'name' => $dataProductImageDetail['file_path'],
+                    ];
+                    $object->room_image()->create($dataProductImageDetailCreate);
+                }
+            }
+            DB::commit();
+            Session::flash('success', 'Thêm phòng' . ' ' . $request->name . ' ' . 'thành công');
+            return true;
+        } catch (\Exception $e) {
+            DB::rollBack();
             Log::error('Message: ' . $e->getMessage() . ' --- Line : ' . $e->getLine());
             return false;
         }

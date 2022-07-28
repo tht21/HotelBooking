@@ -13,7 +13,6 @@ use App\Services\Interfaces\RoomServiceInterface;
 use App\Services\Interfaces\UserServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
 
 class BookingController extends Controller
@@ -52,6 +51,22 @@ class BookingController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param \App\Http\Requests\StoreBookingRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreBookingRequest $request)
+    {
+        try {
+            $this->bookingRoomService->create($request);
+            return redirect()->route('bookingrooms.list');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+        }
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -72,22 +87,6 @@ class BookingController extends Controller
             'customers' => $customers
         ];
         return view("admin.bookingRoom.add", $param);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \App\Http\Requests\StoreBookingRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreBookingRequest $request)
-    {
-        try {
-            $this->bookingRoomService->create($request);
-            return redirect()->route('bookingrooms.list');
-        } catch (\Exception $e) {
-            Log::error($e->getMessage());
-        }
     }
 
     /**

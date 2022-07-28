@@ -8,16 +8,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserGroup extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
+
     protected $table = 'user_groups';
     protected $fillable = [
-        'id','name'
+        'id', 'name'
     ];
+
     public function User()
     {
-        return $this->hasMany(User::class,'user_group_id','id');
+        return $this->hasMany(User::class, 'user_group_id', 'id');
     }
-    public function roles() {
-        return $this->belongsToMany(Role::class,'user_group_roles','user_groups_id','role_id');
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_group_roles', 'user_groups_id', 'role_id');
     }
 }

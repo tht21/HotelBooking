@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Services\Interfaces;
 
-interface UserGroupServiceInterface extends Service{
+interface UserGroupServiceInterface extends Service
+{
 
 }

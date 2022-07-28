@@ -44,13 +44,11 @@ $('#map-example').vectorMap(
 //Chart
 
 
-
 var myLegendContainer = document.getElementById("myChartLegend");
 
 // generate HTML legend
 
 // bind onClick event to all LI-tags of the legend
-
 
 
 $("#activeUsersChart").sparkline([112, 109, 120, 107, 110, 85, 87, 90, 102, 109, 120, 99, 110, 85, 87, 94], {

@@ -38,29 +38,19 @@ class DatabaseSeeder extends Seeder
         $this->importRoomBooking();
     }
 
-    public function importBooking()
+    public function importRoles()
     {
-        $booking = new Booking();
-        $booking->id = 1;
-        $booking->from_date = '2022-07-07';
-        $booking->to_date = '2022-07-08';
-        $booking->limit_people = 3;
-        $booking->note = '123';
-        $booking->total_room = 1;
-        $booking->customer_id = 1;
-        $booking->user_id = 1;
-        $booking->save();
+        $groups = ['Rooms', 'User', 'UserGroup', 'Customers', 'Bookings', 'RoomType'];
+        $actions = ['viewAny', 'view', 'create', 'update', 'delete', 'restore', 'forceDelete'];
+        foreach ($groups as $group) {
+            foreach ($actions as $action) {
+                DB::table('roles')->insert([
+                    'name' => $group . '_' . $action,
+                    'group_name' => $group,
 
-    }
-
-    public function importRoomBooking()
-    {
-        $roomBooking = new RoomBooking();
-        $roomBooking->id = 1;
-        $roomBooking->room_id = 1;
-        $roomBooking->booking_id = 1;
-        $roomBooking->save();
-
+                ]);
+            }
+        }
     }
 
     public function importUserGroups()
@@ -81,6 +71,17 @@ class DatabaseSeeder extends Seeder
         $userGroup = new UserGroup();
         $userGroup->name = 'Nhân Viên';
         $userGroup->save();
+    }
+
+    public function importUserGroupRoles()
+    {
+        for ($i = 1; $i <= 42; $i++) {
+            DB::table('user_group_roles')->insert([
+                'user_groups_id' => 1,
+                'role_id' => $i,
+            ]);
+        }
+
     }
 
     public function importUser()
@@ -147,85 +148,6 @@ class DatabaseSeeder extends Seeder
         $user->save();
     }
 
-
-    public function importRoles()
-    {
-        $groups = ['Rooms', 'User', 'UserGroup','Customers','Bookings','RoomType'];
-        $actions = ['viewAny', 'view', 'create', 'update', 'delete', 'restore', 'forceDelete'];
-        foreach ($groups as $group) {
-            foreach ($actions as $action) {
-                DB::table('roles')->insert([
-                    'name' => $group . '_' . $action,
-                    'group_name' => $group,
-
-                ]);
-            }
-        }
-    }
-
-    public function importUserGroupRoles()
-    {
-        for ($i = 1; $i <= 42; $i++) {
-            DB::table('user_group_roles')->insert([
-                'user_groups_id' => 1,
-                'role_id' => $i,
-            ]);
-        }
-
-    }
-
-    public function importRoom()
-    {
-        $room = new Room();
-        $room->id = 1;
-        $room->name = '101';
-        $room->price = 10;
-        $room->convenient = 'wifi dieu hoa';
-        $room->image_path = 'upload/avatar_admin.jpg';
-        $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
-        $room->status = 'hết phòng';
-        $room->room_types_id = 1;
-        $room->floor_id = 1;
-        $room->save();
-
-        $room = new Room();
-        $room->id = 2;
-        $room->name = '102';
-        $room->price = 10;
-        $room->convenient = 'wifi dieu hoa';
-        $room->image_path = 'upload/avatar_admin.jpg';
-        $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
-        $room->status = 'còn phòng';
-        $room->room_types_id = 1;
-        $room->floor_id = 1;
-        $room->save();
-
-        $room = new Room();
-        $room->id = 3;
-        $room->name = '103';
-        $room->price = 10;
-        $room->convenient = 'wifi dieu hoa';
-        $room->image_path = 'upload/avatar_admin.jpg';
-        $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
-        $room->status = 'còn phòng';
-        $room->room_types_id = 1;
-        $room->floor_id = 1;
-        $room->save();
-
-        $room = new Room();
-        $room->id = 4;
-        $room->name = '104';
-        $room->price = 10;
-        $room->convenient = 'wifi dieu hoa';
-        $room->image_path = 'upload/avatar_admin.jpg';
-        $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
-        $room->status = 'còn phòng';
-        $room->room_types_id = 1;
-        $room->floor_id = 1;
-        $room->save();
-
-    }
-
     public function importRoomType()
     {
         $roomType = new RoomType();
@@ -248,24 +170,6 @@ class DatabaseSeeder extends Seeder
 
     }
 
-    public function importFloor()
-    {
-        $floor = new Floor();
-        $floor->id = 1;
-        $floor->name = 1;
-        $floor->save();
-
-    }
-
-    public function importRoomImage()
-    {
-        $room_image = new Room_image();
-        $room_image->id = 1;
-        $room_image->name = 'upload/avatar_admin.jpg';
-        $room_image->room_id = 1;
-        $room_image->save();
-    }
-
     public function importCustomer()
     {
         $customers = new Customers();
@@ -283,6 +187,101 @@ class DatabaseSeeder extends Seeder
         $customers->address = 'Gio Linh';
         $customers->cmnd = 34567465342;
         $customers->save();
+    }
+
+    public function importFloor()
+    {
+        $floor = new Floor();
+        $floor->id = 1;
+        $floor->name = 1;
+        $floor->save();
+
+    }
+
+    public function importRoom()
+    {
+        $room = new Room();
+        $room->id = 1;
+        $room->name = '101';
+        $room->price = 10;
+        $room->convenient = 'wifi dieu hoa';
+        $room->image_path = 'upload/avatar_admin.jpg';
+        $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
+        $room->status = '1';
+        $room->room_types_id = 1;
+        $room->floor_id = 1;
+        $room->save();
+
+        $room = new Room();
+        $room->id = 2;
+        $room->name = '102';
+        $room->price = 10;
+        $room->convenient = 'wifi dieu hoa';
+        $room->image_path = 'upload/avatar_admin.jpg';
+        $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
+        $room->status = '0';
+        $room->room_types_id = 1;
+        $room->floor_id = 1;
+        $room->save();
+
+        $room = new Room();
+        $room->id = 3;
+        $room->name = '103';
+        $room->price = 10;
+        $room->convenient = 'wifi dieu hoa';
+        $room->image_path = 'upload/avatar_admin.jpg';
+        $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
+        $room->status = '0';
+        $room->room_types_id = 1;
+        $room->floor_id = 1;
+        $room->save();
+
+        $room = new Room();
+        $room->id = 4;
+        $room->name = '104';
+        $room->price = 10;
+        $room->convenient = 'wifi dieu hoa';
+        $room->image_path = 'upload/avatar_admin.jpg';
+        $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
+        $room->status = '0';
+        $room->room_types_id = 1;
+        $room->floor_id = 1;
+        $room->save();
+
+    }
+
+    public function importRoomImage()
+    {
+        $room_image = new Room_image();
+        $room_image->id = 1;
+        $room_image->name = 'upload/avatar_admin.jpg';
+        $room_image->room_id = 1;
+        $room_image->save();
+    }
+
+    public function importBooking()
+    {
+        $booking = new Booking();
+        $booking->id = 1;
+        $booking->from_date = '2022-07-07';
+        $booking->to_date = '2022-07-08';
+        $booking->limit_people = 3;
+        $booking->note = '123';
+        $booking->total_room = 1;
+        $booking->customer_id = 1;
+        $booking->user_id = 1;
+        $booking->save();
+
+    }
+
+    public function importRoomBooking()
+    {
+        $roomBooking = new RoomBooking();
+        $roomBooking->id = 1;
+        $roomBooking->room_id = 1;
+        $roomBooking->booking_id = 1;
+        $roomBooking->save();
+
     }
 
 

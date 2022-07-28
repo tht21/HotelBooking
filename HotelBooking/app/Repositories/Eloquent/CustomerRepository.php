@@ -3,7 +3,6 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Customers;
-use App\Repositories\Eloquent\EloquentRepository;
 use App\Repositories\Interfaces\CustomerInterface;
 use Illuminate\Support\Facades\Log;
 
@@ -13,6 +12,7 @@ class CustomerRepository extends EloquentRepository implements CustomerInterface
     {
         return Customers::class;
     }
+
     public function getAll($request)
     {
         $customers = $this->model->select('*');

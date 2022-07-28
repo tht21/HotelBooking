@@ -28,12 +28,13 @@ class UpdateRoomtypeRequest extends FormRequest
             'limit_people' => 'required'
         ];
     }
+
     public function messages()
     {
         return [
             'name.required' => 'Vui lòng nhập tên loại phòng',
             'limit_people.required' => 'Vui lòng nhập số lượng người'
         ];
-        
+
     }
 }

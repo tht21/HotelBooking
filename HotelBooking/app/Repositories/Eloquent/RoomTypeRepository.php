@@ -3,7 +3,6 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\RoomType;
-use App\Repositories\Eloquent\EloquentRepository;
 use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
 use Illuminate\Support\Facades\Log;
 
@@ -13,6 +12,7 @@ class RoomTyperepository extends EloquentRepository implements RoomTypeRepositor
     {
         return RoomType::class;
     }
+
     public function getAll($request)
     {
         $roomtypes = $this->model->select('*');
@@ -97,7 +97,7 @@ class RoomTyperepository extends EloquentRepository implements RoomTypeRepositor
         $roomtype = $this->model->withTrashed()->find($id);
         try {
             $roomtype->forceDelete();
-          //  dd(  $roomtype);
+            //  dd(  $roomtype);
             return $roomtype;
         } catch (\Exception $e) {
             Log::error($e->getMessage());

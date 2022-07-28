@@ -15,11 +15,11 @@ class AuthController extends Controller
 
     public function postLogin(AuthRequest $request)
     {
-        $data = $request->only('email','password');
+        $data = $request->only('email', 'password');
         // dd(Hash::make(123456789));
-        if( Auth::attempt($data)){
+        if (Auth::attempt($data)) {
             return redirect()->route('home');
-        }else{
+        } else {
             return redirect()->route('login');
         }
     }

@@ -18,6 +18,7 @@ class RoomTypeService implements RoomTypeServiceInterface
     {
         return $this->roomtypeRepository->getAll($request);
     }
+
     public function findById($id)
     {
         return $this->roomtypeRepository->findById($id);
@@ -25,8 +26,8 @@ class RoomTypeService implements RoomTypeServiceInterface
 
     public function create($request)
     {
-       $roomtype = $this->roomtypeRepository->create($request); 
-       return $roomtype; 
+        $roomtype = $this->roomtypeRepository->create($request);
+        return $roomtype;
     }
 
     public function update($request, $id)
@@ -48,6 +49,7 @@ class RoomTypeService implements RoomTypeServiceInterface
     {
         return $this->roomtypeRepository->restore($id);
     }
+
     public function force_destroy($id)
     {
         return $this->roomtypeRepository->force_destroy($id);

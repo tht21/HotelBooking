@@ -15,6 +15,14 @@ class Room extends Model
         'id', 'name', 'price', 'convenient', 'image_path', 'description', 'status', 'room_types_id', 'floor_id'
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($room) { // before delete() method call this
+            $room->room_image()->delete();
+        });
+    }
+
     public function room_image()
     {
         return $this->hasMany(Room_image::class, 'room_id', 'id');
@@ -28,14 +36,6 @@ class Room extends Model
     public function room_booking()
     {
         return $this->hasMany(RoomBooking::class, 'room_id', 'id');
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-        static::deleting(function ($room) { // before delete() method call this
-            $room->room_image()->delete();
-        });
     }
 
 }
