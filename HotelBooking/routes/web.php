@@ -96,6 +96,6 @@ Route::group([
     //     return view('web.home.index');
     // });
     Route::get('home', [WebsHomeWebController::class, 'index'])->name('homeweb');
-    Route::get('roomDetail', [RoomDetailController::class, 'index'])->name('roomDetail.index');
+    Route::get('roomDetail/{id}', [RoomDetailController::class, 'index'])->name('roomDetail.index');
     Route::get('room', [RoomWebController::class, 'index'])->name('room.index');
 });

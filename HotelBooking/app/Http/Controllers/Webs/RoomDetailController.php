@@ -24,9 +24,10 @@ class RoomDetailController extends Controller
 
     public function index($id)
     {
-        $rooms = $this->roomService->getAll($id);
-        $roomTypes = $this->roomTypeService->getAll($id);
-        $floors = $this->floorService->getAll($id);
+        $rooms = $this->roomService->findById($id);
+        $id_room_type = $rooms->room_types_id;
+        $roomTypes = $this->roomService->getAllByRoomType($id_room_type);
+        $floors = $this->floorService->findById($id);
         $param = [
             'rooms' => $rooms,
             'roomTypes' => $roomTypes,
