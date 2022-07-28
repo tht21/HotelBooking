@@ -24,7 +24,15 @@ class RoomRepository extends EloquentRepository implements RoomInterface
         $result = $this->model->orderBy('id', 'desc')->paginate(10);
 
         return $result;
-    }   
+    }
+
+    public function getAllByRoomType($id)
+    {
+        // dd($category_id);
+        $result = $this->model->select('*');
+        $result->where('room_types_id', $id)->get();
+        return $result->orderBy('id', 'desc')->paginate(6);
+    }
 
     public function create($request)
     {
