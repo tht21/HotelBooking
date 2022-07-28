@@ -42,7 +42,6 @@
                         </div>
                         <div class="row">
                             @foreach($roomTypes as $roomType )
-
                                 <div class="col-md-4">
                                     <article>
                                         <figure>
@@ -139,78 +138,19 @@
                             </div>
                         </aside>
                         <aside class="widget">
-                            <h4>NEED HELP?</h4>
+                            <h4>Thông tin</h4>
                             <div class="help">
-                                If you have any question please don't hesitate to contact us
+                                Nếu bạn có bất kỳ câu hỏi, xin đừng ngần ngại liên hệ với chúng tôi
                                 <div class="phone"><i class="fa  fa-phone"></i><a href="tel:18475555555">
                                         1-888-123-4567 </a></div>
                                 <div class="email"><i class="fa  fa-envelope-o "></i><a
-                                        href="/cdn-cgi/l/email-protection#385b57564c595b4c784b514c5d165b5755"><span
+                                        href=""><span
                                             class="__cf_email__"
                                             data-cfemail="aecdc1c0dacfcddaeeddc7dacb80cdc1c3">[email&#160;protected]</span></a>
                                     or use <a href="contact.html"> contact form</a></div>
                             </div>
                         </aside>
-                        <aside class="widget">
-                            <h4>Latest Posts</h4>
-                            <div class="latest_posts">
-                                <article class="latest_post">
-                                    <figure>
-                                        <a href="blog-post.html" class="hover_effect h_link h_blue">
-                                            <img src="images/blog/thumb1.jpg" alt="Image">
-                                        </a>
-                                    </figure>
-                                    <div class="details">
-                                        <h6><a href="blog-post.html">Live your myth in Greece</a></h6>
-                                        <span><i class="fa fa-calendar"></i>23/11/2016</span>
-                                    </div>
-                                </article>
-                                <article class="latest_post">
-                                    <figure>
-                                        <a href="blog-post.html" class="hover_effect h_link h_blue">
-                                            <img src="images/blog/thumb2.jpg" alt="Image">
-                                        </a>
-                                    </figure>
-                                    <div class="details">
-                                        <h6><a href="blog-post.html">Zante Hotel in pictures</a></h6>
-                                        <span><i class="fa fa-calendar"></i>18/10/2016</span>
-                                    </div>
-                                </article>
-                                <article class="latest_post">
-                                    <figure>
-                                        <a href="blog-post.html" class="hover_effect h_link h_blue">
-                                            <img src="images/blog/thumb3.jpg" alt="Image">
-                                        </a>
-                                    </figure>
-                                    <div class="details">
-                                        <h6><a href="blog-post.html">Zante Hotel family party</a></h6>
-                                        <span><i class="fa fa-calendar"></i>13/08/2016</span>
-                                    </div>
-                                </article>
-                                <article class="latest_post">
-                                    <figure>
-                                        <a href="blog-post.html" class="hover_effect h_link h_blue">
-                                            <img src="images/blog/thumb4.jpg" alt="Image">
-                                        </a>
-                                    </figure>
-                                    <div class="details">
-                                        <h6><a href="blog-post.html">Zante Hotel weddings</a></h6>
-                                        <span><i class="fa fa-calendar"></i>13/08/2016</span>
-                                    </div>
-                                </article>
-                                <article class="latest_post">
-                                    <figure>
-                                        <a href="blog-post.html" class="hover_effect h_link h_blue">
-                                            <img src="images/blog/thumb5.jpg" alt="Image">
-                                        </a>
-                                    </figure>
-                                    <div class="details">
-                                        <h6><a href="blog-post.html">10 things you should know</a></h6>
-                                        <span><i class="fa fa-calendar"></i>13/08/2016</span>
-                                    </div>
-                                </article>
-                            </div>
-                        </aside>
+
                     </div>
                 </div>
             </div>

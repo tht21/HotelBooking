@@ -29,13 +29,14 @@
     <link href="{{asset('web/css/style.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('web/css/responsive.css')}}" rel="stylesheet" type="text/css">
 
+
     <!-- <link href="fonts/font-awesome.min.css" rel="stylesheet">
     <link href="fonts/flaticon.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900%7cRaleway:400,500,600,700"
-        rel="stylesheet">
+          rel="stylesheet">
 </head>
 
 <body>
@@ -59,7 +60,7 @@
        <div class='ripple'></div>
    </div>
 
-
+   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
    <script type="text/javascript" src="{{asset('web/js/jquery.min.js')}}"></script>
    <script type="text/javascript" src="{{asset('web/js/bootstrap.min.js')}}"></script>
    <script type="text/javascript" src="{{asset('web/js/bootstrap-datepicker.min.js')}}"></script>
@@ -102,6 +103,8 @@
 
    </script>
 
+   <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+           data-cf-settings="" defer=""></script>
 </body>
 
 </html>
