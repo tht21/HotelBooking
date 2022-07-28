@@ -151,7 +151,7 @@ main {
 .f_left {float: left}
 .f_right {
     float: right;
-    margin: -29px 3px 0px 0px;
+    margin: 0px 3px 0px 0px;
 }
 .upper {text-transform: uppercase;}
 
@@ -2393,9 +2393,13 @@ section .main_title {
 .room figure {
     position: relative;
 }
+figure {
+    margin: 18px 0px 0px 0px;
+}
 
 .room figure img {
     width: 100%;
+    max-height: 225px;
 }
 
 .room figcaption {

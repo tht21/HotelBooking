@@ -10,6 +10,8 @@ use App\Http\Controllers\Admins\RoomController;
 use App\Http\Controllers\Admins\RoomTypeController;
 use App\Http\Controllers\Admins\UserController;
 use App\Http\Controllers\Admins\UserGroupsController;
+use App\Http\Controllers\HomeWebController;
+use App\Http\Controllers\Webs\HomeWebController as WebsHomeWebController;
 use App\Http\Controllers\Webs\RoomDetailController;
 use App\Http\Controllers\Webs\RoomWebController;
 use Illuminate\Support\Facades\Route;
@@ -90,9 +92,10 @@ Route::group([
     'prefix' => 'website',
     // 'middleware' => ['auth']
 ], function () {
-    Route::get('home', function () {
-        return view('web.home.index');
-    });
+    // Route::get('home', function () {
+    //     return view('web.home.index');
+    // });
+    Route::get('home', [WebsHomeWebController::class, 'index'])->name('homeweb');
     Route::get('roomDetail', [RoomDetailController::class, 'index'])->name('roomDetail.index');
     Route::get('room', [RoomWebController::class, 'index'])->name('room.index');
 });
