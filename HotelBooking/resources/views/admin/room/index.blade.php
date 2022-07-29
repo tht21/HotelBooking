@@ -93,8 +93,18 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <nav aria-label="Page navigation example">
+                            <div class='float-start'>
+                                <span aria-hidden="true">Showing{{''.$rooms->count().'  ' }} to {{$rooms->currentPage() }}of {{$rooms->lastPage()}}</span>
+                            </div>
+                            <div class='float-end'>
+                                <ul class="pagination">
+                                    <span aria-hidden="true">{{ $rooms->links() }}</span>
+                                </ul>
+                            </div>
+                        </nav>
                     </div>
-                        {{$rooms->appends(request()->query())}}
+
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@
                    <div class="room_details row-flex">
                        <div class="col-md-9 col-sm-9 col-xs-12 room_desc">
                            <h3><a href="{{route('roomDetail.index',$room->id)}}">{{$room->room_type->name}}</a></h3>
-                           <p style="">{!! $room->description!!}</p>
+                           <p style="">{!! $room->convenient!!}</p>
                            <div class="room_services">
                                <i class="fa fa-coffee" data-toggle="popover" data-placement="top"
                                   data-trigger="hover" data-content="Breakfast Included"

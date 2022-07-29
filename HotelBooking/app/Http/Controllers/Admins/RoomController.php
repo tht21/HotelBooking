@@ -184,5 +184,23 @@ class RoomController extends Controller
         }
     }
 
-
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $rooms = $this->roomService->getAll($request);
+            if ($rooms) {
+                foreach ($rooms as $key => $room) {
+                    $output .= '<tr>
+                    <td>' . $room->id . '</td>
+                    <td>' . $room->image_path . '</td>
+                    <td>' . $room->price . '</td>
+                    <td>' . $room->room_type->name . '</td>
+                      <td>' . $room->status . '</td>
+                    </tr>';
+                }
+            }
+            return Response($output);
+        }
+    }
 }
