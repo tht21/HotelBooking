@@ -11,13 +11,20 @@
                         <div class="card-header">
                             <div class="card-title">Chỉnh Sửa Phòng</div>
                         </div>
+
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
                                     <div class="form-group">
                                         <label for="text">Tên phòng</label>
-                                        <input type="text" name="name" class="form-control" id="email2"
-                                               placeholder="Nhập tên phòng" value="{{$room->name}}">
+                                        @if($room->status==='1')
+                                            <input type="text" name="name" class="form-control" id="email2"
+                                                   placeholder="Nhập tên phòng" value="{{$room->name}}" readonly>
+                                        @else
+                                            <input type="text" name="name" class="form-control" id="email2"
+                                                   placeholder="Nhập tên phòng" value="{{$room->name}}">
+                                        @endif
+
                                     </div>
                                     <div class="form-group">
                                         <label for="text">Giá phòng</label>

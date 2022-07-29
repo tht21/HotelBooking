@@ -5,13 +5,12 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoomRequest;
 use App\Models\Room;
-use App\Models\RoomType;
 use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
 use App\Services\Interfaces\FloorServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use App\Helpers\Helper;
+use Illuminate\Support\Facades\Session;
 
 class RoomController extends Controller
 {
@@ -46,7 +45,7 @@ class RoomController extends Controller
      */
     public function create(Request $request)
     {
-        $this->authorize('create',Room::class);
+        $this->authorize('create', Room::class);
         $floors = $this->floorService->getAll($request);
         $roomTypes = $this->roomTypeService->getAll($request);
         $param = [
@@ -64,6 +63,7 @@ class RoomController extends Controller
      */
     public function store(StoreRoomRequest $request)
     {
+
         try {
             $this->roomService->create($request);
             return redirect()->route('rooms.index');
@@ -94,7 +94,12 @@ class RoomController extends Controller
         $room = $this->roomService->findById($id);
         $floors = $this->floorService->getAll($id);
         $roomTypes = $this->roomTypeService->getAll($id);
-        $this->authorize('update',$room);
+        $this->authorize('update', $room);
+//        foreach ($room->room_booking as $item){
+//            dd($item->room_id);
+//        }
+
+
         $param = [
             'floors' => $floors,
             'roomTypes' => $roomTypes,
@@ -112,9 +117,11 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         try {
             $this->roomService->update($request, $id);
             return redirect()->route('rooms.index');
+
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->route('rooms.index');
@@ -130,8 +137,13 @@ class RoomController extends Controller
     public function destroy($id)
     {
         try {
-            $this->roomService->destroy($id);
-            return redirect()->route('rooms.index')->with('success', ' Xóa  phòng thành công ');
+            $room = $this->roomService->findById($id);
+            if ($room->status === '1') {
+                Session::flash('success', 'Không thể xóa phòng khách đã đặt');
+            } else {
+                $this->roomService->destroy($id);
+            }
+            return redirect()->route('rooms.index');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->route('rooms.index')->with('error', 'Xóa  phòng không thành công');

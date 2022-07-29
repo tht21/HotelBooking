@@ -60,7 +60,7 @@
                                     <td>{{number_format($room->price)}} VNĐ</td>
                                     <td>{{$room->room_type ? $room->room_type->name : ''}}</td>
                                     <td>
-                                        {{$room->status}}
+                                        {{$room->status=== '0'?'Còn phòng':'Hết phòng'}}
                                     </td>
                                     <td>
                                         <div class="form-button-action">
