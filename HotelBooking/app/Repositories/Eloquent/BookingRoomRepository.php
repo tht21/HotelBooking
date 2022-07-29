@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Booking;
 use App\Repositories\Interfaces\BookingRoomInterface;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -21,10 +22,12 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
 
     public function getAll($request)
     {
-        $result = $this->model->orderBy('id', 'desc')->paginate(10);
-
-        return $result;
+        $result = $this->model->select('*');
+        $result->orderBy('id', 'desc');
+        return $result->paginate(10);
     }
+
+
 
     public function create($request)
     {
@@ -45,14 +48,13 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
                 'to_date' => $request->to_date,
                 'total_room' => $days,
                 'note' => $request->note,
+                'status' => 0,
                 'user_id' => $request->user_id,
             ];
             $object = $object->create($dataBooking);
-            $status = [
-                'status' => 'hết phòng'
-            ];
+
             foreach ($request->room_id as $Item) {
-                $roombooking = $object->roombooking()->create([
+                $object->roombooking()->create([
                     'booking_id' => $object->id,
                     'room_id' => $Item,
                 ]);
@@ -60,7 +62,7 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
             }
             //check status
             foreach ($object->room as $i) {
-                $i['status'] = 'hết phòng';
+                $i['status'] = '1';
                 $a = [
                     'status' => $i['status'],
                 ];
@@ -80,7 +82,7 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
 
     public function update($request, $id)
     {
-        //dd($request);
+
         try {
             DB::beginTransaction();
             $object = $this->model->find($id);
@@ -95,9 +97,7 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
                 'user_id' => $request->user_id,
             ];
             $object = $object->create($dataBooking);
-            $status = [
-                'status' => 'hết phòng'
-            ];
+
             foreach ($request->room_id as $Item) {
                 $roombooking = $object->roombooking()->create([
                     'booking_id' => $object->id,
@@ -106,12 +106,12 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
             }
             //check status
             foreach ($object->room as $i) {
-                $i['status'] = 'hết phòng';
-                $a = [
+                $i['status'] = '1';
+                $status = [
                     'status' => $i['status'],
                 ];
             }
-            $object->room()->update($a);
+            $object->room()->update($status);
             //   $object->room()->create($status);
             DB::commit();
             Session::flash('success', 'Thêm khách đặt phòng thành công');

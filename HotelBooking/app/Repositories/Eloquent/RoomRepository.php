@@ -6,6 +6,7 @@ namespace App\Repositories\Eloquent;
 use App\Models\Room;
 use App\Repositories\Interfaces\RoomInterface;
 use App\Traits\StorageImageTrait;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -121,6 +122,7 @@ class RoomRepository extends EloquentRepository implements RoomInterface
     public function destroy($id)
     {
         $object = $this->model->find($id);
+
         try {
             $object->delete();
             return true;

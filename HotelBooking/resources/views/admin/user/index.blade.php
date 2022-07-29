@@ -105,8 +105,8 @@
                                                             @csrf
                                                             @method('delete')
                                                         </form>
+                                                        @endif
                                                     @endif
-                                                @endif
                                             </div>
                                         </td>
                                     </tr>
@@ -115,7 +115,7 @@
                             </table>
                             <nav aria-label="Page navigation example">
                                 <div class='float-start'>
-                                    <span aria-hidden="true">Showing{{''.$users->count().'  ' }} to {{$users->currentPage() }}of {{$users->total()}}</span>
+                                    <span aria-hidden="true">Showing{{''.$users->count().'  ' }} to {{$users->currentPage() }}of {{$users->lastPage()}}</span>
                                 </div>
                                 <div class='float-end'>
                                     <ul class="pagination">

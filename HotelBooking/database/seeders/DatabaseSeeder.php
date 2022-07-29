@@ -183,7 +183,7 @@ class DatabaseSeeder extends Seeder
         $room->convenient = 'wifi dieu hoa';
         $room->image_path = 'upload/avatar_admin.jpg';
         $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
-        $room->status = 'hết phòng';
+        $room->status = '1';
         $room->room_types_id = 1;
         $room->floor_id = 1;
         $room->save();
@@ -195,7 +195,7 @@ class DatabaseSeeder extends Seeder
         $room->convenient = 'wifi dieu hoa';
         $room->image_path = 'upload/avatar_admin.jpg';
         $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
-        $room->status = 'còn phòng';
+        $room->status = '0';
         $room->room_types_id = 1;
         $room->floor_id = 1;
         $room->save();
@@ -207,7 +207,7 @@ class DatabaseSeeder extends Seeder
         $room->convenient = 'wifi dieu hoa';
         $room->image_path = 'upload/avatar_admin.jpg';
         $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
-        $room->status = 'còn phòng';
+        $room->status = '0';
         $room->room_types_id = 1;
         $room->floor_id = 1;
         $room->save();
@@ -219,7 +219,7 @@ class DatabaseSeeder extends Seeder
         $room->convenient = 'wifi dieu hoa';
         $room->image_path = 'upload/avatar_admin.jpg';
         $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
-        $room->status = 'còn phòng';
+        $room->status = '0';
         $room->room_types_id = 1;
         $room->floor_id = 1;
         $room->save();

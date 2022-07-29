@@ -13,7 +13,7 @@ class Booking extends Model
 
     protected $table = 'bookings';
     protected $fillable = [
-        'id', 'from_date', 'to_date', 'limit_people', 'total_room', 'note', 'customer_id', 'user_id'
+        'id', 'from_date', 'to_date', 'limit_people', 'total_room', 'note', 'customer_id', 'user_id', 'status'
     ];
 
     public function customer()
@@ -36,10 +36,5 @@ class Booking extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function getDateDifferenceWithPlural()
-    {
-        $day = Helper::getDateDifference($this->check_in, $this->check_out);
-        $plural = Str::plural('Day', $day);
-        return $day . ' ' . $plural;
-    }
+
 }

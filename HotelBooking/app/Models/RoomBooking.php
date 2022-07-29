@@ -24,4 +24,11 @@ class RoomBooking extends Model
     {
         return $this->belongsTo(Room::class, 'room_id', 'id');
     }
+//    public static function boot()
+//    {
+//        parent::boot();
+//        static::deleting(function ($room) { // before delete() method call this
+//            $room->bookings()->delete();
+//        });
+//    }
 }
