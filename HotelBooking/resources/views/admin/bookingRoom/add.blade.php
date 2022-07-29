@@ -38,7 +38,6 @@
                                                 name="room_id[]" multiple="multiple">
                                             @foreach($rooms as $room)
                                                 @if($room->status==='0')
-
                                                     <option value="{{$room->id}}">{{$room->name}}</option>
                                                 @endif
                                             @endforeach

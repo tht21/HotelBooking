@@ -15,6 +15,9 @@
                             @endif
                         </button>
                     </div>
+                    <div class="form-group">
+                        <input type="text" class="form-controller" id="search" name="search"></input>
+                    </div>
                     <ul class="nav nav-tabs card-header-tabs">
                         <div class="all">
                             <li class="nav-item1">
@@ -28,7 +31,6 @@
                         </div>
                     </ul>
                 </div>
-
 
                 <div class="card-body">
                     @if (Session::has('success'))
@@ -52,7 +54,6 @@
                             </thead>
                             <tbody>
                             @foreach($rooms as $key=>$room)
-
                                 <tr>
                                     <td>{{$room->id}}</td>
                                     <td><img src="{{asset($room->image_path)}}" height="70" width="80"></td>
@@ -89,14 +90,41 @@
 
                                     </td>
                                 </tr>
-                                @endforeach
+                            @endforeach
                             </tbody>
                         </table>
+                        <nav aria-label="Page navigation example">
+                            <div class='float-start'>
+                                <span aria-hidden="true">Showing{{''.$rooms->count().'  ' }} to {{$rooms->currentPage() }}of {{$rooms->lastPage()}}</span>
+                            </div>
+                            <div class='float-end'>
+                                <ul class="pagination">
+                                    <span aria-hidden="true">{{ $rooms->links() }}</span>
+                                </ul>
+                            </div>
+                        </nav>
                     </div>
-                    {{$rooms->appends(request()->query())}}
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $('#search').on('keyup', function () {
+        $value = $(this).val();
+        $.ajax({
+            type: 'get',
+            url: '{{ URL::to('search') }}',
+            data: {
+                'search': $value
+            },
+            success: function (data) {
+                $('tbody').html(data);
+            }
+        });
+    })
+    $.ajaxSetup({headers: {'csrftoken': '{{ csrf_token() }}'}});
+</script>
 @endsection
+

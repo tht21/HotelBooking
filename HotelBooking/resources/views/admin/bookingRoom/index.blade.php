@@ -8,6 +8,16 @@
     </div>
     <div class="content">
         <div class="page-inner">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline1">Hết phòng</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline2">Còn phòng</label>
+            </div>
+        </div>
+        <div class="page-inner">
             <div class="row">
                 @foreach($rooms as $room)
                     <div class="col-6 col-sm-4 col-lg-2">
@@ -26,5 +36,4 @@
             </div>
         </div>
     </div>
-
 @endsection

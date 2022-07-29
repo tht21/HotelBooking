@@ -86,8 +86,8 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Tình trạng phòng</label>
                                         <select class="form-control" name="status" id="exampleFormControlSelect1">
-                                            <option value="còn phòng">Còn phòng</option>
-                                            <option value="hết phòng">Hết phòng</option>
+                                            <option value="{{$room->status}}"
+                                                    readonly>{{$room->status==='0'?'Còn phòng':'Hết phòng'}}</option>
                                         </select>
                                     </div>
                                 </div>

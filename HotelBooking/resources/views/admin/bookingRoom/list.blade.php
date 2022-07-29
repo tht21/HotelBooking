@@ -14,7 +14,7 @@
                                 <form action="" method="GET" id="form-search" class="form-dark">
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" id="myInput"
-                                               placeholder="seach name"
+                                               placeholder="Tìm kiếm theo mã đặt phòng"
                                                aria-label="Recipient's username" onkeyup="myFunction()"
                                                aria-describedby="basic-addon2">
                                         <div class="input-group-append">
@@ -23,7 +23,7 @@
                                                 Tìm kiếm nhanh
                                             </button>
                                         </div>
-                                        {{--                                        @include('admin.user.modals.modalSearch')--}}
+                                        @include('admin.bookingRoom.modals.modalSearch')
                                     </div>
                                 </form>
                             </div>
@@ -52,8 +52,7 @@
                             </div>
                             <div class="trash">
                                 <li class="nav-item2">
-                                    <a class="nav-link active " href="{{route('bookingrooms.trash')}}">lịch sử đặt
-                                        phòng</a>
+                                    <a class="nav-link active " href="{{route('bookingrooms.trash')}}">Thùng rác</a>
                                 </li>
                             </div>
                         </ul>
@@ -66,7 +65,7 @@
                                 <div class="text text-danger"><b>{{session::get('error')}}</b></div>
                             @endif
                             <div class="table-responsive">
-                                <table id="add-row" class="display table table-striped table-hover">
+                                <table id="datatable" class="display table table-striped table-hover">
                                     <thead>
                                     <tr>
                                         <th>Mã đơn hàng</th>
@@ -142,44 +141,26 @@
                 </div>
             </div>
         </div>
+        <script>
+            function myFunction() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("datatable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
+
 @endsection
-@section('js')
-    {{--    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>--}}
-    {{--    <script>--}}
-    {{--        $(document).on('click', '#deleteBook', function (e) {--}}
-    {{--            e.preventDefault();--}}
-    {{--            var url = $(this).attr('data-url');--}}
-    {{--            var _this = $(this);--}}
-    {{--            let csrf = '{{ csrf_token() }}';--}}
-    {{--            Swal.fire({--}}
-    {{--                title: 'Khách hàng muốn hủy đặt phòng?',--}}
-    {{--                text: "You won't be able to revert this!",--}}
-    {{--                icon: 'warning',--}}
-    {{--                showCancelButton: true,--}}
-    {{--                confirmButtonColor: '#3085d6',--}}
-    {{--                cancelButtonColor: '#d33',--}}
-    {{--                confirmButtonText: 'Yes, delete it!'--}}
-    {{--            }).then((result) => {--}}
-    {{--                if (result.isConfirmed) {--}}
-    {{--                    $.ajax({--}}
-    {{--                        url: url,--}}
-    {{--                        method: 'delete',--}}
-    {{--                        data: {--}}
-    {{--                            _token: csrf--}}
-    {{--                        },--}}
-    {{--                        success: function (response) {--}}
-    {{--                            console.log(response);--}}
-    {{--                            Swal.fire(--}}
-    {{--                                'Hủy đặt phòng!',--}}
-    {{--                                'Khách hàng đã hủy phòng .',--}}
-    {{--                                'success'--}}
-    {{--                            )--}}
-    {{--                            window.location.reload();--}}
-    {{--                        }--}}
-    {{--                    });--}}
-    {{--                }--}}
-    {{--                document.reload();--}}
-    {{--            })--}}
-    {{--        });--}}
-    {{--    </script>--}}
-@endsection
+

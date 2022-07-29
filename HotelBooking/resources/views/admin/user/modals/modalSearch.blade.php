@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <label style="float: left" class="form-label">Tên Nhân Viên</label>
                         <input type="text" class="form-control" id="recipient-name" name="name"
-                               value="{{ (isset($_REQUEST['name']) ? $_REQUEST['name'] : '') }}">
+                               value="{{ isset($_REQUEST['name']) ? $_REQUEST['name'] : '' }}">
                     </div>
                     <div class="form-group">
                         <label style="float: left" class="form-label">Số Điện Thoại</label>

@@ -28,12 +28,11 @@
                     <div class="main_title mt50">
                         <h2>THÔNG TIN VỀ HOTEL</h2>
                     </div>
-                    <p>{{$rooms->description}}</p>
+                    <p>{!! $rooms->description !!}</p>
                     <div class="main_title mt50">
                         <h2>TIỆN NGHI</h2>
                     </div>
-                    <p>{{$rooms->convenient}}</p>
-
+                    <p>{!!$rooms->convenient!!}</p>
                     <div class="similar_rooms">
                         <div class="main_title t_style5 l_blue s_title a_left">
                             <div class="c_inner">
