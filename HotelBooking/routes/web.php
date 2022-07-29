@@ -48,6 +48,7 @@ Route::group([
 
     Route::prefix('rooms')->group(function () {
         Route::get('/trash', [RoomController::class, 'trashedItems'])->name('rooms.trash');
+        Route::get('/', [RoomController::class, 'search'])->name('rooms.search');
         Route::delete('/force_destroy/{id}', [RoomController::class, 'force_destroy'])->name('rooms.force_destroy');
         Route::get('/restore/{id}', [RoomController::class, 'restore'])->name('rooms.restore');
     });

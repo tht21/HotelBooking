@@ -10,7 +10,7 @@
                             <h4 class="card-title">Lịch sử đặt phòng</h4>
                             <button class="btn btn-primary btn-round ml-auto">
                                 <a href="{{route('bookingrooms.create')}}"> <i class="fa fa-plus"></i>
-                                    Thêm khách đặt phòng</a>
+                                    Thêm mới</a>
                             </button>
                         </div>
                         <ul class="nav nav-tabs card-header-tabs">
@@ -82,6 +82,16 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            <nav aria-label="Page navigation example">
+                                <div class='float-start'>
+                                    <span aria-hidden="true">Showing{{''.$roomBooks->count().'  ' }} to {{$roomBooks->currentPage() }}of {{$roomBooks->lastPage()}}</span>
+                                </div>
+                                <div class='float-end'>
+                                    <ul class="pagination">
+                                        <span aria-hidden="true">{{ $roomBooks->links() }}</span>
+                                    </ul>
+                                </div>
+                            </nav>
                         </div>
                     </div>
                 </div>

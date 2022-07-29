@@ -6,7 +6,6 @@ namespace App\Repositories\Eloquent;
 use App\Models\Room;
 use App\Repositories\Interfaces\RoomInterface;
 use App\Traits\StorageImageTrait;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -31,9 +30,11 @@ class RoomRepository extends EloquentRepository implements RoomInterface
     {
         // dd($category_id);
         $result = $this->model->select('*');
-        $result->where('room_types_id', $id)->get();
+        $result->where('room_types_id', $id)
+            ->where('status', '0')->get();
         return $result->orderBy('id', 'desc')->paginate(6);
     }
+
 
     public function create($request)
     {
@@ -81,7 +82,6 @@ class RoomRepository extends EloquentRepository implements RoomInterface
         try {
             DB::beginTransaction();
             $object = $this->model->find($id);
-
             $object->name = $request->name;
             $object->price = $request->price;
             $object->room_types_id = $request->room_types;

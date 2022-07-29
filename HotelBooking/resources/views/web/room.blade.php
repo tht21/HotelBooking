@@ -16,14 +16,14 @@
                    <div class="room_details row-flex">
                        <div class="col-md-9 col-sm-9 col-xs-12 room_desc">
                            <h3><a href="{{route('roomDetail.index',$room->id)}}">{{$room->room_type->name}}</a></h3>
-                           <p>{{$room->description}}</p>
+                           <p style="">{!! $room->description!!}</p>
                            <div class="room_services">
                                <i class="fa fa-coffee" data-toggle="popover" data-placement="top"
-                                   data-trigger="hover" data-content="Breakfast Included"
-                                   data-original-title="Breakfast"></i>
+                                  data-trigger="hover" data-content="Breakfast Included"
+                                  data-original-title="Breakfast"></i>
                                <i class="fa fa-cutlery" data-toggle="popover" data-placement="top"
-                                   data-trigger="hover" data-content="Restaurant"
-                                   data-original-title="Zante Restaurant"></i>
+                                  data-trigger="hover" data-content="Restaurant"
+                                  data-original-title="Zante Restaurant"></i>
                            </div>
                        </div>
                        <div class="col-md-3 col-sm-3 col-xs-12 room_price">

@@ -183,4 +183,6 @@ class RoomController extends Controller
             return redirect()->route('rooms.trash')->with('error', 'Xóa không thành công');
         }
     }
+
+
 }

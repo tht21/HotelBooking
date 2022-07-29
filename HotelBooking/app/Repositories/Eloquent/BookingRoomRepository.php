@@ -4,7 +4,6 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Booking;
 use App\Repositories\Interfaces\BookingRoomInterface;
-use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -22,11 +21,49 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
 
     public function getAll($request)
     {
-        $result = $this->model->select('*');
-        $result->orderBy('id', 'desc');
-        return $result->paginate(10);
+        $result = $this->model
+            ->join('customers', 'bookings.customer_id', '=', 'customers.id')
+            ->select('customers.*', 'bookings.*');
+        if (isset($request->id) && $request->id) {
+            $id = $request->name;
+            $result->where('bookings.id', 'LIKE', '%' . $id . '%')->get();
+        }
+        if (isset($request->name) && $request->name) {
+            $name = $request->name;
+            $result->where('customers.name', 'LIKE', '%' . $name . '%')->get();
+        }
+        if (isset($request->status) && $request->status) {
+            $status = $request->status;
+            $result->where('bookings.status', 'LIKE', '%' . $status . '%')->get();
+        }
+
+        return $result->paginate(6);
     }
 
+    public function getAllBookRoom($request)
+    {
+        // dd($category_id);
+        $result = $this->model
+            ->join('customers', 'bookings.customer_id', '=', 'customers.id')
+            ->select('*');
+
+        switch ($request) {
+            case isset($request->id) && $request->id:
+                $result->where('bookings.id', 'LIKE', '%' . $request->id . '%');
+                break;
+            case isset($request->name) && $request->name:
+                $result->where('customers.name', 'LIKE', '%' . $request->name . '%');
+                break;
+            case isset($request->status) && $request->status:
+                $result->where('bookings.status', 'LIKE', '%' . $request->status . '%');
+                break;
+            default:
+                # code...
+                break;
+        }
+
+        return $result->orderBy('id', 'desc')->paginate(6);
+    }
 
 
     public function create($request)
