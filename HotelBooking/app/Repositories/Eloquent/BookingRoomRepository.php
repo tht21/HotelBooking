@@ -69,7 +69,6 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
     public function create($request)
     {
         //dd($request->all());
-
         try {
             DB::beginTransaction();
             $object = $this->model;

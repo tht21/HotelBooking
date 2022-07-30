@@ -11,6 +11,7 @@ use App\Http\Controllers\Admins\RoomTypeController;
 use App\Http\Controllers\Admins\UserController;
 use App\Http\Controllers\Admins\UserGroupsController;
 use App\Http\Controllers\HomeWebController;
+use App\Http\Controllers\Webs\BookingRoomController;
 use App\Http\Controllers\Webs\HomeWebController as WebsHomeWebController;
 use App\Http\Controllers\Webs\RoomDetailController;
 use App\Http\Controllers\Webs\RoomWebController;
@@ -93,10 +94,11 @@ Route::group([
     'prefix' => 'website',
     // 'middleware' => ['auth']
 ], function () {
-    // Route::get('home', function () {
-    //     return view('web.home.index');
-    // });
     Route::get('home', [WebsHomeWebController::class, 'index'])->name('homeweb');
     Route::get('roomDetail/{id}', [RoomDetailController::class, 'index'])->name('roomDetail.index');
     Route::get('room', [RoomWebController::class, 'index'])->name('room.index');
+    Route::post('checkout/{id}', [BookingRoomController::class, 'checkout'])->name('booking.checkout'); 
+    Route::get('booking/{id}', [BookingRoomController::class, 'index'])->name('booking.index'); 
+    Route::get('pay/{id}', [BookingRoomController::class, 'getpay'])->name('booking.pay'); 
+    
 });

@@ -4,11 +4,8 @@
 <section class="white_bg" id="rooms">
    <div class="container">
        <div class="main_title mt_wave mt_blue a_center">
-           <h2>OUR FAVORITE ROOMS</h2>
+           <h2>Danh Sách Phòng</h2>
        </div>
-       <p class="main_description a_center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-           nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim
-           veniam, quis nostrud exerci tation ullamcorper suscipit.</p>
        <div class="row">
         @foreach ($rooms as $room)
            <div class="col-md-4">
@@ -28,6 +25,7 @@
            </div>
            @endforeach
        </div>
+       {{$rooms->appends(request()->query())}}
        <div class="mt40 a_center">
            <a class="button btn_sm btn_yellow" href="{{route('room.index')}}">VIEW ROOMS LIST</a>
        </div>

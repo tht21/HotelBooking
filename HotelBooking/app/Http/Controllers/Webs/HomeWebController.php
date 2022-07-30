@@ -10,14 +10,18 @@ use Illuminate\Http\Request;
 class HomeWebController extends Controller
 {
     protected $roomService;
-    public function __construct(RoomServiceInterface $roomService )
+    protected $roomTypeService;
+    public function __construct(RoomServiceInterface $roomService, RoomTypeServiceInterface $roomTypeService)
     {
         $this->roomService = $roomService;
+        $this->roomTypeService = $roomTypeService;
     }
     public function index(Request $request){
         $rooms = $this->roomService->getAll($request);
+        $roomTypes = $this->roomTypeService->getAll($request);
         $param = [
             'rooms' => $rooms,
+            'roomtypes' => $roomTypes
         ];
         return view('web.home.index',$param);
     }
