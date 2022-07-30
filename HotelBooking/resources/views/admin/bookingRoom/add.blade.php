@@ -47,15 +47,17 @@
                                     <div class="col-6">
                                         <label>From Date</label>
                                         <input placeholder="Ngày đặt phòng" type="date" id="example"
-                                               class="form-control checkin_date" name="from_date"
-                                               value="{{old('from_date')}}">
+                                               class="form-control checkin_date" @error('from_date') is-invalid
+                                               @enderror name="from_date"
+                                               value="{{old(date('from_date'))}}">
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('from_date') }}</p>
                                         @endif
                                         <br>
                                         <label>To Date</label>
                                         <input placeholder="Ngày trả phòng" type="date" id="example"
-                                               class="form-control" name="to_date" value="{{old('to_date')}}">
+                                               class="form-control" name="to_date" value="{{old('to_date')}}"
+                                               @error('to_date') is-invalid @enderror>
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('to_date') }}</p>
                                         @endif
