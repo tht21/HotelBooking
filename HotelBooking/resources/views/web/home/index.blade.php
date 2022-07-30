@@ -12,13 +12,12 @@
                <article class="room">
                    <figure>
                        <div class="price">{{number_format($room->price)}} VNĐ<span>/ Đêm</span></div>
-                       <a class="hover_effect h_blue h_link" href="room.html">
+                       <a class="hover_effect h_blue h_link" href="{{route('roomDetail.index',$room->id)}}">
                            <img src="{{asset($room->image_path)}}" class="img-responsive" alt="Image">
                        </a>
                        <figcaption>
                            <h4><a href="room.html">{{$room->room_type->name}}</a></h4>
-                           <span class="f_right"><a href="#" class="button btn_sm btn_blue">VIEW
-                                   DETAILS</a></span>
+                           <span class="f_right"><a href="{{route('roomDetail.index',$room->id)}}" class="button btn_sm btn_blue">Xem Chi Tiết</a></span>
                        </figcaption>
                    </figure>
                </article>
@@ -27,7 +26,7 @@
        </div>
        {{$rooms->appends(request()->query())}}
        <div class="mt40 a_center">
-           <a class="button btn_sm btn_yellow" href="{{route('room.index')}}">VIEW ROOMS LIST</a>
+           <a class="button btn_sm btn_yellow" href="{{route('room.index')}}">Xem Danh Sách Phòng</a>
        </div>
    </div>
 </section>
