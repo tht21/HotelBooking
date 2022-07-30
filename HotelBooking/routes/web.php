@@ -49,6 +49,7 @@ Route::group([
 
     Route::prefix('rooms')->group(function () {
         Route::get('/trash', [RoomController::class, 'trashedItems'])->name('rooms.trash');
+        Route::get('/', [RoomController::class, 'search'])->name('rooms.search');
         Route::delete('/force_destroy/{id}', [RoomController::class, 'force_destroy'])->name('rooms.force_destroy');
         Route::get('/restore/{id}', [RoomController::class, 'restore'])->name('rooms.restore');
     });
@@ -94,7 +95,7 @@ Route::group([
     // 'middleware' => ['auth']
 ], function () {
     Route::get('home', [WebsHomeWebController::class, 'index'])->name('homeweb');
-    Route::get('roomDetail', [RoomDetailController::class, 'index'])->name('roomDetail.index');
+    Route::get('roomDetail/{id}', [RoomDetailController::class, 'index'])->name('roomDetail.index');
     Route::get('room', [RoomWebController::class, 'index'])->name('room.index');
     Route::post('checkout/{id}', [BookingRoomController::class, 'checkout'])->name('booking.checkout'); 
     Route::get('booking/{id}', [BookingRoomController::class, 'index'])->name('booking.index'); 

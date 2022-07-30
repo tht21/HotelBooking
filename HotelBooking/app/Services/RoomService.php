@@ -55,5 +55,9 @@ class RoomService implements RoomServiceInterface
         return $this->roomRepository->force_destroy($id);
     }
 
+    public function getAllByRoomType($id)
+    {
+        return $this->roomRepository->getAllByRoomType($id);
+    }
 
 }

@@ -21,10 +21,50 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
 
     public function getAll($request)
     {
-        $result = $this->model->orderBy('id', 'desc')->paginate(10);
+        $result = $this->model
+            ->join('customers', 'bookings.customer_id', '=', 'customers.id')
+            ->select('customers.*', 'bookings.*');
+        if (isset($request->id) && $request->id) {
+            $id = $request->name;
+            $result->where('bookings.id', 'LIKE', '%' . $id . '%')->get();
+        }
+        if (isset($request->name) && $request->name) {
+            $name = $request->name;
+            $result->where('customers.name', 'LIKE', '%' . $name . '%')->get();
+        }
+        if (isset($request->status) && $request->status) {
+            $status = $request->status;
+            $result->where('bookings.status', 'LIKE', '%' . $status . '%')->get();
+        }
 
-        return $result;
+        return $result->paginate(6);
     }
+
+    public function getAllBookRoom($request)
+    {
+        // dd($category_id);
+        $result = $this->model
+            ->join('customers', 'bookings.customer_id', '=', 'customers.id')
+            ->select('*');
+
+        switch ($request) {
+            case isset($request->id) && $request->id:
+                $result->where('bookings.id', 'LIKE', '%' . $request->id . '%');
+                break;
+            case isset($request->name) && $request->name:
+                $result->where('customers.name', 'LIKE', '%' . $request->name . '%');
+                break;
+            case isset($request->status) && $request->status:
+                $result->where('bookings.status', 'LIKE', '%' . $request->status . '%');
+                break;
+            default:
+                # code...
+                break;
+        }
+
+        return $result->orderBy('id', 'desc')->paginate(6);
+    }
+
 
     public function create($request)
     {
@@ -44,14 +84,13 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
                 'to_date' => $request->to_date,
                 'total_room' => $days,
                 'note' => $request->note,
+                'status' => 0,
                 'user_id' => $request->user_id,
             ];
             $object = $object->create($dataBooking);
-            $status = [
-                'status' => 'hết phòng'
-            ];
+
             foreach ($request->room_id as $Item) {
-                $roombooking = $object->roombooking()->create([
+                $object->roombooking()->create([
                     'booking_id' => $object->id,
                     'room_id' => $Item,
                 ]);
@@ -59,7 +98,7 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
             }
             //check status
             foreach ($object->room as $i) {
-                $i['status'] = 'hết phòng';
+                $i['status'] = '1';
                 $a = [
                     'status' => $i['status'],
                 ];
@@ -79,7 +118,7 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
 
     public function update($request, $id)
     {
-        //dd($request);
+
         try {
             DB::beginTransaction();
             $object = $this->model->find($id);
@@ -94,9 +133,7 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
                 'user_id' => $request->user_id,
             ];
             $object = $object->create($dataBooking);
-            $status = [
-                'status' => 'hết phòng'
-            ];
+
             foreach ($request->room_id as $Item) {
                 $roombooking = $object->roombooking()->create([
                     'booking_id' => $object->id,
@@ -105,12 +142,12 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
             }
             //check status
             foreach ($object->room as $i) {
-                $i['status'] = 'hết phòng';
-                $a = [
+                $i['status'] = '1';
+                $status = [
                     'status' => $i['status'],
                 ];
             }
-            $object->room()->update($a);
+            $object->room()->update($status);
             //   $object->room()->create($status);
             DB::commit();
             Session::flash('success', 'Thêm khách đặt phòng thành công');

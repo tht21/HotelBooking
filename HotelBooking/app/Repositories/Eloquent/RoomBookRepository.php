@@ -25,7 +25,6 @@ class RoomBookRepository extends EloquentRepository implements RoomBookInterface
 
             foreach ($object as $key) {
                 $key->delete();
-                $key->roomss->status = 0;
             }
 
             DB::commit();
@@ -65,9 +64,12 @@ class RoomBookRepository extends EloquentRepository implements RoomBookInterface
     public function force_destroy($id)
     {
         $object = $this->model->withTrashed()->find($id);
+
         try {
+            $object->roomss->update(['status' => '0']);
             $object->forceDelete();
             $object->bookings->forceDelete();
+
             return true;
         } catch (\Exception $e) {
             Log::error($e->getMessage());

@@ -24,7 +24,17 @@ class RoomRepository extends EloquentRepository implements RoomInterface
         $result = $this->model->orderBy('id', 'desc')->paginate(6);
 
         return $result;
-    }   
+    }
+
+    public function getAllByRoomType($id)
+    {
+        // dd($category_id);
+        $result = $this->model->select('*');
+        $result->where('room_types_id', $id)
+            ->where('status', '0')->get();
+        return $result->orderBy('id', 'desc')->paginate(6);
+    }
+
 
     public function create($request)
     {
@@ -72,7 +82,6 @@ class RoomRepository extends EloquentRepository implements RoomInterface
         try {
             DB::beginTransaction();
             $object = $this->model->find($id);
-
             $object->name = $request->name;
             $object->price = $request->price;
             $object->room_types_id = $request->room_types;
@@ -113,6 +122,7 @@ class RoomRepository extends EloquentRepository implements RoomInterface
     public function destroy($id)
     {
         $object = $this->model->find($id);
+
         try {
             $object->delete();
             return true;

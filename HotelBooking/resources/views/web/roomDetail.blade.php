@@ -7,147 +7,55 @@
                 <div class="col-md-8">
                     <div class="slider">
                         <div id="slider-larg" class="owl-carousel image-gallery">
-                            @foreach($rooms as $room)
-                                <div class="item lightbox-image-icon">
-                                    <a href="images/rooms/single-room/single-room1.jpg"
-                                       class="hover_effect h_lightbox h_blue">
-                                        <img class="img-responsive" src="{{$room->image_path}}"
-                                             alt="Image">
-                                    </a>
+
+                            <div class="item lightbox-image-icon">
+                                <a href="{{$rooms->image_path}}"
+                                   class="hover_effect h_lightbox h_blue">
+                                    <img class="img-responsive" src="{{$rooms->image_path}}"
+                                         s alt="Image">
+                                </a>
+                            </div>
+
+                        </div>
+                        <div id="thumbs" class="owl-carousel">
+                            @foreach($rooms->room_image as $room )
+                                <div class="item"><img class="img-responsive"
+                                                       src="{{$room->name}}" alt="Image">
                                 </div>
                             @endforeach
                         </div>
-                        <div id="thumbs" class="owl-carousel">
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb1.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb2.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb3.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb4.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb5.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb6.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb7.jpg" alt="Image">
-                            </div>
-
-                            <div class="item"><img class="img-responsive"
-                                                   src="images/rooms/single-room/single-room-thumb8.jpg" alt="Image">
-                            </div>
-                        </div>
                     </div>
                     <div class="main_title mt50">
-                        <h2>ABOUT ZANTE HOTEL</h2>
+                        <h2>THÔNG TIN VỀ HOTEL</h2>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-                        tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                        nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel
-                        illum dolore eu feugiat nulla facilisis</p>
-                    <p> at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit
-                        augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend
-                        option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non
-                        habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem.
-                        Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-                        tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                        nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                    </p>
-                    <div class="main_title t_style a_left s_title mt50">
-                        <div class="c_inner">
-                            <h2 class="c_title">ROOM SERVICES</h2>
-                        </div>
+                    <p>{!! $rooms->description !!}</p>
+                    <div class="main_title mt50">
+                        <h2>TIỆN NGHI</h2>
                     </div>
-                    <div class="room_facilitys_list">
-                        <div class="all_facility_list">
-                            <div class="col-sm-4 nopadding">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-check"></i>Double Bed</li>
-                                    <li><i class="fa fa-check"></i>80 Sq mt</li>
-                                    <li><i class="fa fa-check"></i>6 Persons</li>
-                                    <li><i class="fa fa-check"></i>Free Internet</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-4 nopadding">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-check"></i>Free Wi-Fi</li>
-                                    <li><i class="fa fa-check"></i>Breakfast Include</li>
-                                    <li><i class="fa fa-check"></i>Private Balcony</li>
-                                    <li class="no"><i class="fa fa-times"></i>Free Newspaper</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-4 nopadding_left">
-                                <ul class="list-unstyled">
-                                    <li class="no"><i class="fa fa-times"></i>Flat Screen Tv</li>
-                                    <li><i class="fa fa-check"></i>Full Ac</li>
-                                    <li class="no"><i class="fa fa-times"></i>Beach View</li>
-                                    <li><i class="fa fa-check"></i>Room Service</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <p>{!!$rooms->convenient!!}</p>
                     <div class="similar_rooms">
                         <div class="main_title t_style5 l_blue s_title a_left">
                             <div class="c_inner">
-                                <h2 class="c_title">SIMILAR ROOMS</h2>
+                                <h2 class="c_title">Phòng liên Quan</h2>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
-                                <article>
-                                    <figure>
-                                        <a href="room.html" class="hover_effect h_blue h_link"><img
-                                                src="images/rooms/single-room.jpg" alt="Image"
-                                                class="img-responsive"></a>
-                                        <div class="price">€99<span> night</span></div>
-                                        <figcaption>
-                                            <h4><a href="room.html">Double Room</a></h4>
-                                        </figcaption>
-                                    </figure>
-                                </article>
-                            </div>
-                            <div class="col-md-4">
-                                <article>
-                                    <figure>
-                                        <a href="room.html" class="hover_effect h_blue h_link"><img
-                                                src="images/rooms/double-room.jpg" alt="Image"
-                                                class="img-responsive"></a>
-                                        <div class="price">€129<span> night</span></div>
-                                        <figcaption>
-                                            <h4><a href="room.html">Single Room </a></h4>
-                                        </figcaption>
-                                    </figure>
-                                </article>
-                            </div>
-                            <div class="col-md-4">
-                                <article>
-                                    <figure>
-                                        <a href="room.html" class="hover_effect h_blue h_link"><img
-                                                src="images/rooms/deluxe-room.jpg" alt="Image"
-                                                class="img-responsive"></a>
-                                        <div class="price">€189<span> night</span></div>
-                                        <figcaption>
-                                            <h4><a href="room.html">Deluxe Room </a></h4>
-                                        </figcaption>
-                                    </figure>
-                                </article>
-                            </div>
+                            @foreach($roomTypes as $roomType )
+                                <div class="col-md-4">
+                                    <article>
+                                        <figure>
+                                            <a href="room.html" class="hover_effect h_blue h_link"><img
+                                                    src="{{$roomType->image_path}}" alt="Image"
+                                                    class="img-responsive"></a>
+                                            <div class="price">{{Helper::convertToRupiah($roomType->price)}}
+                                                <span> night</span></div>
+                                            <figcaption>
+                                                <h4><a href="room.html">{{$roomType->room_type->name}}</a></h4>
+                                            </figcaption>
+                                        </figure>
+                                    </article>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -229,78 +137,19 @@
                             </div>
                         </aside>
                         <aside class="widget">
-                            <h4>NEED HELP?</h4>
+                            <h4>Thông tin</h4>
                             <div class="help">
-                                If you have any question please don't hesitate to contact us
+                                Nếu bạn có bất kỳ câu hỏi, xin đừng ngần ngại liên hệ với chúng tôi
                                 <div class="phone"><i class="fa  fa-phone"></i><a href="tel:18475555555">
                                         1-888-123-4567 </a></div>
                                 <div class="email"><i class="fa  fa-envelope-o "></i><a
-                                        href="/cdn-cgi/l/email-protection#385b57564c595b4c784b514c5d165b5755"><span
+                                        href=""><span
                                             class="__cf_email__"
                                             data-cfemail="aecdc1c0dacfcddaeeddc7dacb80cdc1c3">[email&#160;protected]</span></a>
                                     or use <a href="contact.html"> contact form</a></div>
                             </div>
                         </aside>
-                        <aside class="widget">
-                            <h4>Latest Posts</h4>
-                            <div class="latest_posts">
-                                <article class="latest_post">
-                                    <figure>
-                                        <a href="blog-post.html" class="hover_effect h_link h_blue">
-                                            <img src="images/blog/thumb1.jpg" alt="Image">
-                                        </a>
-                                    </figure>
-                                    <div class="details">
-                                        <h6><a href="blog-post.html">Live your myth in Greece</a></h6>
-                                        <span><i class="fa fa-calendar"></i>23/11/2016</span>
-                                    </div>
-                                </article>
-                                <article class="latest_post">
-                                    <figure>
-                                        <a href="blog-post.html" class="hover_effect h_link h_blue">
-                                            <img src="images/blog/thumb2.jpg" alt="Image">
-                                        </a>
-                                    </figure>
-                                    <div class="details">
-                                        <h6><a href="blog-post.html">Zante Hotel in pictures</a></h6>
-                                        <span><i class="fa fa-calendar"></i>18/10/2016</span>
-                                    </div>
-                                </article>
-                                <article class="latest_post">
-                                    <figure>
-                                        <a href="blog-post.html" class="hover_effect h_link h_blue">
-                                            <img src="images/blog/thumb3.jpg" alt="Image">
-                                        </a>
-                                    </figure>
-                                    <div class="details">
-                                        <h6><a href="blog-post.html">Zante Hotel family party</a></h6>
-                                        <span><i class="fa fa-calendar"></i>13/08/2016</span>
-                                    </div>
-                                </article>
-                                <article class="latest_post">
-                                    <figure>
-                                        <a href="blog-post.html" class="hover_effect h_link h_blue">
-                                            <img src="images/blog/thumb4.jpg" alt="Image">
-                                        </a>
-                                    </figure>
-                                    <div class="details">
-                                        <h6><a href="blog-post.html">Zante Hotel weddings</a></h6>
-                                        <span><i class="fa fa-calendar"></i>13/08/2016</span>
-                                    </div>
-                                </article>
-                                <article class="latest_post">
-                                    <figure>
-                                        <a href="blog-post.html" class="hover_effect h_link h_blue">
-                                            <img src="images/blog/thumb5.jpg" alt="Image">
-                                        </a>
-                                    </figure>
-                                    <div class="details">
-                                        <h6><a href="blog-post.html">10 things you should know</a></h6>
-                                        <span><i class="fa fa-calendar"></i>13/08/2016</span>
-                                    </div>
-                                </article>
-                            </div>
-                        </aside>
+
                     </div>
                 </div>
             </div>

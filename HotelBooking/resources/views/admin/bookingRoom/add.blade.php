@@ -37,7 +37,9 @@
                                         <select class="form-control rooms_select_choose" id="exampleFormControlSelect1"
                                                 name="room_id[]" multiple="multiple">
                                             @foreach($rooms as $room)
-                                                <option value="{{$room->id}}">{{$room->name}}</option>
+                                                @if($room->status==='0')
+                                                    <option value="{{$room->id}}">{{$room->name}}</option>
+                                                @endif
                                             @endforeach
                                         </select>
                                         <br>

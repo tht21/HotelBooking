@@ -60,7 +60,6 @@
         </article>
         @endforeach
         {{$rooms->appends(request()->query())}}
-
     </div>
 </main>
 @endsection

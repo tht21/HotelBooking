@@ -43,7 +43,9 @@ class BookingController extends Controller
     {
         $this->authorize('viewAny', Booking::class);
         $bookingrooms = $this->bookingRoomService->getAll($request);
+
         $rooms = $this->roomService->getAll($request);
+
         $param = [
             'bookingrooms' => $bookingrooms,
             'rooms' => $rooms,
@@ -100,8 +102,15 @@ class BookingController extends Controller
     {
         $this->authorize('viewAny', Booking::class);
         $bookingrooms = $this->bookingRoomService->getAll($request);
-//        print_r($bookingrooms);die;
         $rooms = $this->roomService->getAll($request);
+        switch ($bookingrooms) {
+            case $bookingrooms->where('status', 0):
+
+                break;
+            default:
+                # code...
+                break;
+        }
         // dd($bookingrooms);
         $param = [
             'bookingrooms' => $bookingrooms,

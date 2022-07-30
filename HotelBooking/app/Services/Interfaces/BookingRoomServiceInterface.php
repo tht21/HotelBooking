@@ -7,4 +7,6 @@ interface BookingRoomServiceInterface extends Service
    public function trashedItems();
    public function restore($id);
    public function force_destroy($id);
+
+    public function getAllBookRoom($id);
 }

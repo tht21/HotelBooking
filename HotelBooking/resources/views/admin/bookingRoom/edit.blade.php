@@ -69,11 +69,9 @@
                                     </div>
                                     <div class="col-3">
                                         <label>Phòng</label>
-                                        <select class="form-control rooms_select_choose" name="room_id" multiple>
+                                        <select class="form-control rooms_select_choose" name="room_id[]" multiple>
                                             @foreach($bookingrooms->room as $room)
-                                                <option value="{{$room->id}}">{{$room->name}}</option>
-                                                {{--                                                <option value="{{$room->id}}" selected>{{$room->name}}</option>--}}
-
+                                                <option value="{{$room->id}}" selected>{{$room->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
