@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Webs;
 
-use App\Models\Booking;
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckoutRequest;
 use App\Services\Interfaces\BookingRoomServiceInterface;
 use App\Services\Interfaces\CheckoutServiceInterface;
+use App\Services\Interfaces\CustomerServiceInterface;
 use App\Services\Interfaces\RoomServiceInterface;
 use App\Services\Interfaces\RoomTypeServiceInterface;
-use Illuminate\Http\Request;
 use DateTime;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class BookingRoomController extends Controller
 {
@@ -20,18 +20,27 @@ class BookingRoomController extends Controller
     protected $roomTypeService;
     protected $bookingRoomService;
     protected $checkoutService;
-    public function __construct(RoomServiceInterface $roomService, RoomTypeServiceInterface $roomTypeService, BookingRoomServiceInterface $bookingRoomService, CheckoutServiceInterface $checkoutService)
+    protected $customerService;
+
+    public function __construct(RoomServiceInterface     $roomService, RoomTypeServiceInterface $roomTypeService, BookingRoomServiceInterface $bookingRoomService,
+                                CheckoutServiceInterface $checkoutService, CustomerServiceInterface $customerService)
     {
         $this->roomService = $roomService;
         $this->roomTypeService = $roomTypeService;
         $this->bookingRoomService = $bookingRoomService;
         $this->checkoutService = $checkoutService;
+        $this->customerService = $customerService;
     }
-    public function index($id)
+
+    public function addRoom($id)
     {
-        $bookings = $this->roomService->findById($id);
+        $rooms = $this->roomService->findById($id);
+
+        Session::push("cart", $rooms);
+        $data = Session::all();
         $param = [
-            'bookings' => $bookings
+            'datas' => $data,
+            'rooms' => $rooms
         ];
         return view('web.booking.checkout', $param);
     }
@@ -53,12 +62,14 @@ class BookingRoomController extends Controller
         return view('web.booking.pay', $param);
     }
 
-    public function getpay($id)
+    public function getpay(Request $request)
     {
-        $pays = $this->roomService->findById($id);
-        $param = [
-            'pays' => $pays
-        ];
-        return view('web.booking.pay', $param);
+
+        try {
+            $this->bookingRoomService->addroom($request);
+            return redirect()->route('homeweb');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+        }
     }
 }

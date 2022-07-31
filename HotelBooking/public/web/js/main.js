@@ -1,8 +1,8 @@
  /*================================================
 * Template Name: Zante Hotel - Hotel & Resort HTML Template
-* Version: 1.2 
+* Version: 1.2
 * Author Name: Jomin Muskaj
-* Author URI: eagle-themes.com 
+* Author URI: eagle-themes.com
 =================================================*/
 
 (function ($) {
@@ -13,22 +13,23 @@
     //     $("#loading").fadeOut(500);
     // });
 
-    
+
     /*Document is Raedy */
     $(document).ready(function () {
 
         /*========== SMOOTHSTATE ==========*/
-         $('#smoothpage').smoothState({ 
+        $('#smoothpage').smoothState({
             anchors: 'nav a',
-            blacklist: 'form',                         
-        }); 
-        
+            blacklist: 'form',
+        });
+
         /*========== TEXT ROTATION ==========*/
         $("#text_rotating").Morphext({
             animation: "fadeInDown",
             separator: ",",
             speed: 5000,
-            complete: function () {}
+            complete: function () {
+            }
         });
 
         /*========== WOW ==========*/
@@ -44,9 +45,9 @@
 
         /*========== MENU ==========*/
         $(window).on("scroll", function () {
-            
+
             var header = $('header')
-            
+
             if (header.length > 0) {
 
                 var window_height = $(this).scrollTop();
@@ -79,11 +80,11 @@
                 }
             }
         });
-        
+
         $(function () {
             function toggleNavbarMethod() {
                 if ($(window).width() > 992) {
-                    
+
                     $('.dropdown')
                         .on('mouseover', function () {
                             $(this).addClass('open');
@@ -129,7 +130,7 @@
                     '<div class="count_box"><div class="inner"><div class="count_number">%D</div><div class="count_text">Days</div></div></div> ' + '<div class="count_box"><div class="inner"><div class="count_number">%H</div><div class="count_text">Hours</div></div></div> ' + '<div class="count_box"><div class="inner"><div class="count_number">%M</div><div class="count_text">Minutes</div></div></div> ' + '<div class="count_box"><div class="inner"><div class="count_number">%S</div><div class="count_text">Seconds</div><div></div>'));
             });
         });
-        
+
         /*========== REVOLUTION SLIDER ==========*/
 
         /* ----- Home Page 1 ----- */
@@ -172,7 +173,7 @@
                 }
             });
         };
-        
+
         /* ----- Home Page 2 ----- */
         if ($("#classic_slider").length > 0) {
             var tpj = jQuery;
@@ -255,7 +256,7 @@
                 }
             });
         };
-        
+
         /* ----- Home Page 3 ----- */
         if ($("#fullscreen_slider").length > 0) {
             var tpj = jQuery;
@@ -328,9 +329,8 @@
                 }
             });
         };
-        
-     
-        
+
+
         /* ----- Home Page 4 ----- */
         if ($("#fullscreen_hero_video").length > 0) {
             var tpj = jQuery;
@@ -371,7 +371,7 @@
                 }
             });
         };
-        
+
         /* ----- Coming Soon ----- */
         if ($("#hero_coming_soon").length > 0) {
            var tpj = jQuery;
@@ -414,7 +414,7 @@
                }
            });
         };
-        
+
         /* ----- Event Details ----- */
         if ($("#hero_event").length > 0) {
             var tpj = jQuery;
@@ -457,8 +457,8 @@
                 }
             });
          };
-        
-         /* ----- Restaurant ----- */
+
+        /* ----- Restaurant ----- */
          if ($("#hero_restaurant").length > 0) {
              var tpj = jQuery;
              var revapi429;
@@ -498,8 +498,8 @@
                  }
              });
          };
-        
-         /* ----- Spa ----- */
+
+        /* ----- Spa ----- */
          if ($("#hero_spa").length > 0) {
             var tpj = jQuery;
             var revapi429;
@@ -509,12 +509,12 @@
                 } else {
                     revapi429 = tpj("#hero_spa").show().revolution({
                         sliderType: "hero",
-                        dottedOverlay: "twoxtwo",   
+                        dottedOverlay: "twoxtwo",
                         delay: 9000,
                         responsiveLevels: [1200, 992, 768, 480],
-                        visibilityLevels: [1200, 992, 768, 480], 
+                        visibilityLevels: [1200, 992, 768, 480],
                         gridwidth: [1200, 992, 768, 480],
-                        gridheight:[550, 550, 550, 550],
+                        gridheight: [550, 550, 550, 550],
                         lazyType: "none",
                         parallax: {
                             type: "scroll",
@@ -523,9 +523,9 @@
                             levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50],
                         },
                         shadow: 0,
-                        spinner: "off", 
+                        spinner: "off",
                         autoHeight: "off",
-                        forceFullWidth:"off",
+                        forceFullWidth: "off",
                         disableProgressBar: "on",
                         hideSliderAtLimit: 0,
                         hideCaptionAtLimit: 0,
@@ -539,7 +539,7 @@
                 }
             });
          };
-        
+
         /*========== COUNT UP ==========*/
         var options = {
             useEasing: true,
@@ -599,17 +599,17 @@
                     $(this).addClass('active');
                 });
             });
-            
+
             if ($("#gallery").length > 0) {
                 // layout Isotope after each image loads
                 $grid.imagesLoaded().progress( function() {
                   $grid.isotope('layout');
                 });
             }
-            
-            
+
+
         });
-        
+
         /*========== GALLERY SLIDER ==========*/
         var owl = $('#gallery_slider');
         owl.owlCarousel({
@@ -733,64 +733,64 @@
         }
 
         /*========== BOOKING FORM ==========*/
-        $("#booking-form, #horizontal_booking_form, #booking_form_advanced").on('submit', function (e) {
-            e.preventDefault();
-
-            //Get input field values from HTML form
-            var booking_name = $("input[name=booking-name]").val();
-            var booking_email = $("input[name=booking-email]").val();
-            var booking_phone = $("input[name=booking-phone]").val();
-            var booking_roomtype = $("select[name=booking-roomtype]").val();
-            var booking_adults = $("select[name=booking-adults]").val();
-            var booking_children = $("select[name=booking-children]").val();
-            var booking_checkin = $("input[name=booking-checkin]").val();
-            var booking_checkout = $("input[name=booking-checkout]").val();
-            var booking_country = $("select[name=booking-country]").val();
-            var booking_comments = $("textarea[name=booking-comments]").val();
-
-            //Data to be sent to server
-            var post_data;
-            var output;
-            post_data = {
-                'booking_name': booking_name,
-                'booking_email': booking_email,
-                'booking_phone': booking_phone,
-                'booking_roomtype': booking_roomtype,
-                'booking_checkin': booking_checkin,
-                'booking_checkout': booking_checkout,
-                'booking_adults': booking_adults,
-                'booking_children': booking_children,
-                'booking_country': booking_country,
-                'booking_comments': booking_comments
-            };
-
-            //Ajax post data to server
-            $.post('email/booking.php', post_data, function (response) {
-
-                //Response server message
-                if (response.type == 'error') {
-                    output = '<div class="notification error"><span class="notification-icon"><i class="fa fa-exclamation" aria-hidden="true"></i></span><span class="notification-text">' + response.text + '</span></div>';
-                } else {
-                    output = '<div class="notification success"><span class="notification-icon"><i class="fa fa-check" aria-hidden="true"></i></span><span class="notification-text">' + response.text + '</span></div>';
-
-                    //If success clear inputs
-                    $("input, textarea").val('');
-                    $('select').val('');
-                    $('select').val('').selectpicker('refresh');
-                }
-
-                $("#notification").html(output);
-                $(".notification").delay(15000).queue(function (next) {
-                    $(this).addClass("scale-out");
-                    next();
-                });
-                $(".notification").on("click", function(){ 
-                    $(this).addClass("scale-out");
-                });
-
-            }, 'json');
-
-        });
+        // $("#booking-form, #horizontal_booking_form, #booking_form_advanced").on('submit', function (e) {
+        //     e.preventDefault();
+        //
+        //     //Get input field values from HTML form
+        //     var booking_name = $("input[name=booking-name]").val();
+        //     var booking_email = $("input[name=booking-email]").val();
+        //     var booking_phone = $("input[name=booking-phone]").val();
+        //     var booking_roomtype = $("select[name=booking-roomtype]").val();
+        //     var booking_adults = $("select[name=booking-adults]").val();
+        //     var booking_children = $("select[name=booking-children]").val();
+        //     var booking_checkin = $("input[name=booking-checkin]").val();
+        //     var booking_checkout = $("input[name=booking-checkout]").val();
+        //     var booking_country = $("select[name=booking-country]").val();
+        //     var booking_comments = $("textarea[name=booking-comments]").val();
+        //
+        //     //Data to be sent to server
+        //     var post_data;
+        //     var output;
+        //     post_data = {
+        //         'booking_name': booking_name,
+        //         'booking_email': booking_email,
+        //         'booking_phone': booking_phone,
+        //         'booking_roomtype': booking_roomtype,
+        //         'booking_checkin': booking_checkin,
+        //         'booking_checkout': booking_checkout,
+        //         'booking_adults': booking_adults,
+        //         'booking_children': booking_children,
+        //         'booking_country': booking_country,
+        //         'booking_comments': booking_comments
+        //     };
+        //
+        //     //Ajax post data to server
+        //     $.post('email/booking.php', post_data, function (response) {
+        //
+        //         //Response server message
+        //         if (response.type == 'error') {
+        //             output = '<div class="notification error"><span class="notification-icon"><i class="fa fa-exclamation" aria-hidden="true"></i></span><span class="notification-text">' + response.text + '</span></div>';
+        //         } else {
+        //             output = '<div class="notification success"><span class="notification-icon"><i class="fa fa-check" aria-hidden="true"></i></span><span class="notification-text">' + response.text + '</span></div>';
+        //
+        //             //If success clear inputs
+        //             $("input, textarea").val('');
+        //             $('select').val('');
+        //             $('select').val('').selectpicker('refresh');
+        //         }
+        //
+        //         $("#notification").html(output);
+        //         $(".notification").delay(15000).queue(function (next) {
+        //             $(this).addClass("scale-out");
+        //             next();
+        //         });
+        //         $(".notification").on("click", function(){
+        //             $(this).addClass("scale-out");
+        //         });
+        //
+        //     }, 'json');
+        //
+        // });
 
         /*========== CONTACT FORM ==========*/
         $("#contact-form, #contact-form-page").on('submit', function (e) {
@@ -827,13 +827,13 @@
                     $("input, textarea").val('');
                 }
 
-                $("#notification").html(output); 
+                $("#notification").html(output);
 
                 $(".notification").delay(15000).queue(function (next) {
                     $(this).addClass("scale-out");
                     next();
                 });
-                $(".notification").on("click", function(){ 
+                $(".notification").on("click", function () {
                     $(this).addClass("scale-out");
                 });
 
@@ -867,19 +867,19 @@
                     $("input, textarea").val('');
                 }
 
-                $("#notification").html(output); 
+                $("#notification").html(output);
 
                 $(".notification").delay(15000).queue(function (next) {
                     $(this).addClass("scale-out");
                     next();
                 });
-                $(".notification").on("click", function(){ 
+                $(".notification").on("click", function () {
                     $(this).addClass("scale-out");
                 });
 
             }, 'json');
         });
-        
+
         /*========== MAGNIFIC POPUP ==========*/
         $(".magnific-popup, a[data-rel^='magnific-popup']").magnificPopup({
             type: 'image',
@@ -937,20 +937,11 @@
         /*========== POP OVER & TOOLTIP ==========*/
         $('[data-toggle="popover"]').popover();
         $('[data-toggle="tooltip"]').tooltip({
-           animated: 'fade', 
-           container: 'body'
+            animated: 'fade',
+            container: 'body'
         });
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
         /*========== GOOGLE MAP ==========*/
         function initialize() {
 
@@ -1054,10 +1045,7 @@
             }, 500);
             return false;
         });
-        
-        
-      
- 
+
 
     });
 })(jQuery);

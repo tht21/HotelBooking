@@ -1,9 +1,5 @@
 @extends('layouts.web.app')
 @section('content')
-
-<div>
-    <h1>Danh Sách Phòng</h1>
-</div>
 <main id="rooms_list">
     <div class="container">
         @foreach ($rooms as $room)
@@ -32,9 +28,9 @@
                                 <i class="fa fa-coffee" data-toggle="popover" data-placement="top" data-trigger="hover"
                                    data-content="Cà phê miễn phí" data-original-title="Coffee"></i>
                                 <i class="fa fa-cutlery" data-toggle="popover" data-placement="top" data-trigger="hover"
-                                    data-content="Bữa sáng miễn phí" data-original-title="Food"></i>
+                                   data-content="Bữa sáng miễn phí" data-original-title="Food"></i>
                                 <i class="fa fa-wifi" data-toggle="popover" data-placement="top" data-trigger="hover"
-                                    data-content="Wifi miễn phí" data-original-title="Wifi"></i>
+                                   data-content="Wifi miễn phí" data-original-title="Wifi"></i>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-12 room_price">
@@ -42,12 +38,15 @@
                                 <span class="room_price_number"> {{number_format($room->price)}} VNĐ </span>
                                 <small class="upper"> Một Ngày</small>
                                 @if ($room->status == 0)
-                                <a href="{{route('booking.index',$room->id)}}" class="button  btn_blue btn_full upper">Đặt Ngay</a>
+                                    <a href="{{route('booking.addRoom',$room->id)}}"
+                                       class="button  btn_blue btn_full upper">Đặt Ngay</a>
                                 @endif
                                 @if ($room->status == 1)
-                                {{-- <a href="#" class="button  btn_blue btn_full upper">Đặt Ngay</a> --}}
-                                <button style="background-color: rgb(40, 136, 255)">Quý khách thông cảm phòng này hiện
-                                    đã có người đặt</button>
+                                    {{-- <a href="#" class="button  btn_blue btn_full upper">Đặt Ngay</a> --}}
+                                    <button style="background-color: rgb(40, 136, 255)">Quý khách thông cảm phòng này
+                                        hiện
+                                        đã có người đặt
+                                    </button>
                                 @endif
                             </div>
                         </div>
