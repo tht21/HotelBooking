@@ -33,7 +33,7 @@
                <div class="card">
                   <div class="form-group">
                      Tên người liên hệ:
-                     <input class="form-control" name="name" type="text">
+                     <input class="form-control" name="name" type="text" value="{{old('name')}}">
                      @if ($errors->any())
                      <p style="color:red">{{ $errors->first('name') }}</p>
                      @endif
@@ -41,29 +41,29 @@
                   </div>
                   <div class="form-group col-md-6">
                      Số Điện Thoại:
-                     <input class="form-control" name="phone" type="text">
+                     <input class="form-control" name="phone" type="text" value="{{old('phone')}}">
                      @if ($errors->any())
                      <p style="color:red">{{ $errors->first('phone') }}</p>
                      @endif
                   </div>
                   <div class="form-group col-md-6">
                      Email:
-                     <input class="form-control" name="email" type="email">
+                     <input class="form-control" name="email" type="email" value="{{old('email')}}">
                      @if ($errors->any())
                      <p style="color:red">{{ $errors->first('email') }}</p>
                      @endif
-                     <span>VD: email@example.com</span>
+                     <span>VD:email@example.com</span>
                   </div>
                   <div class="form-group col-md-6">
                      Địa Chỉ:
-                     <input class="form-control" name="address" type="text">
+                     <input class="form-control" name="address" type="text" value="{{old('address')}}">
                      @if ($errors->any())
                      <p style="color:red">{{ $errors->first('address') }}</p>
                      @endif
                   </div>
                   <div class="form-group col-md-6">
                      Số CMND/CCCD:
-                     <input class="form-control" name="cmnd">
+                     <input class="form-control" name="cmnd" value="{{old('cmnd')}}">
                      @if ($errors->any())
                      <p style="color:red">{{ $errors->first('name') }}</p>
                      @endif
@@ -73,7 +73,7 @@
                         <div class="form_date">
                            Ngày Nhận Phòng
                            <input type="date" name="booking_checkin"
-                              placeholder="Ngày đến" >
+                              placeholder="Ngày đến" value="{{old('booking_checkin')}}">
                               @if ($errors->any())
                               <p style="color:red">{{ $errors->first('booking_checkin') }}</p>
                               @endif
@@ -85,7 +85,7 @@
                         <div class="form_date departure">
                            Ngày Trả Phòng
                            <input type="date" name="booking_checkout"
-                              placeholder="Ngày đi" >
+                              placeholder="Ngày đi" value="{{old('booking_checkout')}}">
                               @if ($errors->any())
                               <p style="color:red">{{ $errors->first('booking_checkout') }}</p>
                               @endif

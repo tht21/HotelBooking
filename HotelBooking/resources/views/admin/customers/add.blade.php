@@ -15,42 +15,39 @@
                      @csrf
                      <div class="form-group">
                         <label>Tên Khách hàng</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên khách hàng">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên khách hàng" value="{{old('name')}}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('name') }}</p>
                         @endif
                      </div>
                      <div class="form-group">
                         <label>Email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="Nhập email khách hàng">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Nhập email khách hàng" value="{{old('email')}}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('email') }}</p>
                         @endif
                      </div>
                      <div class="form-group">
                         <label>Phone</label>
-                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại khách hàng">
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại khách hàng" value="{{old('phone')}}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('phone') }}</p>
                         @endif
                      </div>
                      <div class="form-group">
                         <label>Địa Chỉ</label>
-                        <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ khách hàng">
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ khách hàng" value="{{old('address')}}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('address') }}</p>
                         @endif
                      </div>
                      <div class="form-group">
-                        <label>Số CMND</label>
-                        <input type="text" class="form-control" id="cmnd" name="cmnd" placeholder="Nhập số cmnd">
+                        <label>Số CMND/CCCD</label>
+                        <input type="text" class="form-control" id="cmnd" name="cmnd" placeholder="Nhập số CMND" value="{{old('cmnd')}}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('cmnd') }}</p>
                         @endif
                      </div>
-                     {{-- <button type="submit" class="btn btn-primary btn-round ml-auto">Submit</button>
-
-                     <a class="btn btn-warning btn-round ml-auto" href="{{route('roomtype.index')}}"">Quay Lại</a> --}}
                            <button type=" submit" class="btn btn-primary">Lưu</button>
                         <a href="{{route('customers.index')}}" class="btn btn-danger">Hủy</a>
                   </form>

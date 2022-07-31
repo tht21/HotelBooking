@@ -39,7 +39,7 @@
                   @endif
                </div>
                <div class="table-responsive">
-               <table id="basic-datatables" class="display table table-striped table-hover" >
+               <table  class="display table table-striped table-hover" >
                   <thead>
                      <tr>
                         <th>#</th>

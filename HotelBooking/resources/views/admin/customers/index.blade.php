@@ -1,5 +1,10 @@
 @extends('layouts.admin.app')
 @section('content')
+<style>
+   button.btn.btn-primary {   
+      margin: 9px -4px -4px -22px;
+   }
+</style>
 <div class="page-inner">
    @include('layouts.admin.includes.content',['key'=> 'Khách Hàng','name'=> 'Quản Lý Khách Hàng ','key'=> 'Khách Hàng
    '])
@@ -31,9 +36,24 @@
                @if (Session::has('error'))
                <div class="text text-danger"><b>{{session::get('error')}}</b></div>
                @endif
+              
                <div class="d-flex align-items-center">
+                  <div class="col-6">
+                     <form class="navbar-form navbar-left" method="get">
+                        @csrf
+                        <div class="row">
+                           <div class="col-8">
+                              <div class="form-group">
+                                 <input type="text" class="form-control" placeholder="Nhập từ cần tìm..." name='search'>
+                              </div>
+                           </div>
+                           <div class="col-4">
+                              <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
                   @if(Auth::user()->hasPermission('Customers_create'))
-
                   <a href="{{route('customers.create')}}" class="btn btn-primary btn-round ml-auto">
                      <i class="fa fa-plus"></i>
                      Thêm Khách Hàng
@@ -41,7 +61,7 @@
                   @endif
                </div>
                <div class="table-responsive">
-                  <table id="basic-datatables" class="display table table-striped table-hover">
+                  <table id="" class="display table table-striped table-hover">
                      <thead>
                         <tr>
                            <th>#</th>
@@ -89,10 +109,17 @@
                         @endforeach
 
                      </tbody>
+                     @if (isset($search))
+                        <a href="{{route('customers.index')}}" class="btn btn-primary" >Quay Lại</a>
+                     @endif
                   </table>
                </div>
+               <div class='float-end'>
+                  <ul class="pagination">
+                     {{$customers->appends(request()->query())}}
+                  </ul>
+              </div>
             </div>
-{{--             {{$customers->appends(request()->query())}}--}}
          </div>
       </div>
    </div>

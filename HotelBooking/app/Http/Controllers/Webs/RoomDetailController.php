@@ -25,7 +25,7 @@ class RoomDetailController extends Controller
     public function index($id)
     {
         $rooms = $this->roomService->findById($id);
-
+        $bookings = $this->roomService->findById($id);
 
         $id_room_type = $rooms->room_types_id;
         $roomTypes = $this->roomService->getAllByRoomType($id_room_type);
@@ -34,6 +34,7 @@ class RoomDetailController extends Controller
             'rooms' => $rooms,
             'roomTypes' => $roomTypes,
             'floors' => $floors,
+            'bookings' => $bookings
         ];
         return view('web.roomDetail', $param);
     }
