@@ -16,9 +16,13 @@ class CustomerRepository extends EloquentRepository implements CustomerInterface
     public function getAll($request)
     {
         $customers = $this->model->select('*');
+        $search = $request->search;
         if (isset($request->name) && $request->name) {
             $name = $request->name;
             $customers->where('name', 'LIKE', '%' . $name . '%');
+        }
+        if ($search) {
+            $customers = $customers->where('name', 'like', '%' . $search . '%')->orwhere('email', 'like', '%' . $search . '%')->orwhere('address', 'like', '%' . $search . '%')->orwhere('phone', 'like', '%' . $search . '%')->orwhere('cmnd', 'like', '%' . $search . '%');
         }
         return $customers->orderBy('id', 'desc')->paginate(5);
     }

@@ -7,7 +7,6 @@
                 <div class="col-md-8">
                     <div class="slider">
                         <div id="slider-larg" class="owl-carousel image-gallery">
-
                             <div class="item lightbox-image-icon">
                                 <a href="{{$rooms->image_path}}"
                                    class="hover_effect h_lightbox h_blue">
@@ -47,8 +46,8 @@
                                             <a href="room.html" class="hover_effect h_blue h_link"><img
                                                     src="{{$roomType->image_path}}" alt="Image"
                                                     class="img-responsive"></a>
-                                            <div class="price">{{Helper::convertToRupiah($roomType->price)}}
-                                                <span> night</span></div>
+                                            <div class="price">{{number_format($roomType->price)}} VND
+                                                <span> Ngày</span></div>
                                             <figcaption>
                                                 <h4><a href="room.html">{{$roomType->room_type->name}}</a></h4>
                                             </figcaption>
@@ -57,6 +56,14 @@
                                 </div>
                             @endforeach
                         </div>
+                        @if ($room->status == 0)
+                        <a href="{{route('booking.index',$rooms->id)}}" class="button  btn_blue btn_full upper">Đặt Ngay</a>
+                        @endif
+                        @if ($room->status == 1)
+                        {{-- <a href="#" class="button  btn_blue btn_full upper">Đặt Ngay</a> --}}
+                        <button style="background-color: rgb(40, 136, 255)">Quý khách thông cảm phòng này hiện
+                            đã có người đặt</button>
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-4">

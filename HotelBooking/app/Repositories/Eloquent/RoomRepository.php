@@ -21,9 +21,12 @@ class RoomRepository extends EloquentRepository implements RoomInterface
 
     public function getAll($request)
     {
-        $result = $this->model->orderBy('id', 'desc')->paginate(6);
-
-        return $result;
+        $rooms = $this->model->select('*');
+        $search = $request->search;
+        if($search){
+            $rooms = $rooms->where('name', 'like', '%' . $search . '%');
+        }
+        return $rooms->orderBy('id', 'desc')->paginate(6);
     }
 
     public function getAllByRoomType($id)

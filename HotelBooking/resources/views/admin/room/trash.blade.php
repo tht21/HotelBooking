@@ -10,13 +10,6 @@
                 <div class="card-header">
                     <div class="d-flex align-items-center">
                         <h4 class="card-title">Danh Sách Phòng</h4>
-                        @if(Auth::user()->hasPermission('Rooms_create'))
-
-                        <a href="{{route('rooms.create')}}" class="btn btn-primary btn-round ml-auto">
-                            <i class="fa fa-plus"></i>
-                            Thêm Phòng
-                        </a>
-                        @endif
                     </div>
                     <ul class="nav nav-tabs card-header-tabs">
                         <div class="all">

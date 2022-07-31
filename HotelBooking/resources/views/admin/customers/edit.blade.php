@@ -43,7 +43,7 @@
                         @endif
                      </div>
                      <div class="form-group">
-                        <label>Số CMND</label>
+                        <label>Số CMND/CCCD</label>
                         <input type="text" class="form-control" id="cmnd" name="cmnd" value="{{$customer->cmnd}}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('cmnd') }}</p>

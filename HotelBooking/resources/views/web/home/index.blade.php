@@ -11,7 +11,7 @@
            <div class="col-md-4">
                <article class="room">
                    <figure>
-                       <div class="price">{{number_format($room->price)}} VNĐ<span>/ Đêm</span></div>
+                       <div class="price">{{number_format($room->price)}} VNĐ<span>/ Ngày</span></div>
                        <a class="hover_effect h_blue h_link" href="{{route('roomDetail.index',$room->id)}}">
                            <img src="{{asset($room->image_path)}}" class="img-responsive" alt="Image">
                        </a>

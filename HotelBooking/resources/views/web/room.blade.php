@@ -6,7 +6,15 @@
         border-radius: 3px;
         padding: 3px;
     }
+    h1 {
+    text-align: center;
+    margin-top: 26px;
+    font-weight: 900;
+}
 </style>
+<div>
+    <h1>Danh Sách Phòng</h1>
+</div>
 <main id="rooms_list">
     <div class="container">
         @foreach ($rooms as $room)
@@ -24,11 +32,11 @@
                         <div class="col-md-9 col-sm-9 col-xs-12 room_desc">
                             <h3><a href="{{route('roomDetail.index',$room->id)}}">{{$room->room_type->name}}</a></h3>
                             <p>{{$room->description}}</p>
-                            @if ($room->status == 'hết phòng')
-                            <p>Tình Trạng: <span style="background-color: red">{{$room->status}}</span></p>
+                            @if ($room->status == 1)
+                            <p>Tình Trạng: <span style="background-color: red">Hết Phòng</span></p>
                             @endif
-                            @if ($room->status == 'còn phòng')
-                            <p>Tình Trạng: <span style="background-color: rgb(45, 245, 82)">{{$room->status}}</span></p>
+                            @if ($room->status == 0)  
+                            <p>Tình Trạng: <span style="background-color: rgb(45, 245, 82)">Còn Phòng</span></p>
                             @endif
                             <p>Số Người: {{$room->room_type->limit_people}}</p>
                             <div class="room_services">
@@ -44,10 +52,10 @@
                             <div class="room_price_inner">
                                 <span class="room_price_number"> {{number_format($room->price)}} VNĐ </span>
                                 <small class="upper"> Một Ngày</small>
-                                @if ($room->status == 'còn phòng')
+                                @if ($room->status == 0)
                                 <a href="{{route('booking.index',$room->id)}}" class="button  btn_blue btn_full upper">Đặt Ngay</a>
                                 @endif
-                                @if ($room->status == 'hết phòng')
+                                @if ($room->status == 1)
                                 {{-- <a href="#" class="button  btn_blue btn_full upper">Đặt Ngay</a> --}}
                                 <button style="background-color: rgb(40, 136, 255)">Quý khách thông cảm phòng này hiện
                                     đã có người đặt</button>

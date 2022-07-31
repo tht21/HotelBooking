@@ -35,7 +35,10 @@ class RoomController extends Controller
     {
         $this->authorize('viewAny', Room::class);
         $rooms = $this->roomService->getAll($request);
-        return view("admin.room.index", compact('rooms'));
+        $param = [
+            'rooms' => $rooms
+        ];
+        return view("admin.room.index",$param);
     }
 
     /**
