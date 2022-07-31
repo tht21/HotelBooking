@@ -56,7 +56,7 @@
                             @if(Auth::user()->hasPermission('Bookings_viewAny'))
                             
                             <li>
-                                <a href="{{route('bookingrooms.index')}}">
+                                <a href="bookingrooms?status=2">
                                     <span class="sub-item">Xem Dạng Danh Sách</span>
                                 </a>
                             </li>

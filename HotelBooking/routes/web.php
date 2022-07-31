@@ -102,5 +102,4 @@ Route::group([
     Route::post('checkout/{id}', [BookingRoomController::class, 'checkout'])->name('booking.checkout'); 
     Route::get('booking/{id}', [BookingRoomController::class, 'index'])->name('booking.index'); 
     Route::get('pay/{id}', [BookingRoomController::class, 'getpay'])->name('booking.pay'); 
-    
 });
