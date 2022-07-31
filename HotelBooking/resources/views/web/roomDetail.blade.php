@@ -56,14 +56,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        @if ($room->status == 0)
-                        <a href="{{route('booking.index',$rooms->id)}}" class="button  btn_blue btn_full upper">Đặt Ngay</a>
-                        @endif
-                        @if ($room->status == 1)
-                        {{-- <a href="#" class="button  btn_blue btn_full upper">Đặt Ngay</a> --}}
-                        <button style="background-color: rgb(40, 136, 255)">Quý khách thông cảm phòng này hiện
-                            đã có người đặt</button>
-                        @endif
+
                     </div>
                 </div>
                 <div class="col-md-4">

@@ -1,17 +1,6 @@
 @extends('layouts.web.app')
 @section('content')
-<style>
-    span {
-        color: white;
-        border-radius: 3px;
-        padding: 3px;
-    }
-    h1 {
-    text-align: center;
-    margin-top: 26px;
-    font-weight: 900;
-}
-</style>
+
 <div>
     <h1>Danh Sách Phòng</h1>
 </div>
@@ -31,17 +20,17 @@
                     <div class="room_details row-flex">
                         <div class="col-md-9 col-sm-9 col-xs-12 room_desc">
                             <h3><a href="{{route('roomDetail.index',$room->id)}}">{{$room->room_type->name}}</a></h3>
-                            <p>{{$room->description}}</p>
+                            <p>{!! $room->convenient !!}}</p>
                             @if ($room->status == 1)
-                            <p>Tình Trạng: <span style="background-color: red">Hết Phòng</span></p>
+                                <p>Tình Trạng: <span style="background-color: red">Hết Phòng</span></p>
                             @endif
-                            @if ($room->status == 0)  
-                            <p>Tình Trạng: <span style="background-color: rgb(45, 245, 82)">Còn Phòng</span></p>
+                            @if ($room->status == 0)
+                                <p>Tình Trạng: <span style="background-color: rgb(45, 245, 82)">Còn Phòng</span></p>
                             @endif
                             <p>Số Người: {{$room->room_type->limit_people}}</p>
                             <div class="room_services">
                                 <i class="fa fa-coffee" data-toggle="popover" data-placement="top" data-trigger="hover"
-                                    data-content="Cà phê miễn phí" data-original-title="Coffee"></i>
+                                   data-content="Cà phê miễn phí" data-original-title="Coffee"></i>
                                 <i class="fa fa-cutlery" data-toggle="popover" data-placement="top" data-trigger="hover"
                                     data-content="Bữa sáng miễn phí" data-original-title="Food"></i>
                                 <i class="fa fa-wifi" data-toggle="popover" data-placement="top" data-trigger="hover"
