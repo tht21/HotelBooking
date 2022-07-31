@@ -31,7 +31,6 @@ class BookingController extends Controller
         $this->userService = $userService;
         $this->customerService = $customerService;
         $this->roomBookService = $roomBookService;
-
     }
 
     /**
@@ -43,12 +42,12 @@ class BookingController extends Controller
     {
         $this->authorize('viewAny', Booking::class);
         $bookingrooms = $this->bookingRoomService->getAll($request);
-
+        $status = $_REQUEST['status'];
         $rooms = $this->roomService->getAll($request);
-
         $param = [
             'bookingrooms' => $bookingrooms,
             'rooms' => $rooms,
+            'status' => $status
         ];
         return view("admin.bookingRoom.index", $param);
     }
