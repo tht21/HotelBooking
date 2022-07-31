@@ -160,5 +160,59 @@ class BookingRoomRepository extends EloquentRepository implements BookingRoomInt
         return $object;
     }
 
+    public function addRoom($request)
+    {
+
+        try {
+            DB::beginTransaction();
+            $object = $this->model;
+            $from = new DateTime($request->from_date);
+            $to = new DateTime($request->to_date);
+            $day = $from->diff($to);
+            $days = $day->days;
+            $customer = $object->customer()->create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'cmnd' => $request->cmnd,
+                'address' => $request->address,
+            ]);
+
+            $dataBooking = [
+                'customer_id' => $customer->id,
+                'limit_people' => $request->limit_people,
+                'from_date' => $from,
+                'to_date' => $to,
+                'total_room' => $days,
+                'note' => $request->note,
+                'status' => 1,
+                'user_id' => 1,
+            ];
+
+            $object = $object->create($dataBooking);
+            $object->roombooking()->create([
+                'booking_id' => $object->id,
+                'room_id' => $request->room_id,
+            ]);
+
+            //check status
+            foreach ($object->room as $i) {
+                $i['status'] = '1';
+                $a = [
+                    'status' => $i['status'],
+                ];
+            }
+            $object->room()->update($a);
+            //   $object->room()->create($status);
+            DB::commit();
+            Session::flash('success', 'Thêm khách đặt phòng thành công');
+            return true;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Message: ' . $e->getMessage() . ' --- Line : ' . $e->getLine());
+            return false;
+        }
+        return $object;
+    }
 
 }

@@ -14,7 +14,6 @@
                                          s alt="Image">
                                 </a>
                             </div>
-
                         </div>
                         <div id="thumbs" class="owl-carousel">
                             @foreach($rooms->room_image as $room )

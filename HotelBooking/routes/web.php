@@ -99,8 +99,8 @@ Route::group([
     Route::get('home', [WebsHomeWebController::class, 'index'])->name('homeweb');
     Route::get('roomDetail/{id}', [RoomDetailController::class, 'index'])->name('roomDetail.index');
     Route::get('room', [RoomWebController::class, 'index'])->name('room.index');
-    Route::post('checkout/{id}', [BookingRoomController::class, 'checkout'])->name('booking.checkout'); 
-    Route::get('booking/{id}', [BookingRoomController::class, 'index'])->name('booking.index'); 
-    Route::get('pay/{id}', [BookingRoomController::class, 'getpay'])->name('booking.pay'); 
-    
+    Route::post('checkout/{id}', [BookingRoomController::class, 'checkout'])->name('booking.checkout');
+    Route::get('booking/{id}', [BookingRoomController::class, 'addRoom'])->name('booking.addRoom');
+    Route::post('pay', [BookingRoomController::class, 'getpay'])->name('booking.pay');
+
 });

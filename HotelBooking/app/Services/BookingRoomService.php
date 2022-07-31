@@ -60,4 +60,10 @@ class BookingRoomService implements BookingRoomServiceInterface
     {
         return $this->bookingRoomRepository->getAllBookRoom($id);
     }
+
+    public function addRoom($request)
+    {
+
+        return $this->bookingRoomRepository->addRoom($request);
+    }
 }
