@@ -23,11 +23,23 @@ class RoomRepository extends EloquentRepository implements RoomInterface
     {
         $rooms = $this->model->select('*');
         $search = $request->search;
-        if($search){
+        if ($search) {
             $rooms = $rooms->where('name', 'like', '%' . $search . '%');
         }
         return $rooms->orderBy('id', 'desc')->paginate(6);
     }
+
+    public function search($request)
+    {
+        $search = $request->search;
+        $rooms = $this->model->join('room_types', 'room_types.id', '=', 'rooms.room_types_id')
+            ->select('rooms.*', 'room_types.name as name_roomType');
+        if ($search) {
+            $rooms->where('room_types.name', 'like', '%' . $search . '%');
+        }
+        return $rooms->orderBy('id', 'desc')->paginate(6);
+    }
+
 
     public function getAllByRoomType($id)
     {
@@ -37,7 +49,6 @@ class RoomRepository extends EloquentRepository implements RoomInterface
             ->where('status', '0')->get();
         return $result->orderBy('id', 'desc')->paginate(6);
     }
-
 
     public function create($request)
     {

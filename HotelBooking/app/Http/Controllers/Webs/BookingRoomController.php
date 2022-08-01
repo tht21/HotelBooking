@@ -32,8 +32,10 @@ class BookingRoomController extends Controller
         $this->customerService = $customerService;
     }
 
-    public function addRoom($id)
+    public function addRoom($id, Request $request)
     {
+        //    dd($request);
+
         $rooms = $this->roomService->findById($id);
 
         Session::push("cart", $rooms);
@@ -72,4 +74,5 @@ class BookingRoomController extends Controller
             Log::error($e->getMessage());
         }
     }
+
 }
