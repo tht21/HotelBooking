@@ -122,7 +122,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <button type="submit" class="button btn_blue pull-right"><i
-                                            class="fa fa-calendar-check-o" aria-hidden="true"></i> Đặt phòng
+                                            class="fa fa-calendar-check-o" aria-hidden="true" onclick="return alert('Đặt Phòng Thành Công')"></i> Đặt phòng
                                     </button>
                                 </div>
                             </form>
