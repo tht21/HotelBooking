@@ -76,7 +76,6 @@
                                         <th>Ngày trả phòng</th>
                                         <th>Tổng phòng</th>
                                         <th>Số lượng người</th>
-                                        <th>Trạng thái</th>
                                         <th style="width: 10%">Action</th>
                                     </tr>
                                     </thead>
@@ -84,7 +83,6 @@
                                     @foreach($bookingrooms as $key=> $bookingroom )
                                         @foreach($bookingroom->roombooking as $key1=> $booking )
                                             @if($bookingroom->id===$booking->booking_id)
-
                                                 <tr>
                                                     <td>{{$booking->id}}</td>
                                                     <td>{{$bookingroom->user->name}}</td>
@@ -94,7 +92,6 @@
                                                     <td>{{Helper::dateFormat($bookingroom->to_date)}}</td>
                                                     <td>{{Helper::convertToRupiah(Helper::getTotalPayment($bookingroom->total_room,$booking->roomss->price)) }}</td>
                                                     <td>{{$bookingroom->limit_people}}</td>
-                                                    <td>{{$bookingroom->status}}</td>
                                                     <td>
                                                         <div class="form-button-action">
                                                             <a href="{{route('bookingrooms.edit',$bookingroom->id)}}"
@@ -119,7 +116,7 @@
                                                     </td>
                                                 </tr>
                                             @else
-                                                khong cp
+                                                Không có khách đặt phòng
                                             @endif
                                         @endforeach
                                     @endforeach

@@ -8,5 +8,7 @@ interface  RoomServiceInterface extends Service
    public function restore($id);
    public function force_destroy($id);
 
+    public function search($request);
+
     public function getAllByRoomType($id);
 }

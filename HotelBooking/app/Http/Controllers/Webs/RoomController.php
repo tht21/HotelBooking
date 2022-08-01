@@ -15,10 +15,12 @@ class RoomController extends Controller
         $this->roomService = $roomService;
     }
     public function index(Request $request){
-        $rooms = $this->roomService->getAll($request);
+        $rooms = $this->roomService->search($request);
         $param = [
             'rooms' => $rooms,
         ];
         return view('web.room',$param);
     }
+
+
 }

@@ -101,6 +101,8 @@ Route::group([
     Route::get('room', [RoomWebController::class, 'index'])->name('room.index');
     Route::post('checkout/{id}', [BookingRoomController::class, 'checkout'])->name('booking.checkout');
     Route::get('booking/{id}', [BookingRoomController::class, 'addRoom'])->name('booking.addRoom');
+    Route::post('booking/{id}', [BookingRoomController::class, 'addRoom'])->name('booking.addRoom');
     Route::post('pay', [BookingRoomController::class, 'getpay'])->name('booking.pay');
+    Route::get('search', [RoomWebController::class, 'search'])->name('index.search');
 
 });

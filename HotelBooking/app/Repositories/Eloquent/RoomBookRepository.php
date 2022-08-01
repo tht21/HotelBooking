@@ -24,8 +24,10 @@ class RoomBookRepository extends EloquentRepository implements RoomBookInterface
             $object = $this->model->find($id);
 
             foreach ($object as $key) {
+                $key->roomss->update(['status' => '0']);
                 $key->delete();
             }
+            // $object->roomss->update(['status' => '0']);
 
             DB::commit();
             Session::flash('success', 'Khách hàng hủy đặt hàng thành công');
@@ -66,7 +68,6 @@ class RoomBookRepository extends EloquentRepository implements RoomBookInterface
         $object = $this->model->withTrashed()->find($id);
 
         try {
-            $object->roomss->update(['status' => '0']);
             $object->forceDelete();
             $object->bookings->forceDelete();
 

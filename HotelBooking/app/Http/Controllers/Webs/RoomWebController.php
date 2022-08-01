@@ -18,7 +18,7 @@ class RoomWebController extends Controller
         $this->roomTypeService = $roomTypeService;
     }
     public function index(Request $request){
-        $rooms = $this->roomService->getAll($request);
+        $rooms = $this->roomService->search($request);
         $roomTypes = $this->roomTypeService->getAll($request);
         $param = [
             'rooms' => $rooms,

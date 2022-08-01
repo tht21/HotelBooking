@@ -45,7 +45,7 @@
                                             <a href="room.html" class="hover_effect h_blue h_link"><img
                                                     src="{{$roomType->image_path}}" alt="Image"
                                                     class="img-responsive"></a>
-                                            <div class="price">{{number_format($roomType->price)}} VND
+                                            <div class="price">{{Helper::convertToRupiah($roomType->price)}}
                                                 <span> Ngày</span></div>
                                             <figcaption>
                                                 <h4><a href="room.html">{{$roomType->room_type->name}}</a></h4>
@@ -62,59 +62,31 @@
                     <div class="sidebar">
                         <aside class="widget">
                             <div class="vbf">
-                                <h2 class="form_title"><i class="fa fa-calendar"></i> BOOK ONLINE</h2>
-                                <form id="booking-form" class="inner">
+                                <h2 class="form_title"><i class="fa fa-calendar"></i>ĐẶT PHÒNG ONLINE</h2>
+                                <form id="booking-form" class="inner" method="post"
+                                      action="{{route('booking.addRoom',$rooms->id)}}">
+                                    @csrf
                                     <div class="form-group">
-                                        <input class="form-control" name="booking-name"
-                                               placeholder="Enter Your Name" type="text">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" name="booking-email"
-                                               placeholder="Enter Your Email Address" type="email">
+                                        <input class="form-control" name="name"
+                                               placeholder="Nhập họ và tên" type="text">
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" name="booking-phone"
-                                               placeholder="Enter Your Phone Number" type="text">
+                                        <input class="form-control" name="email"
+                                               placeholder="Nhập địa chỉ email" type="email">
                                     </div>
                                     <div class="form-group">
-                                        <div class="form_select">
-                                            <select name="booking-roomtype" class="form-control"
-                                                    title="Select Room Type" data-header="Room Type" disabled>
-                                                <option value="Single Room" selected>Single Room</option>
-                                                <option value="Double Room">Double Room</option>
-                                                <option value="Deluxe Room">Deluxe Room</option>
-                                            </select>
-                                        </div>
+                                        <input class="form-control" name="phone"
+                                               placeholder="Nhập số điện thoại" type="text">
                                     </div>
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12 nopadding">
-                                        <div class="form_select">
-                                            <select name="booking-adults" class="form-control md_noborder_right"
-                                                    title="Adults" data-header="Adults">
-                                                <option value="0">0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12 nopadding">
-                                        <div class="form_select">
-                                            <select name="booking-children" class="form-control" title="Children"
-                                                    data-header="Children">
-                                                <option value="0">0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                            </select>
-                                        </div>
+                                    <div class="form-group">
+                                        <input class="form-control" name="limit_people"
+                                               placeholder="Số lượng người" type="number">
                                     </div>
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12 nopadding">
                                         <div class="input-group">
                                             <div class="form_date">
                                                 <input type="text" class="datepicker form-control md_noborder_right"
-                                                       name="booking-checkin" placeholder="Arrival Date" readonly>
+                                                       name="from_date" placeholder="Ngày đặt phòng" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -122,32 +94,17 @@
                                         <div class="input-group">
                                             <div class="form_date">
                                                 <input type="text" class="datepicker form-control"
-                                                       name="booking-checkout" placeholder="Departure Date" readonly>
+                                                       name="to_date" placeholder="Ngày trả phòng" readonly>
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="button btn_lg btn_blue btn_full" type="submit">BOOK A ROOM
-                                        NOW
+                                    <button class="button btn_lg btn_blue btn_full" type="submit">ĐẶT PHÒNG NGAY
                                     </button>
-                                    <div class="a_center mt10">
-                                        <a href="booking-form.html" class="a_b_f">Advanced Booking Form</a>
-                                    </div>
+
                                 </form>
                             </div>
                         </aside>
-                        <aside class="widget">
-                            <h4>Thông tin</h4>
-                            <div class="help">
-                                Nếu bạn có bất kỳ câu hỏi, xin đừng ngần ngại liên hệ với chúng tôi
-                                <div class="phone"><i class="fa  fa-phone"></i><a href="tel:18475555555">
-                                        1-888-123-4567 </a></div>
-                                <div class="email"><i class="fa  fa-envelope-o "></i><a
-                                        href=""><span
-                                            class="__cf_email__"
-                                            data-cfemail="aecdc1c0dacfcddaeeddc7dacb80cdc1c3">[email&#160;protected]</span></a>
-                                    or use <a href="contact.html"> contact form</a></div>
-                            </div>
-                        </aside>
+
 
                     </div>
                 </div>
