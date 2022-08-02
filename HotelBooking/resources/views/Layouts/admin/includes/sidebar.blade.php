@@ -54,7 +54,7 @@
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
                             @if(Auth::user()->hasPermission('Bookings_viewAny'))
-                            
+
                             <li>
                                 <a href="{{route('bookingrooms.index')}}?status=2">
                                     <span class="sub-item">Xem Dạng Danh Sách</span>
@@ -119,75 +119,15 @@
                  </li>
              @endif
 
+
              <li class="nav-item">
-                 <a href="#forms">
-                     <i class="fas fa-list"></i>
-                     <p>Menu</p>
-                 </a>
-             </li>
-             <li class="nav-item">
-                 <a href="#maps">
-                     <i class="fas fa-phone"></i>
-                        <p>Liên Hệ</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#charts">
-                        <i class="far fa-bell"></i>
-                        <p>Theo Dõi</p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a data-toggle="collapse" href="#submenu">
                         <i class="fas fa-cog fa-spin"></i>
                         <p>Cài Đặt</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="submenu">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a data-toggle="collapse" href="#subnav1">
-                                    <span class="sub-item">Level 1</span>
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="collapse" id="subnav1">
-                                    <ul class="nav nav-collapse subnav">
-                                        <li>
-                                            <a href="#">
-                                                <span class="sub-item">Level 2</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="sub-item">Level 2</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a data-toggle="collapse" href="#subnav2">
-                                    <span class="sub-item">Level 1</span>
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="collapse" id="subnav2">
-                                    <ul class="nav nav-collapse subnav">
-                                        <li>
-                                            <a href="#">
-                                                <span class="sub-item">Level 2</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Level 1</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+
+             </li>
             </ul>
         </div>
     </div>
