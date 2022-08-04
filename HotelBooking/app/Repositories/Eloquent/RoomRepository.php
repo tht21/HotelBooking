@@ -21,8 +21,33 @@ class RoomRepository extends EloquentRepository implements RoomInterface
 
     public function getAll($request)
     {
-        $result = $this->model->paginate(10);
-        return $result;
+        $rooms = $this->model->select('*');
+        $search = $request->search;
+        if ($search) {
+            $rooms = $rooms->where('name', 'like', '%' . $search . '%');
+        }
+        return $rooms->orderBy('id', 'desc')->paginate(6);
+    }
+
+    public function search($request)
+    {
+        $search = $request->search;
+        $rooms = $this->model->join('room_types', 'room_types.id', '=', 'rooms.room_types_id')
+            ->select('rooms.*', 'room_types.name as name_roomType');
+        if ($search) {
+            $rooms->where('room_types.name', 'like', '%' . $search . '%');
+        }
+        return $rooms->orderBy('id', 'desc')->paginate(6);
+    }
+
+
+    public function getAllByRoomType($id)
+    {
+        // dd($category_id);
+        $result = $this->model->select('*');
+        $result->where('room_types_id', $id)
+            ->where('status', '0')->get();
+        return $result->orderBy('id', 'desc')->paginate(6);
     }
 
     public function create($request)
@@ -67,6 +92,7 @@ class RoomRepository extends EloquentRepository implements RoomInterface
 
     public function update($request, $id)
     {
+        //dd($request);
         try {
             DB::beginTransaction();
             $object = $this->model->find($id);
@@ -77,11 +103,13 @@ class RoomRepository extends EloquentRepository implements RoomInterface
             $object->convenient = $request->convenient;
             $object->description = $request->description;
             $object->status = $request->status;
-//       $object->image_path = $request->image;
-
-            $dataUploadImage = $this->storageUpload($request, 'image_path', 'room');
-            $object->image_path = $dataUploadImage['file_path'];
-
+            //  dd(  $dataUploadImage['file_path']);
+            if ($request->image_path) {
+                $dataUploadImage = $this->storageUpload($request, 'image_path', 'room');
+                $object->image_path = $dataUploadImage['file_path'];
+            } else {
+                $object->image_path = $object->image_path;
+            }
             $object->save();
             if ($request->hasFile('room_image_path')) {
                 foreach ($request->room_image_path as $fileItem) {
@@ -93,10 +121,11 @@ class RoomRepository extends EloquentRepository implements RoomInterface
                 }
             }
             DB::commit();
-            Session::flash('success', 'Sua' . ' ' . $request->name . ' ' . 'thành công');
+            Session::flash('success', 'Chỉnh sửa phòng' . ' ' . $request->name . ' ' . 'thành công');
             return true;
         } catch (\Exception $e) {
             DB::rollBack();
+            Session::flash('success', 'Chỉnh sửa phòng' . ' ' . $request->name . ' ' . 'không thành công');
             Log::error('Message: ' . $e->getMessage() . ' --- Line : ' . $e->getLine());
             return false;
         }
@@ -107,6 +136,7 @@ class RoomRepository extends EloquentRepository implements RoomInterface
     public function destroy($id)
     {
         $object = $this->model->find($id);
+
         try {
             $object->delete();
             return true;

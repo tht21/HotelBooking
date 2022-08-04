@@ -31,13 +31,15 @@
             <div class="text text-danger"><b>{{session::get('error')}}</b></div>
             @endif
                <div class="d-flex align-items-center">
+                  @if(Auth::user()->hasPermission('Customers_create'))
                   <a href="{{route('customers.create')}}" class="btn btn-primary btn-round ml-auto" >
                      <i class="fa fa-plus"></i>
                      Thêm Khách Hàng
                   </a>
+                  @endif
                </div>
                <div class="table-responsive">
-               <table id="basic-datatables" class="display table table-striped table-hover" >
+               <table  class="display table table-striped table-hover" >
                   <thead>
                      <tr>
                         <th>#</th>
@@ -61,14 +63,18 @@
                         <td>{{$customer->cmnd}}</td>
                         <td>
                            <div class="form-button-action">
+                              @if(Auth::user()->hasPermission('Customers_restore'))
                               <a href="{{route('customers.restore',$customer->id)}}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Khôi Phục Khách Hàng">
                                  <i class="fas fa-trash-restore"></i>
                               </a>
+                              @endif
+                              @if(Auth::user()->hasPermission('Customers_forceDelete'))
                               <form action="{{ route('customers.force_destroy',$customer->id)}}" style="display:inline" method="post">
                                  <button onclick="return confirm('Xóa {{$customer->name}} ?')" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa Vĩnh Viễn" ><i class="far fa-trash-alt"></i></button>
                                  @csrf
                                  @method('delete')
                              </form>
+                             @endif
                            </div>
                         </td>
                      </tr>

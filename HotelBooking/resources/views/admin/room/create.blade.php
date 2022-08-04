@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="text">Giá phòng</label>
-                                        <input type="text" name="price" class="form-control" id="password"
+                                        <input type="number" name="price" class="form-control" id="password"
                                                placeholder="Nhập giá phòng" value="{{old('price')}}">
                                         @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('price') }}</p>
@@ -85,8 +85,8 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Tình trạng phòng</label>
                                         <select class="form-control" name="status" id="exampleFormControlSelect1">
-                                            <option value="còn phòng">Còn phòng</option>
-                                            <option value="hết phòng">Hết phòng</option>
+                                            <option value="0">Còn phòng</option>
+                                            <option value="1">Hết phòng</option>
                                         </select>
                                     </div>
                                 </div>

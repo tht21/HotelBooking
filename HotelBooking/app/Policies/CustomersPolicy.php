@@ -18,7 +18,7 @@ class CustomersPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->hasPermission('Customers_viewAny');
     }
 
     /**
@@ -30,7 +30,7 @@ class CustomersPolicy
      */
     public function view(User $user, Customers $customers)
     {
-        //
+        return $user->hasPermission('Customers_view');
     }
 
     /**
@@ -41,7 +41,7 @@ class CustomersPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->hasPermission('Customers_create');
     }
 
     /**
@@ -53,7 +53,7 @@ class CustomersPolicy
      */
     public function update(User $user, Customers $customers)
     {
-        //
+        return $user->hasPermission('Customers_update');
     }
 
     /**
@@ -65,7 +65,7 @@ class CustomersPolicy
      */
     public function delete(User $user, Customers $customers)
     {
-        //
+        return $user->hasPermission('Customers_delete');
     }
 
     /**
@@ -77,7 +77,7 @@ class CustomersPolicy
      */
     public function restore(User $user, Customers $customers)
     {
-        //
+        return $user->hasPermission('Customers_restore');
     }
 
     /**
@@ -89,6 +89,6 @@ class CustomersPolicy
      */
     public function forceDelete(User $user, Customers $customers)
     {
-        //
+        return $user->hasPermission('Customers_forceDelete');
     }
 }

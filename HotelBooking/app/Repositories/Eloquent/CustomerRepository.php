@@ -16,11 +16,15 @@ class CustomerRepository extends EloquentRepository implements CustomerInterface
     public function getAll($request)
     {
         $customers = $this->model->select('*');
+        $search = $request->search;
         if (isset($request->name) && $request->name) {
             $name = $request->name;
             $customers->where('name', 'LIKE', '%' . $name . '%');
         }
-        return $customers->orderBy('id', 'desc')->paginate(10);
+        if ($search) {
+            $customers = $customers->where('name', 'like', '%' . $search . '%')->orwhere('email', 'like', '%' . $search . '%')->orwhere('address', 'like', '%' . $search . '%')->orwhere('phone', 'like', '%' . $search . '%')->orwhere('cmnd', 'like', '%' . $search . '%');
+        }
+        return $customers->orderBy('id', 'desc')->paginate(5);
     }
 
     public function destroy($id)
@@ -59,6 +63,7 @@ class CustomerRepository extends EloquentRepository implements CustomerInterface
     public function update($request, $id)
     {
         $customers = $this->model->find($id);
+        // dd($customers);
         $customers->name = $request->name;
         $customers->email = $request->email;
         $customers->phone = $request->phone;
@@ -98,17 +103,17 @@ class CustomerRepository extends EloquentRepository implements CustomerInterface
 
     public function force_destroy($id)
     {
-        
+
         try {
             $customer = $this->model->withTrashed()->find($id);
-     
+
             $customer->forceDelete();
-           
+
             return $customer;
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return false;
         }
-       
+
     }
 }

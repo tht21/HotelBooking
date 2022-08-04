@@ -19,13 +19,8 @@
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
                             <li>
-                                <a href="#profile">
+                                <a href="{{route('profile.index')}}">
                                     <span class="link-collapse">Hồ Sơ</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#edit">
-                                    <span class="link-collapse">Chỉnh Sửa Hồ Sơ</span>
                                 </a>
                             </li>
                             <li>
@@ -59,13 +54,9 @@
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
                             @if(Auth::user()->hasPermission('Bookings_viewAny'))
+                            
                             <li>
-                                <a href="components/avatars.html">
-                                    <span class="sub-item">Xem Dạng Lịch</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{route('bookingrooms.index')}}">
+                                <a href="{{route('bookingrooms.index')}}?status=2">
                                     <span class="sub-item">Xem Dạng Danh Sách</span>
                                 </a>
                             </li>

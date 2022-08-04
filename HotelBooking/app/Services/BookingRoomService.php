@@ -56,5 +56,14 @@ class BookingRoomService implements BookingRoomServiceInterface
         return $this->bookingRoomRepository->force_destroy($id);
     }
 
+    public function getAllBookRoom($id)
+    {
+        return $this->bookingRoomRepository->getAllBookRoom($id);
+    }
 
+    public function addRoom($request)
+    {
+
+        return $this->bookingRoomRepository->addRoom($request);
+    }
 }

@@ -4,7 +4,7 @@
 <head>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>Atlantis Lite - Bootstrap 4 Admin Dashboard</title>
+    <title>Hotel Zante</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
     <link rel="icon" href="{{ asset('admin/assets/img/icon.ico')}}" type="image/x-icon"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,17 +24,17 @@
                 sessionStorage.fonts = true;
             }
         });
-    </script>
+   </script>
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/atlantis.min.css')}}">
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/demo.css')}}">
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-
+    <link href="{{asset('admin/vendor/select2/dist/css/select2.min.css')}}" rel="stylesheet"/>
 </head>
 <body>
 <div class="wrapper">
@@ -137,44 +137,6 @@
         styleText: true
     })
 
-    var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
-
-    var mytotalIncomeChart = new Chart(totalIncomeChart, {
-        type: 'bar',
-        data: {
-            labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
-            datasets: [{
-                label: "Total Income",
-                backgroundColor: '#ff9e27',
-                borderColor: 'rgb(23, 125, 255)',
-                data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
-            }],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                display: false,
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        display: false //this will remove only the label
-                    },
-                    gridLines: {
-                        drawBorder: false,
-                        display: false
-                    }
-                }],
-                xAxes: [{
-                    gridLines: {
-                        drawBorder: false,
-                        display: false
-                    }
-                }]
-            },
-        }
-    });
 
     $('#lineChart').sparkline([105, 103, 123, 100, 95, 105, 115], {
         type: 'line',
@@ -217,7 +179,7 @@
 			});
         });
 </script>
-<script type="text/javascript" src="cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script>
     $('#summernote').summernote({
@@ -232,7 +194,34 @@
         height: 100
     });
 </script>
-@yield('js')
+
+<script src="{{asset('admin/vendor/select2/dist/js/select2.min.js')}}"></script>
+<script src="{{asset('admin/booking/add/add.js')}}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    @if (Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info') }}"
+    switch (type) {
+        case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+        case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+        case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+        case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+    }
+    @endif
+    @yield('js')
+</script>
 </body>
 </html>
 

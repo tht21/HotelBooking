@@ -4,42 +4,45 @@ namespace App\Providers;
 
 
 use App\Repositories\Eloquent\BookingRoomRepository;
+use App\Repositories\Eloquent\CheckoutRepository;
 use App\Repositories\Eloquent\CustomerRepository;
 use App\Repositories\Eloquent\EloquentRepository;
 use App\Repositories\Eloquent\FloorRepository;
+use App\Repositories\Eloquent\RoomBookRepository;
 use App\Repositories\Eloquent\RoomRepository;
-
-use App\Repositories\Eloquent\UserRepository;
-use App\Repositories\Interfaces\BookingRoomInterface;
-use App\Repositories\Interfaces\FloorInterface;
-use App\Repositories\Interfaces\RepositoryInterface;
-use App\Repositories\Interfaces\RoomInterface;
-use App\Repositories\Interfaces\UserInterface;
-use App\Services\BookingRoomService;
-use App\Services\FloorService;
-
-use App\Services\Interfaces\BookingRoomServiceInterface;
-use App\Services\Interfaces\FloorServiceInterface;
-use App\Services\Interfaces\RoomServiceInterface;
-use App\Services\Interfaces\UserServiceInterface;
-use App\Services\RoomService;
-
 use App\Repositories\Eloquent\RoomTyperepository;
 use App\Repositories\Eloquent\UserGroupRepository;
+use App\Repositories\Eloquent\UserRepository;
+use App\Repositories\Interfaces\BookingRoomInterface;
+use App\Repositories\Interfaces\CheckoutInterface;
 use App\Repositories\Interfaces\CustomerInterface;
+use App\Repositories\Interfaces\FloorInterface;
+use App\Repositories\Interfaces\RepositoryInterface;
+use App\Repositories\Interfaces\RoomBookInterface;
+use App\Repositories\Interfaces\RoomInterface;
 use App\Repositories\Interfaces\RoomTypeRepositoryInterface;
 use App\Repositories\Interfaces\UserGroupInterface;
+use App\Repositories\Interfaces\UserInterface;
+use App\Services\BookingRoomService;
+use App\Services\CheckoutService;
 use App\Services\CustomerService;
+use App\Services\FloorService;
+use App\Services\Interfaces\BookingRoomServiceInterface;
+use App\Services\Interfaces\CheckoutServiceInterface;
 use App\Services\Interfaces\CustomerServiceInterface;
-
+use App\Services\Interfaces\FloorServiceInterface;
+use App\Services\Interfaces\RoomBookServiceInterface;
+use App\Services\Interfaces\RoomServiceInterface;
 use App\Services\Interfaces\RoomTypeServiceInterface;
 use App\Services\Interfaces\UserGroupServiceInterface;
+use App\Services\Interfaces\UserServiceInterface;
+use App\Services\RoomBookService;
+use App\Services\RoomService;
 use App\Services\RoomTypeService;
 use App\Services\UserGroupService;
 use App\Services\UserService;
 use App\View\Composer\Users;
 use Illuminate\Pagination\Paginator;
-
 use Illuminate\Support\ServiceProvider;
 
 class  AppServiceProvider extends ServiceProvider
@@ -81,6 +84,15 @@ class  AppServiceProvider extends ServiceProvider
         //user
         $this->app->singleton(UserServiceInterface::class, UserService::class);
         $this->app->singleton(UserInterface::class, UserRepository::class);
+
+        //roombook
+        $this->app->singleton(RoomBookServiceInterface::class, RoomBookService::class);
+        $this->app->singleton(RoomBookInterface::class, RoomBookRepository::class);
+
+        //checkout
+        $this->app->singleton(CheckoutServiceInterface::class, CheckoutService::class);
+        $this->app->singleton(CheckoutInterface::class, CheckoutRepository::class);
+
 
     }
 

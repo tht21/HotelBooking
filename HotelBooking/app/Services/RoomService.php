@@ -19,6 +19,12 @@ class RoomService implements RoomServiceInterface
         return $this->roomRepository->getAll($request);
     }
 
+    public function search($request)
+    {
+        return $this->roomRepository->search($request);
+    }
+
+
     public function create($request)
     {
         return $this->roomRepository->create($request);
@@ -55,5 +61,9 @@ class RoomService implements RoomServiceInterface
         return $this->roomRepository->force_destroy($id);
     }
 
+    public function getAllByRoomType($id)
+    {
+        return $this->roomRepository->getAllByRoomType($id);
+    }
 
 }

@@ -117,7 +117,7 @@ class DatabaseSeeder extends Seeder
         $user->birth_day = '2003/06/27';
         $user->phone = '0916663237';
         $user->address = 'Quảng Trị';
-        $user->user_group_id = '1';
+        $user->user_group_id = '3';
         $user->gender = 'Nam';
         $user->avatar = 'upload/avatar_admin.jpg';
         $user->save();
@@ -183,7 +183,7 @@ class DatabaseSeeder extends Seeder
         $room->convenient = 'wifi dieu hoa';
         $room->image_path = 'upload/avatar_admin.jpg';
         $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
-        $room->status = 'còn phòng';
+        $room->status = '1';
         $room->room_types_id = 1;
         $room->floor_id = 1;
         $room->save();
@@ -195,7 +195,7 @@ class DatabaseSeeder extends Seeder
         $room->convenient = 'wifi dieu hoa';
         $room->image_path = 'upload/avatar_admin.jpg';
         $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
-        $room->status = 'còn phòng';
+        $room->status = '0';
         $room->room_types_id = 1;
         $room->floor_id = 1;
         $room->save();
@@ -207,7 +207,7 @@ class DatabaseSeeder extends Seeder
         $room->convenient = 'wifi dieu hoa';
         $room->image_path = 'upload/avatar_admin.jpg';
         $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
-        $room->status = 'còn phòng';
+        $room->status = '0';
         $room->room_types_id = 1;
         $room->floor_id = 1;
         $room->save();
@@ -219,7 +219,7 @@ class DatabaseSeeder extends Seeder
         $room->convenient = 'wifi dieu hoa';
         $room->image_path = 'upload/avatar_admin.jpg';
         $room->description = 'Cen Hotel cung cấp chỗ nghỉ với quầy bar, chỗ đỗ xe riêng miễn phí';
-        $room->status = 'còn phòng';
+        $room->status = '0';
         $room->room_types_id = 1;
         $room->floor_id = 1;
         $room->save();
@@ -230,8 +230,20 @@ class DatabaseSeeder extends Seeder
     {
         $roomType = new RoomType();
         $roomType->id = 1;
-        $roomType->name = 'vip';
+        $roomType->name = 'VIP';
         $roomType->limit_people = 4;
+        $roomType->save();
+
+        $roomType = new RoomType();
+        $roomType->id = 2;
+        $roomType->name = 'Phòng Đôi';
+        $roomType->limit_people = 2;
+        $roomType->save();
+
+        $roomType = new RoomType();
+        $roomType->id = 3;
+        $roomType->name = 'Phòng Đơn';
+        $roomType->limit_people = 1;
         $roomType->save();
 
     }
